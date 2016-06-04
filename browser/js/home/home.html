@@ -1,4 +1,18 @@
 <section id="home">
-    <fullstack-logo></fullstack-logo>
-    <rando-greeting></rando-greeting>
+<!--     <fullstack-logo></fullstack-logo>
+    <rando-greeting></rando-greeting> -->
+
+  <div class="container">
+    <div class="row">
+      <h3>Projects<h3>
+      <div ng-repeat="project in projects" class="col-sm-3">
+        <div class="tile">
+          <div class="tile-title">
+          <a ui-sref="project({id:project._id})">{{project.name || "temp name"}}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
+

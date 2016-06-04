@@ -22,6 +22,7 @@ var Promise = require('bluebird');
 var chalk = require('chalk');
 var connectToDb = require('./server/db');
 var User = mongoose.model('User');
+var Project = mongoose.model('Project');
 
 var wipeCollections = function () {
     var removeUsers = User.remove({});
@@ -52,7 +53,10 @@ connectToDb
         return wipeCollections();
     })
     .then(function () {
-        return seedUsers();
+        return seedUsers()
+                .then(function(res){
+                    console.log(res)
+                });
     })
     .then(function () {
         console.log(chalk.green('Seed successful!'));
