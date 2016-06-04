@@ -17,7 +17,7 @@ mongoose.Promise = Promise;
 require('./models');
 
 
-console.log(mongoose);
+
 
 // Modifying startDbPromise to return the db object to have an access to it when  .then on startDbPromise
 var startDbPromise = new Promise(function (resolve, reject) {
