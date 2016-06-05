@@ -29,6 +29,15 @@ app.factory('ProjectFactory', function($http) {
         });
     },
 
+    getAllbyUser: function(userId){
+      return $http.get('/api/projects/user/' + userId)
+          .then(function(projects){
+            console.log(projects);
+            angular.copy(projects.data, _projectCache);
+            return _projectCache;
+          })
+    },
+
     getOne: function(id) {
       return $http.get('/api/projects/' + id)
         .then(function(project) {
