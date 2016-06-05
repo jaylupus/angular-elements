@@ -1,3 +1,19 @@
+app.config(function($stateProvider) {
+  $stateProvider.state('project', {
+    url: '/project/:id',
+    templateUrl: '/js/projects/project.edit.html',
+    controller:'ProjectEditCtrl',
+    resolve: {
+      project: function(ProjectFactory,$stateParams) {
+        return ProjectFactory.getOne($stateParams.id);
+      }
+    }
+  })
+});
+
+app.controller('ProjectEditCtrl', function($scope,project){
+  $scope.project=project;
+})
 
 app.factory('ProjectFactory', function($http) {
   var projectObj;
