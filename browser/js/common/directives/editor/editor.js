@@ -1,7 +1,5 @@
-app.controller('FormController', function($scope, EditService) {
-  $scope.schema = {
-    type: "object"
-  };
+app.controller('FormController', function($rootScope, $scope, EditService) {
+  $scope.schema = EditService.getSchema('soloTable');
  
   $scope.form = [
     "*",
@@ -13,7 +11,7 @@ app.controller('FormController', function($scope, EditService) {
  
   $scope.model = {};
 
-  $rootScope.on('select', function(args){
+  $rootScope.$on('select', function(args){
   	$scope.schema = args.schema;
   	$scope.model = args.model;
   });
