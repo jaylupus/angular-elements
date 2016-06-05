@@ -17,48 +17,135 @@ name in the environment files.
 
 */
 
+var fs = require('fs');
 var mongoose = require('mongoose');
 var Promise = require('bluebird');
 var chalk = require('chalk');
 var connectToDb = require('./server/db');
 var User = mongoose.model('User');
+var DataSource = mongoose.model('DataSource');
+var Project = mongoose.model('Project');
 
-var wipeCollections = function () {
-    var removeUsers = User.remove({});
-    return Promise.all([
-        removeUsers
-    ]);
+var wipeCollections = function() {
+  var removeUsers = User.remove({});
+  var removeProjects = Project.remove({});
+  return Promise.all([
+    removeUsers,
+    removeProjects
+  ]);
 };
 
-var seedUsers = function () {
+var seedUsers = function() {
 
-    var users = [
-        {
-            email: 'testing@fsa.com',
-            password: 'password'
-        },
-        {
-            email: 'obama@gmail.com',
-            password: 'potus'
-        }
-    ];
+  var users = [{
+    email: 'testing@fsa.com',
+    password: 'password'
+  }, {
+    email: 'obama@gmail.com',
+    password: 'potus'
+  }];
 
-    return User.create(users);
+  return User.create(users);
 
+};
+
+
+var seedDataSource = function() {
+  return new Promise(function(fulfill, reject) {
+      fs.readFile('./iris.json', 'utf8', function(err, res) {
+        if (err) reject(err);
+        else fulfill(res);
+      });
+    })
+    .then(function(err, contents) {
+      var dataSource = {
+        fileName: 'iris',
+        dataType: 'linear',
+        data: contents
+      };
+      return DataSource.create(dataSource);
+    });
+};
+
+var seedProject = function() {
+  return User.findOne({ email: 'obama@gmail.com' })
+    .then(function(obama) {
+      return DataSource.findOne({ fileName: 'iris' })
+        //obama
+        .then(function(iris) {
+          console.log(obama)
+          debugger;
+          return {
+            name: 'Obama\s Iris',
+            user: obama._id,
+            dataSource: iris._id
+          };
+        });
+    })
+    .then(function(project) {
+      return Project.create(project);
+    });
+};
+
+var seedProject2 = function() {
+  return User.findOne({ email: 'testing@fsa.com' })
+    .then(function(tester) {
+      return DataSource.findOne({ fileName: 'iris' })
+        //obama
+        .then(function(iris) {
+
+          return {
+            name: 'tester Iris',
+            user: tester._id,
+            dataSource: iris._id
+          };
+        });
+    })
+    .then(function(project) {
+      return Project.create(project);
+    });
+};
+
+var seedProject3 = function() {
+  return User.findOne({ email: 'obama@gmail.com' })
+    .then(function(obama) {
+      return DataSource.findOne({ fileName: 'iris' })
+        //obama
+        .then(function(iris) {
+          console.log(obama)
+          debugger;
+          return {
+            name: 'Obama Secret Project',
+            user: obama._id,
+            dataSource: iris._id
+          };
+        });
+    })
+    .then(function(project) {
+      return Project.create(project);
+    });
 };
 
 connectToDb
-    .then(function () {
-        return wipeCollections();
-    })
-    .then(function () {
-        return seedUsers();
-    })
-    .then(function () {
-        console.log(chalk.green('Seed successful!'));
-        process.kill(0);
-    })
-    .catch(function (err) {
-        console.error(err);
-        process.kill(1);
-    });
+  .then(function() {
+    return wipeCollections();
+  })
+  .then(function() {
+    return seedUsers();
+  })
+  .then(function() {
+    return seedDataSource();
+  })
+  .then(function() {
+    return seedProject();
+  })
+  .then(seedProject2)
+  .then(seedProject3)
+  .then(function() {
+    console.log(chalk.green('Seed successful!'));
+    process.kill(0);
+  })
+  .catch(function(err) {
+    console.error(err);
+    process.kill(1);
+  });

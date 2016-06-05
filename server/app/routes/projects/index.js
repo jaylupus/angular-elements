@@ -15,6 +15,18 @@ router.get('/', function(req, res, next) {
     }, next);
 });
 
+router.get('/user/:userId', function(req, res, next) {
+  console.log(req.params);
+  Project.find({user:req.params.userId})
+    .then(function(projects) {
+      res.json(projects);
+    })
+    .catch(function(err) {
+      res.json(err);
+    }, next);
+});
+
+
 router.get('/:id', function(req, res, next) {
   Project.findById(req.params.id).populate('user')
     .then(function(project) {
