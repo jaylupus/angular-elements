@@ -41,6 +41,7 @@ app.controller('HomeControl', function($scope,projects,$rootScope,AuthService,AU
                     })
               }
             };
+
   $scope.addProject = function(){
     let _user= null;
 
@@ -58,8 +59,5 @@ app.controller('HomeControl', function($scope,projects,$rootScope,AuthService,AU
 
   getUser();
 
-  // $rootScope.$on(AUTH_EVENTS.loginSuccess, setUser);
-  // $rootScope.$on(AUTH_EVENTS.logoutSuccess, removeUser);
-  // $rootScope.$on(AUTH_EVENTS.sessionTimeout, removeUser);
 
 });

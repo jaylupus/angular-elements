@@ -9,9 +9,8 @@ var schema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   },
-  projectConfig: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'ProjectConfig'
+  config: {
+    type: []
   },
   dataSource: [{
     type: mongoose.Schema.Types.ObjectId,
