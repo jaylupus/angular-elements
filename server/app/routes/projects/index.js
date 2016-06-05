@@ -2,8 +2,6 @@
 var router = require('express').Router();
 var Project = require('mongoose').model('Project');
 
-console.log(Project);
-
 
 router.get('/', function(req, res, next) {
   Project.find({})

@@ -26,6 +26,124 @@ var User = mongoose.model('User');
 var DataSource = mongoose.model('DataSource');
 var Project = mongoose.model('Project');
 
+var sampleConfig=[// this is the app config
+  {
+    project_name : 'ourfirst app',
+    pages:{
+        page_1:{
+          ai_directive : true,
+          ai_directive_type : 'layout',
+          ai_directive_params : {paramname : 'value'},
+          title : 'title',
+          menuText : '',
+          rows:{
+              row_1:{
+                  aidirective : true,
+                  aidirectivetype : 'layout',
+                  ai_id : 'p1_r1',
+                  ai_directive_page : '1',
+                  ai_directive_row : '1',
+                  aidirectiveattributes : {
+                      ai_class : '/css/row_a/style.css',
+                  },
+                  ai_content: {
+                            ai_directive : true,
+                            ai_directive_type : 'content',
+                            ai_directive_name : 'solo_table',
+                            ai_directive_page : '1',
+                            ai_directive_row : '1',
+                            ai_directive_attributes : {
+                                ai_title: 'title',
+                                ai_id : 'p1_r1_solo_table',
+                                ai_class : 'myclass',
+                                ai_info_source : 'myclass',
+                                ai_info_type : 'file'
+                            }
+                  }
+              },
+              row_2:{
+                  ai_directive : true,
+                  ai_directive_type : 'layout',
+                  ai_directive_attributes : {
+                      ai_id : 'p1_r2',
+                      ai_class : '/css/row_a/style.css',
+                  },
+                  ai_content: {
+                            ai_directive : true,
+                            ai_directive_type : 'content',
+                            ai_id : 'p1_r1',
+                            ai_directive_name : 'solo_table2',
+                            ai_directive_page : '1',
+                            ai_directive_row : '2',
+                            ai_directive_attributes : {
+                                ai_title: 'title',
+                                ai_id : 'p1_r1_solo_table',
+                                ai_class : 'myclass',
+                                ai_info_source : 'myclass',
+                                ai_info_type : 'file'
+                            }
+                  }
+              }
+            }
+        },
+        page_2:{
+          ai_directive : true,
+          ai_directive_type : 'layout',
+          ai_directive_params : {paramname : 'value'},
+          title : 'title',
+          menuText : '',
+          rows:{
+              row_1:{
+                  aidirective : true,
+                  aidirectivetype : 'layout',
+                  ai_id : 'p2_r1',
+                  ai_directive_page : '2',
+                  ai_directive_row : '1',
+                  aidirectiveattributes : {
+                      ai_class : '/css/row_a/style.css',
+                  },
+                  ai_content: {
+                            ai_directive : true,
+                            ai_directive_type : 'content',
+                            ai_directive_name : 'solo_table',
+                            ai_directive_page : '2',
+                            ai_directive_row : '1',
+                            ai_directive_attributes : {
+                                ai_title: 'title',
+                                ai_id : 'p2_r1_solo_table',
+                                ai_class : 'myclass',
+                                ai_info_source : 'myclass',
+                                ai_info_type : 'file'
+                            }
+                  }
+              },
+              row_2:{
+                  ai_directive : true,
+                  ai_directive_type : 'layout',
+                  ai_directive_attributes : {
+                      ai_id : 'p2_r2',
+                      ai_class : '/css/row_a/style.css',
+                  },
+                  ai_content: {
+                            ai_directive : true,
+                            ai_directive_type : 'content',
+                            ai_directive_name : 'solo_table2',
+                            ai_directive_page : '1',
+                            ai_directive_row : '2',
+                            ai_directive_attributes : {
+                                ai_title: 'title',
+                                ai_id : 'p2_r1_solo_table',
+                                ai_class : 'myclass',
+                                ai_info_source : 'myclass',
+                                ai_info_type : 'file'
+                            }
+                  }
+              }
+            }
+        }
+    }
+  }]
+
 var wipeCollections = function() {
   var removeUsers = User.remove({});
   var removeProjects = Project.remove({});
@@ -73,11 +191,11 @@ var seedProject = function() {
       return DataSource.findOne({ fileName: 'iris' })
         //obama
         .then(function(iris) {
-          console.log(obama)
-          debugger;
+
           return {
             name: 'Obama\s Iris',
             user: obama._id,
+            config:sampleConfig, // KEVIN - put a config object here!
             dataSource: iris._id
           };
         });
