@@ -28,8 +28,10 @@ var Project = mongoose.model('Project');
 
 var wipeCollections = function() {
   var removeUsers = User.remove({});
+  var removeProjects = Project.remove({});
   return Promise.all([
-    removeUsers
+    removeUsers,
+    removeProjects
   ]);
 };
 
@@ -66,12 +68,54 @@ var seedDataSource = function() {
 };
 
 var seedProject = function() {
-  return User.find({ email: 'obama@gmail.com' })
+  return User.findOne({ email: 'obama@gmail.com' })
     .then(function(obama) {
       return DataSource.findOne({ fileName: 'iris' })
+        //obama
         .then(function(iris) {
+          console.log(obama)
+          debugger;
           return {
             name: 'Obama\s Iris',
+            user: obama._id,
+            dataSource: iris._id
+          };
+        });
+    })
+    .then(function(project) {
+      return Project.create(project);
+    });
+};
+
+var seedProject2 = function() {
+  return User.findOne({ email: 'testing@fsa.com' })
+    .then(function(tester) {
+      return DataSource.findOne({ fileName: 'iris' })
+        //obama
+        .then(function(iris) {
+
+          return {
+            name: 'tester Iris',
+            user: tester._id,
+            dataSource: iris._id
+          };
+        });
+    })
+    .then(function(project) {
+      return Project.create(project);
+    });
+};
+
+var seedProject3 = function() {
+  return User.findOne({ email: 'obama@gmail.com' })
+    .then(function(obama) {
+      return DataSource.findOne({ fileName: 'iris' })
+        //obama
+        .then(function(iris) {
+          console.log(obama)
+          debugger;
+          return {
+            name: 'Obama Secret Project',
             user: obama._id,
             dataSource: iris._id
           };
@@ -95,6 +139,8 @@ connectToDb
   .then(function() {
     return seedProject();
   })
+  .then(seedProject2)
+  .then(seedProject3)
   .then(function() {
     console.log(chalk.green('Seed successful!'));
     process.kill(0);

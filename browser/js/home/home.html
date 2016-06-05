@@ -3,16 +3,35 @@
     <rando-greeting></rando-greeting> -->
 
   <div class="container">
+
     <div class="row">
-      <h3>Projects<h3>
-      <div ng-repeat="project in projects" class="col-sm-3">
-        <div class="tile">
-          <div class="tile-title">
-          <a ui-sref="project({id:project._id})">{{project.name || "temp name"}}</a>
+
+      <div ng-show="isLoggedIn()">
+        <h3> {{user.email}} 's Projects<h3>
+        {{hello}}
+          <div ng-repeat="project in projects" class="col-sm-3">
+            <div class="tile">
+              <div class="tile-title">
+                <a ui-sref="project({id:project._id})">{{project.name || "temp name"}}</a>
+              </div>
+            </div>
           </div>
-        </div>
       </div>
     </div>
+
   </div>
+  <div class="container">
+    <div ng-hide="isLoggedIn()" class="row" id="welcome">
+        <h3>Welcome to The App Builder Thing!</h3>
+        <p> You can use our site to generate a single page data site. It also makes pizza. To get started, click create a new project.
+
+    </div>
+    <div class="row">
+        <h3>Create a New Project</h3>
+        <button>Go!</button>
+    </div>
+  </div>
+
+
 </section>
 
