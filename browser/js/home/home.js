@@ -18,7 +18,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('HomeControl', function($scope,projects,$rootScope,AuthService,AUTH_EVENTS,$stateParams){
+app.controller('HomeControl', function($scope,projects,$rootScope,AuthService,AUTH_EVENTS,$stateParams,ProjectFactory){
   $scope.projects=projects;
   $scope.hello=$stateParams.id;
 
@@ -29,7 +29,13 @@ app.controller('HomeControl', function($scope,projects,$rootScope,AuthService,AU
   var getUser = function () {
                 AuthService.getLoggedInUser().then(function (user) {
                     $scope.user = user;
-                });
+                }).then(getProjects);
+            };
+  var getProjects = function () {
+                ProjectFactory.getAllByUser($scope.user._id)
+                    .then(function(projects){
+                      $scope.projects=projects;
+                    })
             };
 
   getUser();

@@ -29,7 +29,7 @@ app.factory('ProjectFactory', function($http) {
         });
     },
 
-    getAllbyUser: function(userId){
+    getAllByUser: function(userId){
       return $http.get('/api/projects/user/' + userId)
           .then(function(projects){
             console.log(projects);
