@@ -44,6 +44,9 @@ app.controller('ProjectEditCtrl', function($scope) {
     }
   ];
 
+  $scope.project = project;
+  $scope.rows = project.config[0].pages.page_1.rows
+
 });
 
 app.factory('ProjectFactory', function($http) {
@@ -103,6 +106,10 @@ app.factory('ProjectFactory', function($http) {
         .then(function(_project) {
           return _project.data;
         });
+    },
+
+    getDataSets: function(productId){
+      return null;
     }
 
   };

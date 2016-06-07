@@ -18,7 +18,7 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('HomeControl', function($scope,projects,$rootScope,AuthService,AUTH_EVENTS,$stateParams,ProjectFactory){
+app.controller('HomeControl', function($scope,projects,$rootScope,AuthService,AUTH_EVENTS,$stateParams,ProjectFactory,$state){
   $scope.projects=projects;
   $scope.hello=$stateParams.id;
 
@@ -29,19 +29,35 @@ app.controller('HomeControl', function($scope,projects,$rootScope,AuthService,AU
   var getUser = function () {
                 AuthService.getLoggedInUser().then(function (user) {
                     $scope.user = user;
+                    return user
                 }).then(getProjects);
             };
-  var getProjects = function () {
+  var getProjects = function (user) {
+
+              if(user){
                 ProjectFactory.getAllByUser($scope.user._id)
                     .then(function(projects){
                       $scope.projects=projects;
                     })
+              }
             };
+
+  $scope.addProject = function(){
+    let _user= null;
+
+    if(AuthService.isAuthenticated()){
+      _user=$scope.user;
+    }
+
+    return ProjectFactory.add({
+        name:$scope.projectName,
+        user:_user
+      }).then(function(newProject){
+        $state.go('project',{id:newProject._id});
+      })
+  };
 
   getUser();
 
-  // $rootScope.$on(AUTH_EVENTS.loginSuccess, setUser);
-  // $rootScope.$on(AUTH_EVENTS.logoutSuccess, removeUser);
-  // $rootScope.$on(AUTH_EVENTS.sessionTimeout, removeUser);
 
 });
