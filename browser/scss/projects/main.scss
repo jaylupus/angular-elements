@@ -1,0 +1,47 @@
+.control_panel {
+    width: 80%;
+    height: 25px;
+    margin: auto auto;
+    position: fixed;
+    bottom: 0px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 4px 4px 0px 0px;
+    transition: all .7s;
+}
+
+.control_panel_show {
+    height: 250px;
+}
+
+.control_panel_minbut{
+	float: right;
+	margin-right: 8px;
+}
+#cpl_move {
+	padding: 5px;
+	//border: 1px solid rgba(0,0,0,1);
+	border-radius: 4px;
+	display: inline-block;
+	margin: 10px;
+	float: right;
+	clear: both;
+}
+#cpl_move table {
+	border-collapse: separate;
+    border-spacing: 4px;
+    background-color: rgba(0,0,0,0.7);
+}
+#cpl_move table td{
+	font-size: 20px;
+	height:30px;
+	width:30px;
+	text-align: center;
+	vertical-align: middle;
+	background-color: rgba(0,0,0,0.0);
+	color: rgba(255,255,255,0.5);
+	transition: all .5s;
+}
+#cpl_move table td.arrow:hover{
+	background-color: rgba(0,0,0,0.5);
+	color: rgba(255,255,255,1);
+}

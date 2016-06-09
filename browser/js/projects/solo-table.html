@@ -1,0 +1,13 @@
+      <h2>{{sectionTitle}}</h2>
+      <div ng-class="getcolclass()">
+        <!-- function will be called to get the bootstrap class for col-sm col-md etc...-->
+        <table>
+          <tbody>
+            <tr ng-repeat="row in data">
+              <td ng-repeat="cell in row">{{cell}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <datacontrolls></datacontrolls>
+        <!-- this is a directive that will render the controller that a user need to add data -->
+      </div>
