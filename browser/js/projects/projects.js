@@ -169,7 +169,7 @@ $scope.renderColHtmlFromAiConfig=function(obj) {
       if (obj.hasOwnProperty('ai_directive')) {
         if((obj['ai_directive_type'] ==='layout') && (obj['ai_directive_name'] === 'ai_col')){
                  $scope.appendTarget='#p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row';
-                  console.log(obj);
+                 // console.log(obj);
                   angular.element(document.querySelector( $scope.appendTarget )).append($compile('<'+obj['ai_directive_name']+' id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_c_'+obj['ai_directive_col']+'_ai_col" '+ $scope.renderattributeString(obj['ai_directive_attributes'])+'></'+obj['ai_directive_name']+'>')($scope));
         }
       }
@@ -181,13 +181,13 @@ $scope.renderColHtmlFromAiConfig=function(obj) {
 };
 
 $scope.renderDirectiveHtmlFromAiConfig=function(obj) {
- console.log(obj);
+// console.log(obj);
 // the cuurent object is a directive 
 // if the current object is not a a directive obj then call with to the next sub-object
       if (obj.hasOwnProperty('ai_directive')) {
         if(obj['ai_directive_type'] ==='content'){
             $scope.appendTarget='#p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_c_'+obj['ai_directive_col']+'_ai_col';
-            console.log('>>>>>>>>'+ $scope.appendTarget);
+  //          console.log('>>>>>>>>'+ $scope.appendTarget);
             angular.element(document.querySelector( $scope.appendTarget )).append($compile('<'+obj['ai_directive_name']+' id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_c_'+obj['ai_directive_col']+'" '+$scope.renderattributeString(obj['ai_directive_attributes'])+'></'+obj['ai_directive_name']+'>')($scope));
         }
       }
