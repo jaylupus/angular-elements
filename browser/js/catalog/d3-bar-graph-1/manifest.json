@@ -5,7 +5,7 @@
       "script": "<script src=\"https://d3js.org/d3.v3.min.js\"></script>}"
     }
   },
-  "parameters": {
+  "schema": {
     "width": {
       "type": "number",
       "default": "400"
@@ -19,5 +19,7 @@
       "default": "200"
     },
     "colorScale": "d3.scale.category10"
-  }
+  },
+  "css_file":null,
+  "render_target":"chart"
 }

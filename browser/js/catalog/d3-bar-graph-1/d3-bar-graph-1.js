@@ -23,7 +23,7 @@ app.factory('dataFactory', function() {
 app.directive('barGraph', function($window, dataFactory) {
   return {
     restrict: 'E',
-    templateUrl: 'bar-graph.html',
+    templateUrl: 'js/catalog/d3-bar-graph-1/bar-graph.html',
     link: function(scope, elem, attrs) {
       var d3 = $window.d3;
       var width = 400;
@@ -73,3 +73,4 @@ app.directive('barGraph', function($window, dataFactory) {
         })
     }
   }
+});
