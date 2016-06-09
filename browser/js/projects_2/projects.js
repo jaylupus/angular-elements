@@ -1,7 +1,7 @@
 app.config(function($stateProvider) {
   $stateProvider.state('project', {
     url: '/project/:id',
-    templateUrl: '/js/projects/project.edit.html',
+    templateUrl: '/js/projects_2/project.edit.html',
     controller: 'ProjectEditCtrl',
     resolve: {
       project: function(ProjectFactory, $stateParams) {
