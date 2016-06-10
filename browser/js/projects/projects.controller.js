@@ -2,7 +2,7 @@
 app.controller('ProjectEditCtrl', function($scope,$compile,$timeout){
   //$scope.project=project;
   //$scope.rows=project.config[0].pages.page_1.rows
-// this is the app config 
+// this is the app config
 
 $scope.appConfigMaster={}; // this the version that is in sync with the database 0th position
 $scope.appConfigEditCopy={}; // this is the copy of of object being edited that copied to appConfigViewDriver when;
@@ -49,7 +49,7 @@ $scope.appConfig={
           ai_directive_page : '1',
           ai_directive_row : '',
           ai_directive_col : '',
-          ai_directive_attributes : {  
+          ai_directive_attributes : {
               ai_class : '/css/row_a/style.css',
               ai_page_title:'',
               ai_page_menu_text :''
@@ -62,7 +62,7 @@ $scope.appConfig={
                   ai_directive_page : '1',
                   ai_directive_row : '1',
                   ai_directive_col : '',
-                  ai_directive_attributes : {  
+                  ai_directive_attributes : {
                       ai_class : '/css/row_a/style.css',
                   },
                   cols:{
@@ -73,19 +73,20 @@ $scope.appConfig={
                           ai_directive_page : '1',
                           ai_directive_row : '1',
                           ai_directive_col: '1',
-                          ai_directive_attributes : {  
+                          ai_directive_attributes : {
                               ai_class : '/css/row_a/style.css',
                               class : 'col-md-6'
                           },
                           ai_content: {
                                 ai_directive : true,
                                 ai_directive_type : 'content',
-                                ai_directive_name : 'solo_table',
+                                ai_directive_name : 'title-subtitle',
                                 ai_directive_page : '1',
                                 ai_directive_row : '1',
                                 ai_directive_col: '1',
-                                ai_directive_attributes : { 
-                                    ai_title: 'title',
+                                ai_directive_attributes : {
+                                    ai_title: 'Dumb Report',
+                                    ai_subtitle:' A Report for Idiots',
                                     ai_class : 'myclass',
                                     ai_info_source : 'myclass',
                                     ai_info_type : 'file'
@@ -98,25 +99,25 @@ $scope.appConfig={
                           ai_directive_page : '1',
                           ai_directive_row : '1',
                           ai_directive_col: '2',
-                          ai_directive_attributes : {  
+                          ai_directive_attributes : {
                               ai_class : 'myclass',
                               class : 'col-md-6'
                           },
                           ai_content: {
                                 ai_directive : true,
                                 ai_directive_type : 'content',
-                                ai_directive_name : 'solo_table',
+                                ai_directive_name : 'section-text',
                                 ai_directive_page : '1',
                                 ai_directive_row : '1',
                                 ai_directive_col : '2',
-                                ai_directive_attributes : { 
-                                    ai_title: 'title',
+                                ai_directive_attributes : {
+                                    ai_title: 'The Deal',
                                     ai_class : 'myclass',
                                     ai_info_source : 'myclass',
                                     ai_info_type : 'file'
                                 }
                         }
-                    }  
+                    }
                 }
               },
               row_2:{
@@ -125,8 +126,8 @@ $scope.appConfig={
                   ai_directive_name : 'ai_row',
                   ai_directive_page : '1',
                   ai_directive_row : '2',
-                  ai_directive_col : '',              
-                  ai_directive_attributes : {  
+                  ai_directive_col : '',
+                  ai_directive_attributes : {
                       ai_class : '/css/row_a/style.css',
                   },
                  cols:{
@@ -137,19 +138,19 @@ $scope.appConfig={
                               ai_directive_page : '1',
                               ai_directive_row : '2',
                               ai_directive_col: '1',
-                              ai_directive_attributes : {  
+                              ai_directive_attributes : {
                                   ai_class : '/css/row_a/style.css',
                                   class : 'col-md-6'
                               },
                               ai_content: {
                                         ai_directive : true,
                                         ai_directive_type : 'content',
-                                        ai_directive_name : 'solo_table',
+                                        ai_directive_name : 'pie-graph',
                                         ai_directive_page : '1',
                                         ai_directive_row : '2',
                                         ai_directive_col : '1',
-                                        ai_directive_attributes : { 
-                                            ai_title: 'title',
+                                        ai_directive_attributes : {
+                                            ai_title: 'Color Pizza',
                                             ai_class : 'myclass',
                                             ai_info_source : 'myclass',
                                             ai_info_type : 'file'
@@ -179,10 +180,10 @@ $scope.renderRowHtmlFromAiConfig=function(obj) {
       }
       for (var property in obj) {
                 if(typeof obj[property] == "object"){
-                    $scope.renderRowHtmlFromAiConfig(obj[property]); 
+                    $scope.renderRowHtmlFromAiConfig(obj[property]);
                 }
       }
-};    
+};
 $scope.renderColHtmlFromAiConfig=function(obj) {
       if (obj.hasOwnProperty('ai_directive')) {
         if((obj['ai_directive_type'] ==='layout') && (obj['ai_directive_name'] === 'ai_col')){
@@ -193,14 +194,14 @@ $scope.renderColHtmlFromAiConfig=function(obj) {
       }
       for (var property in obj) {
                 if(typeof obj[property] == "object"){
-                    $scope.renderColHtmlFromAiConfig(obj[property]); 
+                    $scope.renderColHtmlFromAiConfig(obj[property]);
                 }
       }
 };
 
 $scope.renderDirectiveHtmlFromAiConfig=function(obj) {
 // console.log(obj);
-// the cuurent object is a directive 
+// the cuurent object is a directive
 // if the current object is not a a directive obj then call with to the next sub-object
       if (obj.hasOwnProperty('ai_directive')) {
         if(obj['ai_directive_type'] ==='content'){
@@ -211,7 +212,7 @@ $scope.renderDirectiveHtmlFromAiConfig=function(obj) {
       }
       for (var property in obj) {
                 if(typeof obj[property] == "object"){
-                    $scope.renderDirectiveHtmlFromAiConfig(obj[property]);  
+                    $scope.renderDirectiveHtmlFromAiConfig(obj[property]);
                 }
       }
 };
@@ -234,7 +235,7 @@ $scope.editTestObject={
       ai_directive_page : '1',
       ai_directive_row : '2',
       ai_directive_col: '2',
-      ai_directive_attributes : {  
+      ai_directive_attributes : {
           ai_class : '/css/row_a/style.css',
           class : 'col-md-6'
       },
@@ -245,7 +246,7 @@ $scope.editTestObject={
                 ai_directive_page : '1',
                 ai_directive_row : '2',
                 ai_directive_col : '2',
-                ai_directive_attributes : { 
+                ai_directive_attributes : {
                     ai_title: 'title',
                     ai_class : 'myclass',
                     ai_info_source : 'myclass',
@@ -260,7 +261,7 @@ $scope.editTestObject2={
       ai_directive_page : '1',
       ai_directive_row : '2',
       ai_directive_col: '2',
-      ai_directive_attributes : {  
+      ai_directive_attributes : {
           ai_class : '/css/row_a/style.css',
           class : 'col-md-6'
       },
@@ -271,7 +272,7 @@ $scope.editTestObject2={
                 ai_directive_page : '1',
                 ai_directive_row : '2',
                 ai_directive_col : '2',
-                ai_directive_attributes : { 
+                ai_directive_attributes : {
                     ai_title: 'My New Title',
                     ai_class : 'myclass',
                     ai_info_source : 'myclass',
@@ -284,23 +285,23 @@ $scope.editTestObject2={
 $scope.creatConfigObject=function(target,newelement,obj){
   //console.log(typeof target);
   target[newelement]=obj;
-//  $scope.appConfig.pages.page_1.rows.row_2.cols.col_2=obj;   
+//  $scope.appConfig.pages.page_1.rows.row_2.cols.col_2=obj;
 };
 $scope.readConfigObject=function(target,newelement){
   //console.log(typeof target);
   target[newelement]=obj;
-//  $scope.appConfig.pages.page_1.rows.row_2.cols.col_2=obj;   
+//  $scope.appConfig.pages.page_1.rows.row_2.cols.col_2=obj;
 };
 $scope.updateConfigObject=function(target,newelement,obj){
   //console.log(typeof target);
   target[newelement]=obj;
-//  $scope.appConfig.pages.page_1.rows.row_2.cols.col_2=obj;   
+//  $scope.appConfig.pages.page_1.rows.row_2.cols.col_2=obj;
 };
 
 $scope.deleteconfigObject=function(target,newelement){
   //console.log(typeof target);
   delete target[newelement];
-//  $scope.appConfig.pages.page_1.rows.row_2.cols.col_2=obj;   
+//  $scope.appConfig.pages.page_1.rows.row_2.cols.col_2=obj;
 };
 
 $scope.getNextRowPage=function(page){
