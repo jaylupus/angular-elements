@@ -1,17 +1,3 @@
-app.config(function($stateProvider) {
-  $stateProvider.
-  state('project', {
-    url: '/project/:id',
-    templateUrl: '/js/projects/project.edit.html',
-    controller:'ProjectEditCtrl',
-    resolve: {
-      project: function(ProjectFactory,$stateParams) {
-        return ProjectFactory.getOne($stateParams.id);
-      }
-    }
-  });
-});
-
 app.controller('ProjectEditCtrl', function($scope,$compile,$timeout){
   //$scope.project=project;
   //$scope.rows=project.config[0].pages.page_1.rows
@@ -20,6 +6,37 @@ app.controller('ProjectEditCtrl', function($scope,$compile,$timeout){
 $scope.appConfigMaster={}; // this the version that is in sync with the database 0th position
 $scope.appConfigEditCopy={}; // this is the copy of of object being edited that copied to appConfigViewDriver when;
 $scope.appConfigViewDriver={}; // this is the copy of of object being edited that copied to appConfigViewDriver when
+
+$scope.schema = {
+    'type': 'object',
+    'title': 'Solo Table',
+    'properties': {
+      'class': {
+        'title': 'Class',
+        'type': 'string'
+      },
+      'info_source': {
+        'title': 'Info Source',
+        'type': 'string'
+      },
+      'info_type': {
+        'title': 'Info Type',
+        'type': 'string',
+        'enum': ['json', 'csv']
+      }
+    }
+  };
+
+$scope.model = {
+    'info_source': 'Jonah'
+  };
+
+$scope.form = [
+    "*", {
+      type: "submit",
+      title: "Save"
+    }
+];
 
 $scope.appConfig={
     project_name : 'ourfirst app',
@@ -311,25 +328,40 @@ $timeout(function(){
      $scope.deleteconfigObject($scope.appConfig.pages.page_1.rows.row_2.cols,'col_2');
 },9000);
 */
+app.controller('ProjectEditCtrl', function($scope) {
 
+  $scope.schema = {
+    'type': 'object',
+    'title': 'Solo Table',
+    'properties': {
+      'class': {
+        'title': 'Class',
+        'type': 'string'
+      },
+      'info_source': {
+        'title': 'Info Source',
+        'type': 'string'
+      },
+      'info_type': {
+        'title': 'Info Type',
+        'type': 'string',
+        'enum': ['json', 'csv']
+      }
+    }
+  };
 
+  $scope.model = {
+    'info_source': 'Jonah'
+  };
 
+  $scope.form = [
+    "*", {
+      type: "submit",
+      title: "Save"
+    }
+  ];
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+});
 
 });
 app.factory('ProjectFactory', function($http) {
@@ -400,28 +432,6 @@ app.factory('ProjectFactory', function($http) {
   return projectObj;
 });
 
-
-
-app.factory('dataFactory',function($http){
-  return{
-   // this represents the result of opening a csv file turning it into a json array of objects
-   // all factory function must be a promise to standardize the interface
-    getdata :  function(dataSourceLocation,dataSourceType){
-     // alert (dataSourceType);
-      if(dataSourceType === 'file'){
-      // put node fs asyncopen  
-        return [
-          {firstname:'first name', lastname:'last name', age : 'age'},
-          {firstname:'John', lastname:'Doe', age : '22'},
-          {firstname:'Bart', lastname:'Simson', age : '10'},
-          {firstname:'Donald', lastname:'Trump', age : 'Dick'}
-        ];
-      }else if(dataSourceType === 'website'){
-          return $http.get(dataSourceLocation);
-      }
-    }
-  };
-});
 
 app.directive('aiRow',function(){
   return{

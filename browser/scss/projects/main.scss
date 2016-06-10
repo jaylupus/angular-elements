@@ -45,3 +45,14 @@
 	background-color: rgba(0,0,0,0.5);
 	color: rgba(255,255,255,1);
 }
+#sf_schema_form_container{
+	margin : 30px;
+	
+}
+#sf_schema_form_container > div{
+	width:400px;
+	height:150px;
+	margin : 0px;
+	overflow-y : auto;
+	padding: 10px;
+}

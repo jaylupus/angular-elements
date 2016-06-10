@@ -1,3 +1,23 @@
+app.factory('dataFactory',function($http){
+  return{
+   // this represents the result of opening a csv file turning it into a json array of objects
+   // all factory function must be a promise to standardize the interface
+    getdata :  function(dataSourceLocation,dataSourceType){
+     // alert (dataSourceType);
+      if(dataSourceType === 'file'){
+      // put node fs asyncopen  
+        return [
+          {firstname:'first name', lastname:'last name', age : 'age'},
+          {firstname:'John', lastname:'Doe', age : '22'},
+          {firstname:'Bart', lastname:'Simson', age : '10'},
+          {firstname:'Donald', lastname:'Trump', age : 'Dick'}
+        ];
+      }else if(dataSourceType === 'website'){
+          return $http.get(dataSourceLocation);
+      }
+    }
+  };
+});
 app.directive('soloTable',function(dataFactory){
   return{
     restrict : 'EA',
