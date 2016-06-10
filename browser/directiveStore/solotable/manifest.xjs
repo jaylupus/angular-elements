@@ -1,0 +1,31 @@
+
+ai_manifest{
+    schema :{
+            'type': 'object',
+            'title': 'Solo Table',
+            'properties': {
+                'ai_title': {
+                  'title': 'table title',
+                  'type': 'string'
+                },
+                'ai_info_source': {
+                  'title': 'Info Source',
+                  'type': 'string'
+                },
+                'ai_info_type': {
+                  'title': 'Info Type',
+                  'type': 'string',
+                  'enum': ['json', 'csv']
+                }
+            }
+          },
+        model : {
+            'info_source': 'Jonah'
+          },
+        form : [
+            "*", {
+              type: "submit",
+              title: "Save"
+            }
+        ]
+};

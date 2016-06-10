@@ -1,5 +1,5 @@
 
-app.factory('dataFactory', function() {
+app.factory('dataFactoryBarGraph', function() {
   return {
 
     getPiedata: function(source_location, source_type) {
@@ -20,7 +20,7 @@ app.factory('dataFactory', function() {
   }
 });
 
-app.directive('barGraph', function($window, dataFactory) {
+app.directive('barGraph', function($window, dataFactoryBarGraph) {
   return {
     restrict: 'E',
     templateUrl: 'js/directiveStore/d3-bar-graph-1/bar-graph.html',

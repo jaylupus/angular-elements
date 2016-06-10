@@ -1,3 +1,4 @@
+
 app.factory('dataFactory',function($http){
   return{
    // this represents the result of opening a csv file turning it into a json array of objects
