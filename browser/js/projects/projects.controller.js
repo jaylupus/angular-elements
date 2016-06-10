@@ -42,130 +42,130 @@ $scope.form = [
 
 $scope.appConfig=project.config[0];
 
-// $scope.appConfig_2={
-//     project_name : 'ourfirst app',
-//     pages:{
-//         page_1:{
-//           ai_directive : true,
-//           ai_directive_type : 'layout',
-//           ai_directive_name : 'ai_page',
-//           ai_directive_page : '1',
-//           ai_directive_row : '',
-//           ai_directive_col : '',
-//           ai_directive_attributes : {
-//               ai_class : '/css/row_a/style.css',
-//               ai_page_title:'',
-//               ai_page_menu_text :''
-//           },
-//           rows:{
-//               row_1:{
-//                   ai_directive : true,
-//                   ai_directive_type : 'layout',
-//                   ai_directive_name : 'ai_row',
-//                   ai_directive_page : '1',
-//                   ai_directive_row : '1',
-//                   ai_directive_col : '',
-//                   ai_directive_attributes : {
-//                       ai_class : '/css/row_a/style.css',
-//                   },
-//                   cols:{
-//                       col_1:{
-//                           ai_directive : true,
-//                           ai_directive_type : 'layout',
-//                           ai_directive_name : 'ai_col',
-//                           ai_directive_page : '1',
-//                           ai_directive_row : '1',
-//                           ai_directive_col: '1',
-//                           ai_directive_attributes : {
-//                               ai_class : '/css/row_a/style.css',
-//                               class : 'col-md-6'
-//                           },
-//                           ai_content: {
-//                                 ai_directive : true,
-//                                 ai_directive_type : 'content',
-//                                 ai_directive_name : 'title-subtitle',
-//                                 ai_directive_page : '1',
-//                                 ai_directive_row : '1',
-//                                 ai_directive_col: '1',
-//                                 ai_directive_attributes : {
-//                                     ai_title: 'Dumb Report',
-//                                     ai_subtitle:' A Report for Idiots',
-//                                     ai_class : 'myclass',
-//                                     ai_info_source : 'myclass',
-//                                     ai_info_type : 'file'
-//                                 }
-//                         }
-//                     },col_2:{
-//                           ai_directive : true,
-//                           ai_directive_type : 'layout',
-//                           ai_directive_name : 'ai_col',
-//                           ai_directive_page : '1',
-//                           ai_directive_row : '1',
-//                           ai_directive_col: '2',
-//                           ai_directive_attributes : {
-//                               ai_class : 'myclass',
-//                               class : 'col-md-6'
-//                           },
-//                           ai_content: {
-//                                 ai_directive : true,
-//                                 ai_directive_type : 'content',
-//                                 ai_directive_name : 'section-text',
-//                                 ai_directive_page : '1',
-//                                 ai_directive_row : '1',
-//                                 ai_directive_col : '2',
-//                                 ai_directive_attributes : {
-//                                     ai_title: 'The Deal',
-//                                     ai_class : 'myclass',
-//                                     ai_info_source : 'myclass',
-//                                     ai_info_type : 'file'
-//                                 }
-//                         }
-//                     }
-//                 }
-//               },
-//               row_2:{
-//                  ai_directive : true,
-//                   ai_directive_type : 'layout',
-//                   ai_directive_name : 'ai_row',
-//                   ai_directive_page : '1',
-//                   ai_directive_row : '2',
-//                   ai_directive_col : '',
-//                   ai_directive_attributes : {
-//                       ai_class : '/css/row_a/style.css',
-//                   },
-//                  cols:{
-//                        col_1:{
-//                               ai_directive : true,
-//                               ai_directive_type : 'layout',
-//                               ai_directive_name : 'ai_col',
-//                               ai_directive_page : '1',
-//                               ai_directive_row : '2',
-//                               ai_directive_col: '1',
-//                               ai_directive_attributes : {
-//                                   ai_class : '/css/row_a/style.css',
-//                                   class : 'col-md-6'
-//                               },
-//                               ai_content: {
-//                                         ai_directive : true,
-//                                         ai_directive_type : 'content',
-//                                         ai_directive_name : 'pie-graph',
-//                                         ai_directive_page : '1',
-//                                         ai_directive_row : '2',
-//                                         ai_directive_col : '1',
-//                                         ai_directive_attributes : {
-//                                             ai_title: 'Color Pizza',
-//                                             ai_class : 'myclass',
-//                                             ai_info_source : 'myclass',
-//                                             ai_info_type : 'file'
-//                                         }
-//                               }
-//                       }
-//                  }
-//               }
-//             }
-//         }
-//     }
-// };
+$scope.appConfig_2={
+    project_name : 'ourfirst app',
+    pages:{
+        page_1:{
+          ai_directive : true,
+          ai_directive_type : 'layout',
+          ai_directive_name : 'ai_page',
+          ai_directive_page : '1',
+          ai_directive_row : '',
+          ai_directive_col : '',
+          ai_directive_attributes : {
+              ai_class : '/css/row_a/style.css',
+              ai_page_title:'',
+              ai_page_menu_text :''
+          },
+          rows:{
+              row_1:{
+                  ai_directive : true,
+                  ai_directive_type : 'layout',
+                  ai_directive_name : 'ai_row',
+                  ai_directive_page : '1',
+                  ai_directive_row : '1',
+                  ai_directive_col : '',
+                  ai_directive_attributes : {
+                      ai_class : '/css/row_a/style.css',
+                  },
+                  cols:{
+                      col_1:{
+                          ai_directive : true,
+                          ai_directive_type : 'layout',
+                          ai_directive_name : 'ai_col',
+                          ai_directive_page : '1',
+                          ai_directive_row : '1',
+                          ai_directive_col: '1',
+                          ai_directive_attributes : {
+                              ai_class : '/css/row_a/style.css',
+                              class : 'col-md-6'
+                          },
+                          ai_content: {
+                                ai_directive : true,
+                                ai_directive_type : 'content',
+                                ai_directive_name : 'title-subtitle',
+                                ai_directive_page : '1',
+                                ai_directive_row : '1',
+                                ai_directive_col: '1',
+                                ai_directive_attributes : {
+                                    ai_title: 'Dumb Report',
+                                    ai_subtitle:' A Report for Idiots',
+                                    ai_class : 'myclass',
+                                    ai_info_source : 'myclass',
+                                    ai_info_type : 'file'
+                                }
+                        }
+                    },col_2:{
+                          ai_directive : true,
+                          ai_directive_type : 'layout',
+                          ai_directive_name : 'ai_col',
+                          ai_directive_page : '1',
+                          ai_directive_row : '1',
+                          ai_directive_col: '2',
+                          ai_directive_attributes : {
+                              ai_class : 'myclass',
+                              class : 'col-md-6'
+                          },
+                          ai_content: {
+                                ai_directive : true,
+                                ai_directive_type : 'content',
+                                ai_directive_name : 'section-text',
+                                ai_directive_page : '1',
+                                ai_directive_row : '1',
+                                ai_directive_col : '2',
+                                ai_directive_attributes : {
+                                    ai_title: 'The Deal',
+                                    ai_class : 'myclass',
+                                    ai_info_source : 'myclass',
+                                    ai_info_type : 'file'
+                                }
+                        }
+                    }
+                }
+              },
+              row_2:{
+                 ai_directive : true,
+                  ai_directive_type : 'layout',
+                  ai_directive_name : 'ai_row',
+                  ai_directive_page : '1',
+                  ai_directive_row : '2',
+                  ai_directive_col : '',
+                  ai_directive_attributes : {
+                      ai_class : '/css/row_a/style.css',
+                  },
+                 cols:{
+                       col_1:{
+                              ai_directive : true,
+                              ai_directive_type : 'layout',
+                              ai_directive_name : 'ai_col',
+                              ai_directive_page : '1',
+                              ai_directive_row : '2',
+                              ai_directive_col: '1',
+                              ai_directive_attributes : {
+                                  ai_class : '/css/row_a/style.css',
+                                  class : 'col-md-6'
+                              },
+                              ai_content: {
+                                        ai_directive : true,
+                                        ai_directive_type : 'content',
+                                        ai_directive_name : 'pie-graph',
+                                        ai_directive_page : '1',
+                                        ai_directive_row : '2',
+                                        ai_directive_col : '1',
+                                        ai_directive_attributes : {
+                                            ai_title: 'Color Pizza',
+                                            ai_class : 'myclass',
+                                            ai_info_source : 'myclass',
+                                            ai_info_type : 'file'
+                                        }
+                              }
+                      }
+                 }
+              }
+            }
+        }
+    }
+};
 
 $scope.renderattributeString=function(obj){
     var attributeString='';
