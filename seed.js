@@ -302,6 +302,23 @@ var seedUsers = function() {
 
 };
 
+var paragraphData="Chambray iPhone bushwick, irony gastropub keffiyeh semiotics. Bushwick 90's cray, brooklyn helvetica cold-pressed retro cardigan cronut iPhone fanny pack. Fashion axe narwhal asymmetrical, selvage tacos celiac poutine meggings blue bottle authentic selfies shoreditch. Irony green juice fingerstache flexitarian, pork belly brooklyn locavore pabst mustache seitan.";
+
+var seedparagraphData = function() {
+
+      var dataSource = {
+        fileName: 'hipster',
+        dataType: 'text',
+        data: paragraphData
+      }
+      return DataSource.create(dataSource)
+      // .then(function(data){
+      //   console.log(data);
+      //   debugger;
+      //   return data
+      // })
+};
+
 
 var seedDataSource = function() {
   return new Promise(function(fulfill, reject) {
@@ -320,20 +337,24 @@ var seedDataSource = function() {
     });
 };
 
-var seedProject = function() {
+var seedProject = function(data1,data2) {
+  console.log(data1);
+  console.log(data2);
+  console.log(projectConfig1[0].pages.page_1)
+  projectConfig1[0].pages.page_1.rows.row_1.cols.col_2.ai_content.ai_directive_attributes.ai_info_source=data2._id;
+  console.log(projectConfig1[0].pages.page_1.rows.row_1.cols.col_2.ai_content.ai_directive_attributes.ai_info_source);
+  debugger;
+
   return User.findOne({ email: 'obama@gmail.com' })
     .then(function(obama) {
-      return DataSource.findOne({ fileName: 'iris' })
-        //obama
-        .then(function(iris) {
 
           return {
             name: 'Obama\s Iris',
             user: obama._id,
             config:projectConfig1,
-            dataSource: iris._id
+            dataSource: [data1._id,data2._id]
           };
-        });
+
     })
     .then(function(project) {
       return Project.create(project);
@@ -366,8 +387,7 @@ var seedProject3 = function() {
       return DataSource.findOne({ fileName: 'iris' })
         //obama
         .then(function(iris) {
-          console.log(obama)
-          debugger;
+
           return {
             name: 'Obama Secret Project',
             user: obama._id,
@@ -389,11 +409,9 @@ connectToDb
     return seedUsers();
   })
   .then(function() {
-    return seedDataSource();
+    return Promise.all([seedDataSource(),seedparagraphData()])
   })
-  .then(function() {
-    return seedProject();
-  })
+  .spread(seedProject)
   .then(seedProject2)
   .then(seedProject3)
   .then(function() {
