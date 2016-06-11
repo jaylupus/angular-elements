@@ -245,14 +245,14 @@ $scope.editTestObject={
       ai_content: {
                 ai_directive : true,
                 ai_directive_type : 'content',
-                ai_directive_name : 'solo_table',
+                ai_directive_name : 'justatable',
                 ai_directive_page : '1',
                 ai_directive_row : '2',
                 ai_directive_col : '2',
                 ai_directive_attributes : {
                     ai_title: 'title',
                     ai_class : 'myclass',
-                    ai_info_source : 'myclass',
+                    ai_info_source : '575c425a6a78e61499fd1295',
                     ai_info_type : 'file'
                 }
       }
@@ -271,14 +271,14 @@ $scope.editTestObject2={
       ai_content: {
                 ai_directive : true,
                 ai_directive_type : 'content',
-                ai_directive_name : 'solo_table',
+                ai_directive_name : 'justatable',
                 ai_directive_page : '1',
                 ai_directive_row : '2',
                 ai_directive_col : '2',
                 ai_directive_attributes : {
                     ai_title: 'My New Title',
                     ai_class : 'myclass',
-                    ai_info_source : 'myclass',
+                    ai_info_source : '575c425a6a78e61499fd1295',
                     ai_info_type : 'file'
                 }
       }

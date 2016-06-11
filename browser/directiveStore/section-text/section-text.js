@@ -21,7 +21,7 @@ app.directive('sectionText',function(projectDataFactory){
     templateUrl :  'directiveStore/section-text/section-text.html',
     link : function(scope,elem,attr){
 
-          projectDataFactory.getInternal(attr.aiInfoSource)
+          projectDataFactory.getInternal(attr.aiInfoSource,'text')
               .then(function(data){
                 scope.data=data;
               })

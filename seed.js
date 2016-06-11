@@ -323,11 +323,14 @@ var seedparagraphData = function() {
 var seedDataSource = function() {
   return new Promise(function(fulfill, reject) {
       fs.readFile('./iris.json', 'utf8', function(err, res) {
-        if (err) reject(err);
+        if (err) {
+          console.log(err);
+          reject(err);
+        }
         else fulfill(res);
       });
     })
-    .then(function(err, contents) {
+    .then(function(contents) {
       var dataSource = {
         fileName: 'iris',
         dataType: 'linear',
@@ -338,8 +341,8 @@ var seedDataSource = function() {
 };
 
 var seedProject = function(data1,data2) {
-  console.log(data1);
-  console.log(data2);
+  console.log(data1._id);
+  console.log(data2._id);
   console.log(projectConfig1[0].pages.page_1)
   projectConfig1[0].pages.page_1.rows.row_1.cols.col_2.ai_content.ai_directive_attributes.ai_info_source=data2._id;
   console.log(projectConfig1[0].pages.page_1.rows.row_1.cols.col_2.ai_content.ai_directive_attributes.ai_info_source);
