@@ -35,9 +35,9 @@ app.directive('justatable',function(projectDataFactory){
 
           projectDataFactory.getInternal(attr.aiInfoSource,'json')
               .then(function(data){
-                console.log(typeof data);
-                console.log(data[0]);
-                console.log(Object.keys(data[0]))
+                // console.log(typeof data);
+                // console.log(data[0]);
+                // console.log(Object.keys(data[0]))
                 //debugger
                 scope.data=data;
                 scope.headers=Object.keys(data[0])
