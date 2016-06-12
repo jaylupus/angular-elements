@@ -323,7 +323,7 @@ $timeout(function(){
 */
 $timeout(function(){
      $scope.updateConfigObject($scope.appConfig.pages.page_1.rows.row_2.cols,'col_2',$scope.editTestObject2);
-},6000);
+},4000);
 /*
 $timeout(function(){
      $scope.deleteconfigObject($scope.appConfig.pages.page_1.rows.row_2.cols,'col_2');
