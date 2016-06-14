@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
     }, next);
 });
 
-router.get('/user/:userId', function(req, res, next) {
+router.get('/users/:userId', function(req, res, next) {
   console.log(req.params);
   Project.find({user:req.params.userId})
     .then(function(projects) {
