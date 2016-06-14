@@ -25,9 +25,9 @@ app.directive('soloTable',function(soloTable_Factory){
   return{
     restrict : 'EA',
     scope : {
-      aiTitle  : '@',
-      aiInfoSource : '@',
-      aiInfoType : '@',
+      soloTableTitle  : '@',
+      soloTableInfoSource : '@',
+      soloTableInfoType : '@',
     },
     templateUrl :  'directiveStore/solotable/solo_table.html',
     //controller : function($scope, dataFactory){
@@ -38,7 +38,7 @@ app.directive('soloTable',function(soloTable_Factory){
       //  for(var i=0;i< a.length;i++;){
           //if(a[i].indexOf(sectionLocation)) 
          // scope.aiTitle=attr.aiInfoType
-          scope.data=soloTable_Factory.getdata(attr.aiInfoSource,attr.aiInfoType);
+          scope.data=soloTable_Factory.getdata(attr.soloTableInfoSource,attr.soloTableInfoType);
           
       //  }
     }
