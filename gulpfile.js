@@ -139,6 +139,9 @@ gulp.task('default', function () {
     gulp.watch('browser/js/**', function () {
         runSeq('buildJS', 'reload');
     });
+    gulp.watch('browser/directiveStore/**', function () {
+        runSeq('buildJS', 'reload');
+    });
 
     // Run when anything inside of browser/scss changes.
     gulp.watch('browser/scss/**', function () {

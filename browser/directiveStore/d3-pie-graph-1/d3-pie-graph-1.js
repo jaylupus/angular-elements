@@ -20,10 +20,14 @@ app.factory('dataFactoryBarGraph', function() {
   }
 });
 
-app.directive('barGraph', function($window, dataFactoryBarGraph) {
+app.directive('pieGraph', function($window, dataFactoryBarGraph) {
+  let dataFactory=dataFactoryBarGraph;
   return {
     restrict: 'E',
-    templateUrl: 'js/directiveStore/d3-bar-graph-1/bar-graph.html',
+    templateUrl: 'directiveStore/d3-pie-graph-1/pie-graph.html',
+    scope: {
+      aiTitle  : '@'
+    },
     link: function(scope, elem, attrs) {
       var d3 = $window.d3;
       var width = 400;
