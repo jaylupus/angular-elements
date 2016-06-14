@@ -11,7 +11,6 @@ app.controller('ProjectEditCtrl', function($scope,$compile,$timeout){
 //$scope.rows=project.config[0].pages.page_1.rows
 // this is the app config
 
-
 $scope.appConfigMaster={}; // this the version that is in sync with the database 0th position
 $scope.appConfigEditCopy={}; // this is the copy of of object being edited that copied to appConfigViewDriver when;
 $scope.appConfigViewDriver={}; // this is the copy of of object being edited that copied to appConfigViewDriver when
@@ -118,9 +117,7 @@ $scope.ai_manifest={
 };
 */
 
-$scope.appConfig=project.config[0];
-
-$scope.appConfig_2={
+$scope.appConfig={
     project_name : 'ourfirst app',
     pages:{}
 };
@@ -167,7 +164,7 @@ $scope.appConfig_test={
                           ai_content: {
                                 ai_directive : true,
                                 ai_directive_type : 'content',
-                                ai_directive_name : 'title-subtitle',
+                                ai_directive_name : 'solo_table',
                                 ai_directive_page : '1',
                                 ai_directive_row : '1',
                                 ai_directive_col: '1',
@@ -192,7 +189,7 @@ $scope.appConfig_test={
                           ai_content: {
                                 ai_directive : true,
                                 ai_directive_type : 'content',
-                                ai_directive_name : 'section-text',
+                                ai_directive_name : 'solo_table',
                                 ai_directive_page : '1',
                                 ai_directive_row : '1',
                                 ai_directive_col : '2',
@@ -361,7 +358,6 @@ $scope.renderRowHtmlFromAiConfig=function(obj) {
 };
 
 // this function append a compiled Column into the DOM
-
 $scope.renderColHtmlFromAiConfig=function(obj) {
       if (obj.hasOwnProperty('ai_directive')) {
         if((obj['ai_directive_type'] ==='layout') && (obj['ai_directive_name'] === 'ai_col')){
@@ -412,21 +408,17 @@ $scope.$watch('appConfig',function(){
 $scope.creatConfigObject=function(target,obj){
   //target=obj;
   angular.copy(obj,target);
-
 };
 // this read a appConfig object
 $scope.readConfigObject=function(target,newelement){
-
 };
 // this function updates a appconfig object
 $scope.updateConfigObject=function(target,newelement,obj){
   target[newelement]=obj;
-
 };
 // this function deletes a object from the appConfig object
 $scope.deleteconfigObject=function(target,subElement){
   delete target[subElement];
-
 };
 // this functon get the next row number to assgin for the current page
 $scope.getNextRowPage=function(page){
