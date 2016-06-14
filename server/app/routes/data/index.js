@@ -7,7 +7,7 @@ var DataSource = require('mongoose').model('DataSource');
 router.get('/:id', function(req, res, next) {
   DataSource.findById(req.params.id)
     .then(function(data) {
-      console.log(data);
+      //console.log(data);
       res.json(data);
     })
     .catch(function(err) {
