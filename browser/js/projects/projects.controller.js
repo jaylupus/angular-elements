@@ -15,6 +15,7 @@ $scope.appConfigMaster={}; // this the version that is in sync with the database
 $scope.appConfigEditCopy={}; // this is the copy of of object being edited that copied to appConfigViewDriver when;
 $scope.appConfigViewDriver={}; // this is the copy of of object being edited that copied to appConfigViewDriver when
 $scope.referenceToEditInAppConfig={};
+$scope.allManifests=[];
 /*
 $scope.ai_manifest={
   'directiveName': 'am_d3_pie_chart',
@@ -74,6 +75,33 @@ $scope.solo_table_manifest={
         solo_table_info_type : 'file'
     }
 };
+$scope.solo_table2_manifest={
+    ai_directive : true,
+    ai_directive_type : 'content',
+    ai_directive_name : 'solo_table',
+    ai_directive_attributes : { 
+        solo_table_title: 'title',
+        solo_table_class : 'myclass',
+        solo_table_info_source : 'myclass',
+        solo_table_info_type : 'file'
+    }
+};
+$scope.solo_table3_manifest={
+    ai_directive : true,
+    ai_directive_type : 'content',
+    ai_directive_name : 'solo_table',
+    ai_directive_attributes : { 
+        solo_table_title: 'title',
+        solo_table_class : 'myclass',
+        solo_table_info_source : 'myclass',
+        solo_table_info_type : 'file'
+    }
+};
+$scope.allManifests[0]=$scope.ai_row_manaifest;
+$scope.allManifests[1]=$scope.ai_column_manaifest;
+$scope.allManifests[2]=$scope.solo_table_manifest;
+$scope.allManifests[3]=$scope.solo_table2_manifest;
+$scope.allManifests[4]=$scope.solo_table3_manifest;
 /*
 $scope.ai_manifest={
     directiveName: 'solo_table',
@@ -471,7 +499,7 @@ $scope.creatConfigObject($scope.configTarget,$scope.manifestToAppConfig(1,1,2,$s
 
 };
 // add new directive NOTE: there is no add column because there is a one to one relationshiop between direstives and columns
-$scope.addNewDirective=function(){
+$scope.addNewDirective=function(manifest){
 // get the next available column number
 // call manifestToAppConfig on that page number to the config
 // copy it to the edit object
@@ -480,10 +508,15 @@ $scope.addNewDirective=function(){
 // it will then take that page object and add it
 $scope.configTarget=$scope.makeConfigTarget(1,1,1,1);
 console.log($scope.configTarget);
-$scope.creatConfigObject($scope.configTarget,$scope.manifestToAppConfig(1,1,1,$scope.solo_table_manifest));
+$scope.creatConfigObject($scope.configTarget,$scope.manifestToAppConfig(1,1,1,manifest));
 $scope.moveToEdit($scope.configTarget);
 };
 
+$scope.addToPage=function(manifest){
+  $scope.addNewDirective(manifest);
+  $scope.DSopen=false;
+  $scope.cplopen=true;
+};
 
 $timeout(function(){
   $scope.addNewPage();
@@ -524,7 +557,7 @@ console.log('manifestToAppConfig');
      */
 },500);
 $timeout(function(){
-  $scope.addNewDirective();
+ // $scope.addNewDirective();
     /*
      $scope.configTarget=$scope.makeConfigTarget(1);
 console.log('$scope.configTarget');
@@ -663,4 +696,12 @@ app.directive('aiCol',function(){
     template :  ''
   };
 });
-
+app.directive('directiveShopCard',function(){
+  return{
+    restrict : "EA",
+    scope : {
+      manifest : '='
+    },
+    templateUrl :  'directiveStore/directiveStoreCard/card.html',
+  };
+});
