@@ -15,7 +15,6 @@ app.controller('SignupCtrl', function($scope, $state, AuthService, Session, User
   }
 
   $scope.changeValue = function() {
-    $scope.emailTaken = false;
     $scope.NewUserForm.$setUntouched();
   };
 
