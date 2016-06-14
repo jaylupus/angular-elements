@@ -2,14 +2,15 @@
 app.controller('ProjectEditCtrl', function($scope,$compile,$timeout){
 // TEST THE FOLLOWING FUNCTIONS
 // add a page
-// add a row 
-// add a column 
+// add a row
+// add a column
 // add a directive
 
 
 //$scope.project=project;
 //$scope.rows=project.config[0].pages.page_1.rows
-// this is the app config 
+// this is the app config
+
 
 $scope.appConfigMaster={}; // this the version that is in sync with the database 0th position
 $scope.appConfigEditCopy={}; // this is the copy of of object being edited that copied to appConfigViewDriver when;
@@ -38,18 +39,18 @@ $scope.ai_page_manaifest={
           ai_directive : true,
           ai_directive_type : 'layout',
           ai_directive_name : 'ai_page',
-          ai_directive_attributes : {  
+          ai_directive_attributes : {
               ai_class : '/css/row_a/style.css',
               ai_page_title:'',
               ai_page_menu_text :''
           }
 };
-// this object gets 
+// this object gets
 $scope.ai_row_manaifest={
     ai_directive : true,
     ai_directive_type : 'layout',
     ai_directive_name : 'ai_row',
-    ai_directive_attributes : {  
+    ai_directive_attributes : {
         ai_class : '/css/row_a/style.css',
         class : 'row',
     }
@@ -58,7 +59,7 @@ $scope.ai_column_manaifest={
     ai_directive : true,
     ai_directive_type : 'layout',
     ai_directive_name : 'ai_col',
-    ai_directive_attributes : {  
+    ai_directive_attributes : {
         ai_class : '/css/row_a/style.css',
         class : 'col-md-6'
     },
@@ -68,7 +69,7 @@ $scope.solo_table_manifest={
     ai_directive : true,
     ai_directive_type : 'content',
     ai_directive_name : 'solo_table',
-    ai_directive_attributes : { 
+    ai_directive_attributes : {
         solo_table_title: 'title',
         solo_table_class : 'myclass',
         solo_table_info_source : 'myclass',
@@ -79,7 +80,7 @@ $scope.solo_table2_manifest={
     ai_directive : true,
     ai_directive_type : 'content',
     ai_directive_name : 'solo_table',
-    ai_directive_attributes : { 
+    ai_directive_attributes : {
         solo_table_title: 'title',
         solo_table_class : 'myclass',
         solo_table_info_source : 'myclass',
@@ -90,7 +91,7 @@ $scope.solo_table3_manifest={
     ai_directive : true,
     ai_directive_type : 'content',
     ai_directive_name : 'solo_table',
-    ai_directive_attributes : { 
+    ai_directive_attributes : {
         solo_table_title: 'title',
         solo_table_class : 'myclass',
         solo_table_info_source : 'myclass',
@@ -117,7 +118,9 @@ $scope.ai_manifest={
 };
 */
 
-$scope.appConfig={
+$scope.appConfig=project.config[0];
+
+$scope.appConfig_2={
     project_name : 'ourfirst app',
     pages:{}
 };
@@ -132,7 +135,7 @@ $scope.appConfig_test={
           ai_directive_page : '1',
           ai_directive_row : '',
           ai_directive_col : '',
-          ai_directive_attributes : {  
+          ai_directive_attributes : {
               ai_class : '/css/row_a/style.css',
               ai_page_title:'',
               ai_page_menu_text :''
@@ -145,7 +148,7 @@ $scope.appConfig_test={
                   ai_directive_page : '1',
                   ai_directive_row : '1',
                   ai_directive_col : '',
-                  ai_directive_attributes : {  
+                  ai_directive_attributes : {
                       ai_class : '/css/row_a/style.css',
                       class : 'row',
                   },
@@ -157,18 +160,18 @@ $scope.appConfig_test={
                           ai_directive_page : '1',
                           ai_directive_row : '1',
                           ai_directive_col: '1',
-                          ai_directive_attributes : {  
+                          ai_directive_attributes : {
                               ai_class : '/css/row_a/style.css',
                               class : 'col-md-6'
                           },
                           ai_content: {
                                 ai_directive : true,
                                 ai_directive_type : 'content',
-                                ai_directive_name : 'solo_table',
+                                ai_directive_name : 'title-subtitle',
                                 ai_directive_page : '1',
                                 ai_directive_row : '1',
                                 ai_directive_col: '1',
-                                ai_directive_attributes : { 
+                                ai_directive_attributes : {
                                     solo_table_title: 'title',
                                     solo_table_class : 'myclass',
                                     solo_table_info_source : 'myclass',
@@ -182,25 +185,25 @@ $scope.appConfig_test={
                           ai_directive_page : '1',
                           ai_directive_row : '1',
                           ai_directive_col: '2',
-                          ai_directive_attributes : {  
+                          ai_directive_attributes : {
                               ai_class : 'myclass',
                               class : 'col-md-6'
                           },
                           ai_content: {
                                 ai_directive : true,
                                 ai_directive_type : 'content',
-                                ai_directive_name : 'solo_table',
+                                ai_directive_name : 'section-text',
                                 ai_directive_page : '1',
                                 ai_directive_row : '1',
                                 ai_directive_col : '2',
-                                ai_directive_attributes : { 
+                                ai_directive_attributes : {
                                     solo_table_title: 'title',
                                     solo_table_class : 'myclass',
                                     solo_table_info_source : 'myclass',
                                     solo_table_info_type : 'file'
                                 }
                         }
-                    }  
+                    }
                 }
               },
               row_2:{
@@ -209,8 +212,8 @@ $scope.appConfig_test={
                     ai_directive_name : 'ai_row',
                     ai_directive_page : '1',
                     ai_directive_row : '2',
-                    ai_directive_col : '',              
-                    ai_directive_attributes : {  
+                    ai_directive_col : '',
+                    ai_directive_attributes : {
                         ai_class : '/css/row_a/style.css',
                         class : 'row',
                     },
@@ -222,7 +225,7 @@ $scope.appConfig_test={
                                 ai_directive_page : '1',
                                 ai_directive_row : '2',
                                 ai_directive_col: '1',
-                                ai_directive_attributes : {  
+                                ai_directive_attributes : {
                                     ai_class : '/css/row_a/style.css',
                                     class : 'col-md-6'
                                 },
@@ -233,7 +236,7 @@ $scope.appConfig_test={
                                           ai_directive_page : '1',
                                           ai_directive_row : '2',
                                           ai_directive_col : '1',
-                                          ai_directive_attributes : { 
+                                          ai_directive_attributes : {
                                               solo_table_title: 'title',
                                               solo_table_class : 'myclass',
                                               solo_table_info_source : 'myclass',
@@ -251,7 +254,7 @@ $scope.editTestObject={
       ai_directive : true,
       ai_directive_type : 'layout',
       ai_directive_name : 'ai_col',
-      ai_directive_attributes : {  
+      ai_directive_attributes : {
           ai_class : '/css/row_a/style.css',
           class : 'col-md-6'
       },
@@ -259,7 +262,7 @@ $scope.editTestObject={
                 ai_directive : true,
                 ai_directive_type : 'content',
                 ai_directive_name : 'solo_table',
-                ai_directive_attributes : { 
+                ai_directive_attributes : {
                     solo_table_title: 'title',
                     solo_table_class : 'myclass',
                     solo_table_info_source : 'myclass',
@@ -271,7 +274,7 @@ $scope.editTestObject2={
       ai_directive : true,
       ai_directive_type : 'layout',
       ai_directive_name : 'ai_col',
-      ai_directive_attributes : {  
+      ai_directive_attributes : {
           ai_class : '/css/row_a/style.css',
           class : 'col-md-6'
       },
@@ -279,7 +282,7 @@ $scope.editTestObject2={
                 ai_directive : true,
                 ai_directive_type : 'content',
                 ai_directive_name : 'solo_table',
-                ai_directive_attributes : { 
+                ai_directive_attributes : {
                     solo_table_title: 'My Results Table',
                     solo_table_class : 'myclass',
                     solo_table_info_source : 'myclass',
@@ -315,7 +318,7 @@ $scope.manifestToAppConfig=function(page,row,column,manifestObj){
     console.log(manifestObj);
       manifestObj.ai_directive_page = page;
       manifestObj.ai_directive_row = '';
-      manifestObj.ai_directive_col = '';  
+      manifestObj.ai_directive_col = '';
       return manifestObj;
     }
 };
@@ -329,7 +332,7 @@ $scope.renderattributeString=function(obj){
       attributeString+=keys+'="'+obj[keys]+'" ';
     }
     return attributeString;
-};  
+};
 $scope.renderPageHtmlFromAiConfig=function(obj) {
 
       if (obj.hasOwnProperty('ai_directive')) {
@@ -339,10 +342,10 @@ $scope.renderPageHtmlFromAiConfig=function(obj) {
       }
       for (var property in obj) {
                 if(typeof obj[property] == "object"){
-                    $scope.renderRowHtmlFromAiConfig(obj[property]); 
+                    $scope.renderRowHtmlFromAiConfig(obj[property]);
                 }
       }
-};   
+};
 // this function append a compiled row into the DOM
 $scope.renderRowHtmlFromAiConfig=function(obj) {
       if (obj.hasOwnProperty('ai_directive')) {
@@ -352,12 +355,13 @@ $scope.renderRowHtmlFromAiConfig=function(obj) {
       }
       for (var property in obj) {
                 if(typeof obj[property] == "object"){
-                    $scope.renderRowHtmlFromAiConfig(obj[property]); 
+                    $scope.renderRowHtmlFromAiConfig(obj[property]);
                 }
       }
-};   
+};
 
 // this function append a compiled Column into the DOM
+
 $scope.renderColHtmlFromAiConfig=function(obj) {
       if (obj.hasOwnProperty('ai_directive')) {
         if((obj['ai_directive_type'] ==='layout') && (obj['ai_directive_name'] === 'ai_col')){
@@ -368,12 +372,12 @@ $scope.renderColHtmlFromAiConfig=function(obj) {
       }
       for (var property in obj) {
                 if(typeof obj[property] == "object"){
-                    $scope.renderColHtmlFromAiConfig(obj[property]); 
+                    $scope.renderColHtmlFromAiConfig(obj[property]);
                 }
       }
 };
 // this function append a compiled Directive into the DOM
-// just a note : I dont like the fact that I am using the directives Idea of where it is to render it I would rather use the 
+// just a note : I dont like the fact that I am using the directives Idea of where it is to render it I would rather use the
 // position of the last column i saw while iterating.
 $scope.renderDirectiveHtmlFromAiConfig=function(obj) {
       if (obj.hasOwnProperty('ai_directive')) {
@@ -384,7 +388,7 @@ $scope.renderDirectiveHtmlFromAiConfig=function(obj) {
       }
       for (var property in obj) {
                 if(typeof obj[property] == "object"){
-                    $scope.renderDirectiveHtmlFromAiConfig(obj[property]);  
+                    $scope.renderDirectiveHtmlFromAiConfig(obj[property]);
                 }
       }
 };
@@ -392,7 +396,7 @@ $scope.renderDirectiveHtmlFromAiConfig=function(obj) {
 // this watch block renders a the dom when the appconfig changes
 $scope.$watch('appConfig',function(){
   angular.element(workarea).empty();
- 
+
   $scope.renderRowHtmlFromAiConfig($scope.appConfig, '');
   $timeout(function(){
     $scope.renderColHtmlFromAiConfig($scope.appConfig, '');
@@ -408,17 +412,21 @@ $scope.$watch('appConfig',function(){
 $scope.creatConfigObject=function(target,obj){
   //target=obj;
   angular.copy(obj,target);
+
 };
 // this read a appConfig object
 $scope.readConfigObject=function(target,newelement){
+
 };
 // this function updates a appconfig object
 $scope.updateConfigObject=function(target,newelement,obj){
   target[newelement]=obj;
+
 };
 // this function deletes a object from the appConfig object
 $scope.deleteconfigObject=function(target,subElement){
   delete target[subElement];
+
 };
 // this functon get the next row number to assgin for the current page
 $scope.getNextRowPage=function(page){
@@ -453,7 +461,7 @@ $scope.addNewPage=function(){
 // get the next available page number
 // call manifestToAppConfig on that page number to the config
 // copy it to the edit object
-// send it to the server 
+// send it to the server
 // replace the appconfig the servers reply (now the server and the page are in sync)
 // it will then take that page object and add it
 $scope.configTarget=$scope.makeConfigTarget(1);
@@ -466,7 +474,7 @@ $scope.addNewRow=function(){
 // get the next available row number
 // call manifestToAppConfig on that page number to the config
 // copy it to the edit object
-// send it to the server 
+// send it to the server
 // replace the appconfig the servers reply (now the server and the page are in sync)
 // it will then take that page object and add it
 $scope.configTarget=$scope.makeConfigTarget(1,1);
@@ -478,7 +486,7 @@ $scope.addNewColumn=function(){
 // get the next available row number
 // call manifestToAppConfig on that page number to the config
 // copy it to the edit object
-// send it to the server 
+// send it to the server
 // replace the appconfig the servers reply (now the server and the page are in sync)
 // it will then take that page object and add it
 $scope.configTarget=$scope.makeConfigTarget(1,1,1);
@@ -490,7 +498,7 @@ $scope.addNewColumn2=function(){
 // get the next available row number
 // call manifestToAppConfig on that page number to the config
 // copy it to the edit object
-// send it to the server 
+// send it to the server
 // replace the appconfig the servers reply (now the server and the page are in sync)
 // it will then take that page object and add it
 $scope.configTarget=$scope.makeConfigTarget(1,1,2);
@@ -503,7 +511,7 @@ $scope.addNewDirective=function(manifest){
 // get the next available column number
 // call manifestToAppConfig on that page number to the config
 // copy it to the edit object
-// send it to the server 
+// send it to the server
 // replace the appconfig the servers reply (now the server and the page are in sync)
 // it will then take that page object and add it
 $scope.configTarget=$scope.makeConfigTarget(1,1,1,1);
@@ -541,7 +549,7 @@ console.log('manifestToAppConfig');
      console.dir($scope.manifestToAppConfig(1,'','',$scope.ai_page_manaifest));
      $scope.creatConfigObject($scope.configTarget,'page_1',$scope.manifestToAppConfig(1,'','',$scope.ai_page_manaifest));
      */
-     
+
 },250);
 
 $timeout(function(){
