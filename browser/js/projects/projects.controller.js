@@ -14,7 +14,7 @@ app.controller('ProjectEditCtrl', function($scope,$compile,$timeout){
 $scope.appConfigMaster={}; // this the version that is in sync with the database 0th position
 $scope.appConfigEditCopy={}; // this is the copy of of object being edited that copied to appConfigViewDriver when;
 $scope.appConfigViewDriver={}; // this is the copy of of object being edited that copied to appConfigViewDriver when
-
+$scope.referenceToEditInAppConfig={};
 /*
 $scope.ai_manifest={
   'directiveName': 'am_d3_pie_chart',
@@ -261,11 +261,13 @@ $scope.editTestObject2={
 };
 
 $scope.moveToEdit=function(configObject){
+  $scope.referenceToEditInAppConfig=configObject;
   angular.copy(configObject,$scope.appConfigEditCopy);
 };
 
 $scope.saveEdit=function(){
-    angular.copy($scope.appConfigEditCopy,configObject);
+    console.log('running save');
+    angular.copy($scope.appConfigEditCopy,$scope.referenceToEditInAppConfig);
 };
 
 // this function takes your manifest object and add the ai-page,ai-row and ai-col attributes makeing is suitable for insertion into the appConfig
@@ -479,7 +481,7 @@ $scope.addNewDirective=function(){
 $scope.configTarget=$scope.makeConfigTarget(1,1,1,1);
 console.log($scope.configTarget);
 $scope.creatConfigObject($scope.configTarget,$scope.manifestToAppConfig(1,1,1,$scope.solo_table_manifest));
-$scope.moveToEdit(configTarget);
+$scope.moveToEdit($scope.configTarget);
 };
 
 
@@ -493,7 +495,7 @@ console.log('manifestToAppConfig');
 console.dir($scope.manifestToAppConfig(1,'','',$scope.ai_page_manaifest));
      $scope.creatConfigObject($scope.configTarget,'page_1',$scope.manifestToAppConfig(1,'','',$scope.ai_page_manaifest));
 */
-},1000);
+},100);
 
 $timeout(function(){
   $scope.addNewRow();
@@ -507,7 +509,7 @@ console.log('manifestToAppConfig');
      $scope.creatConfigObject($scope.configTarget,'page_1',$scope.manifestToAppConfig(1,'','',$scope.ai_page_manaifest));
      */
      
-},3000);
+},250);
 
 $timeout(function(){
   $scope.addNewColumn();
@@ -520,7 +522,7 @@ console.log('manifestToAppConfig');
      console.dir($scope.manifestToAppConfig(1,'','',$scope.ai_page_manaifest));
      $scope.creatConfigObject($scope.configTarget,'page_1',$scope.manifestToAppConfig(1,'','',$scope.ai_page_manaifest));
      */
-},5000);
+},500);
 $timeout(function(){
   $scope.addNewDirective();
     /*
@@ -532,7 +534,7 @@ console.log('manifestToAppConfig');
      console.dir($scope.manifestToAppConfig(1,'','',$scope.ai_page_manaifest));
      $scope.creatConfigObject($scope.configTarget,'page_1',$scope.manifestToAppConfig(1,'','',$scope.ai_page_manaifest));
      */
-},6000);
+},1000);
 
 /*
 $timeout(function(){

@@ -1,20 +1,29 @@
 <div class="container">
-{{appConfig}}
       <div id="workarea"></div>
       {{appConfigEditCopy}}
       <div id="control_panel" class="control_panel" ng-class="{control_panel_show: cplopen}" ng-mouseenter="cplopen = true">
-      <div id="control_panel_minbut" ng-show="cplopen" class="control_panel_minbut" ng-click="cplopen = false"><span class="glyphicon glyphicon-minus"></span>
-      </div>
-      <div id="control_paneleditbut" ng-show="!cplopen" class="control_panel_minbut" ng-click="cplopen = true"><span class="glyphicon glyphicon-plus"></span>
-      </div>
-      
-       <div id="cpl_move">
-         <table>
-         <tr><td></td><td class="arrow"><span class="glyphicon glyphicon-triangle-top"></td><td></td></tr>
-         <tr><td class="arrow"><span class="glyphicon glyphicon-triangle-left"></td><td></td><td class="arrow"> <span class="glyphicon glyphicon-triangle-right"></td></tr>
-         <tr><td></td><td class="arrow"><span class="glyphicon glyphicon-triangle-bottom"></td><td></td></tr>
-         </table>
-       </div>
-      <ai-editor id="control_panel"></ai-editor>
+            <div id="control_panel_minbut" ng-show="cplopen" class="control_panel_minbut" ng-click="cplopen = false"><span class="glyphicon glyphicon-minus"></span>
+            </div>
+            <div id="control_paneleditbut" ng-show="!cplopen" class="control_panel_minbut" ng-click="cplopen = true"><span class="glyphicon glyphicon-plus"></span>
+            </div>
+            
+             <div id="cpl_move">
+               <table>
+               <tr><td></td><td class="arrow"><span class="glyphicon glyphicon-triangle-top"></span></td><td></td></tr>
+               <tr><td class="arrow"><span class="glyphicon glyphicon-triangle-left"></td><td></td><td class="arrow"> <span class="glyphicon glyphicon-triangle-right"></span></td></tr>
+               <tr><td></td><td class="arrow"><span class="glyphicon glyphicon-triangle-bottom"></span></td><td></td></tr>
+               </table>
+             </div>
+              <div class="form_container">
+                  <table>
+                      <tr ng-repeat="(key, value) in appConfigEditCopy.ai_directive_attributes">
+                          <td><label>{{key}}</label>&nbsp;&nbsp;</td><td><input type="text" id={{key}} ng-model=appConfigEditCopy.ai_directive_attributes[key] name={{key}} value="value" ></td>
+                      </tr>
+                  </table>
+              </div>
+            <div>
+                <input type="button" class="btn btn-defaulr" value="CANCEL">
+                <input type="button" class="btn btn-defaulr" value="SAVE" ng-click="saveEdit()"> 
+            </div>
       </div>
 </div>
