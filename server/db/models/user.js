@@ -19,11 +19,9 @@ var schema = new mongoose.Schema({
         token: String,
         tokenSecret: String
     },
-    facebook: {
-        id: String
-    },
-    google: {
-        id: String
+    github: {
+        id: String,
+        username: String
     }
 });
 

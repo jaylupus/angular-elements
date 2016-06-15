@@ -26,7 +26,7 @@ router.get('/user/:userId', function(req, res, next) {
 
 
 router.get('/:id', function(req, res, next) {
-  Project.findById(req.params.id).populate('user')
+  Project.findById(req.params.id).populate('user dataSource')
     .then(function(project) {
       console.log('project: ', project);
       res.json(project);

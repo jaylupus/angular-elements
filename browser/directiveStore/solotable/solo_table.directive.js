@@ -1,5 +1,6 @@
 
-app.factory('dataFactory',function($http){
+// the factory must be named like this directiveName_Factory
+app.factory('soloTable_Factory',function($http){
   return{
    // this represents the result of opening a csv file turning it into a json array of objects
    // all factory function must be a promise to standardize the interface
@@ -19,13 +20,14 @@ app.factory('dataFactory',function($http){
     }
   };
 });
-app.directive('soloTable',function(dataFactory){
+// you must apply for a directivename (it could be in use)
+app.directive('soloTable',function(soloTable_Factory){
   return{
     restrict : 'EA',
     scope : {
-      aiTitle  : '@',
-      aiInfoSource : '@',
-      aiInfoType : '@',
+      soloTableTitle  : '@',
+      soloTableInfoSource : '@',
+      soloTableInfoType : '@',
     },
     templateUrl :  'directiveStore/solotable/solo_table.html',
     //controller : function($scope, dataFactory){
@@ -36,7 +38,7 @@ app.directive('soloTable',function(dataFactory){
       //  for(var i=0;i< a.length;i++;){
           //if(a[i].indexOf(sectionLocation)) 
          // scope.aiTitle=attr.aiInfoType
-          scope.data=dataFactory.getdata(attr.aiInfoSource,attr.aiInfoType);
+          scope.data=soloTable_Factory.getdata(attr.soloTableInfoSource,attr.soloTableInfoType);
           
       //  }
     }

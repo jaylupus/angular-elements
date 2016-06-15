@@ -1,31 +1,38 @@
+/*
+Rules for contribution are as follows
+1.your factory name must be unique we willl check that for you when you submit it.
+2.your factory must be named as follows <directivename>Factory
+3.you may NOT be write to you parent scope unless it is to a provided object.
+4.your directive must have isolate scope.
+5.you directive OOD.scope object my only contain "@" declarations.
+6.your directive can read the aiGlocalFactory factory. 
+7.your directive can talk to another directive via the aiGlocalFactory factory. this can be don be done by creating an object that is named for both object directive (like creating a channel) this would allow for directive reuse.
+8.your template can be put directly into you directive or inclused via a link to /browser/<directiveName>/<templateFile.html>
+9.while you can include "dependancy_scripts_tags" that point directly to a cdn we recommend tha you include the library in you submission files as the cdn brake over time.
 
+what do we do with the directive?
+we creat a directory named after the in the /browser/directiveStore
+
+*/
 ai_manifest{
-    schema :{
-            'type': 'object',
-            'title': 'Solo Table',
-            'properties': {
-                'ai_title': {
-                  'title': 'table title',
-                  'type': 'string'
-                },
-                'ai_info_source': {
-                  'title': 'Info Source',
-                  'type': 'string'
-                },
-                'ai_info_type': {
-                  'title': 'Info Type',
-                  'type': 'string',
-                  'enum': ['json', 'csv']
-                }
-            }
-          },
-        model : {
-            'info_source': 'Jonah'
-          },
-        form : [
-            "*", {
-              type: "submit",
-              title: "Save"
-            }
-        ]
+  'dependancy_scripts_tags':[
+        '<script src="https://d3js.org/d3.v3.min.js"></script>',
+  ],
+  directiveAttribute:{
+    "width": {
+      "type": "number",
+      "default": "400"
+    },
+    "height": {
+      "type": "number",
+      "default": "400"
+    },
+    "radius": {
+      "type": "number",
+      "default": "200"
+    },
+    "colorScale": "d3.scale.category10"
+  },
+  directiveUsageInstructions : 'www.github/'
 };
+*/

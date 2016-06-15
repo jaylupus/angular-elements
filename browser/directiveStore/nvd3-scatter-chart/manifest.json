@@ -1,0 +1,11 @@
+
+//what goes here?
+{
+  "3rd_party_library": {
+    "nvd3": {
+      "script": "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/angular-nvd3/1.0.7/angular-nvd3.min.js\"></script>}"
+    },
+
+  "css_file":null,
+  "render_target":"chart2"
+}

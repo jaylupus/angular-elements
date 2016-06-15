@@ -1,13 +1,11 @@
 <section id="home">
-<!--     <fullstack-logo></fullstack-logo>
-    <rando-greeting></rando-greeting> -->
-  <a ui-sref="viewer()">viewer</a>
+
   <div class="container">
 
     <div class="row">
 
       <div ng-show="isLoggedIn()">
-        <h3> {{user.email}} 's Projects<h3>
+        <h3>{{user.email || user.github.username}}'s Projects<h3>
         {{hello}}
           <div ng-repeat="project in projects" class="col-sm-3">
             <div class="tile">

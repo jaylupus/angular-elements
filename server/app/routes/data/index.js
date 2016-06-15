@@ -2,6 +2,7 @@
 
 var router = require('express').Router();
 var DataSource = require('mongoose').model('DataSource');
+<<<<<<< HEAD
 var Busboy = require('connect-busboy');
 var fs = require('fs-extra')
 var rootPath = __dirname.slice(0, 34);
@@ -38,4 +39,21 @@ router.post('/', function(req, res, next){
 
 });
 
+=======
+
+
+
+router.get('/:id', function(req, res, next) {
+  DataSource.findById(req.params.id)
+    .then(function(data) {
+      //console.log(data);
+      res.json(data);
+    })
+    .catch(function(err) {
+      res.status(404).send(err);
+    }, next);
+});
+
+
+>>>>>>> master
 module.exports = router;

@@ -1,9 +1,39 @@
 <div class="container">
+  <div class="row">
+          <title-subtitle ai-title="Internal Demo" ai-subtitle="this is what the directives look like with default data"></title-subtitle>
+    </div>
+    <hr>
+    <div class="row">
+          <flare ai-title="Sitemap 1" ai-info-source="575f77198d3f3afd0b6e1070"></flare>
+  </div>
+<!--   <hr>
+  <div class="row">
+          <flare ai-title="Flare Hierarchy" ai-info-source="575f6a56fe56a6cf081a29ae"></flare>
+  </div> -->
+  <hr>
+  <div class="row">
+          <nvd3-scatter-chart ai-title="NVD3 Scatter; Iris Sepal Width vs Length" ai-info-source="575c425a6a78e61499fd1295" ai-info-type="file" xvalue="sepalLength" yvalue="sepalWidth" size="petalLength" label="species"></nvd3-scatter-chart>
+  </div>
+  <hr>
+
+  <div class="row">
+          <nvd3-scatter-chart ai-title="NVD3 Scatter; Iris Petal Width vs Length" ai-info-source="575c425a6a78e61499fd1295" ai-info-type="file" xvalue="petalLength" yvalue="petalWidth" size="sepalLength" label="species"></nvd3-scatter-chart>
+  </div>
+  <hr>
+
+  <div class="row">
+          <section-text ai-title="Section Text" ai-info-source="575c425a6a78e61499fd1294" ai-info-type="file"></section-text>
+  </div>
+  <hr>
    <div class="row">
-          <bar-graph></bar-graph>
+          <pie-graph ai-title="d3 pie chart"></pie-graph>
     </div>
     <hr>
      <div class="row">
-          <solo-table section-title="Section 1" data-source-name="bobsdatafile_v2016_1_12_8h_23m_22s" data-source-type="file" bs-grid-config="col-sm-6"></solo-table>
+          <solo-table ai-title="Solo Table" ai-class="myclass" ai-info-source="myclass" ai-info-type="file" bs-grid-config="col-sm-6"></solo-table>
     </div>
+    <div class="row">
+          <justatable ai-title="Just A Table" ai-info-source="575c425a6a78e61499fd1295" ai-info-type="file"></justatable>
+  </div>
+  <hr>
 </div>
