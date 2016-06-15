@@ -1,0 +1,20 @@
+<div>
+<hr>Please select CSV file to upload</div>
+<button class="btn btn-info" 
+type="file" 
+ngf-select="uploadFiles($file, $invalidFiles)" 
+ngf-pattern="'.csv'" 
+accept=".csv" 
+ngf-max-height="1000" 
+ngf-max-size="5MB">Select File</button>
+<br><br>
+
+ File:
+  <div style="font:smaller">{{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
+      <span class="progress" ng-show="f.progress >= 0" style="width: 100px">
+          <div style="width:{{f.progress}}%; display: inline; background: orange"  
+               ng-bind="f.progress + '%'"></div>
+      </span>
+  </div>     
+  {{errorMsg}}
+</div>
