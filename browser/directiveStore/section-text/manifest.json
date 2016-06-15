@@ -1,0 +1,13 @@
+{
+    "directive_name" : "solo_table",
+    "directive_attributes" : {
+        "ai-title": "title",
+        "ai-info-source" : "575c425a6a78e61499fd1294",
+        "ai-info-type" : "text"
+
+    },
+    "meta_data": {
+        "author":"Andrew",
+        "category":"text"
+    }
+};
