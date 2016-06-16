@@ -26,9 +26,14 @@ var User = mongoose.model('User');
 var DataSource = mongoose.model('DataSource');
 var Project = mongoose.model('Project');
 
+<<<<<<< HEAD
 var projectConfig1=[// this is the app config
   {
     project_name : 'ourfirst app',
+=======
+var sampleConfig=[
+    {project_name : 'ourfirst app',
+>>>>>>> kob-editpage
     pages:{
         page_1:{
           ai_directive : true,
@@ -37,7 +42,11 @@ var projectConfig1=[// this is the app config
           ai_directive_page : '1',
           ai_directive_row : '',
           ai_directive_col : '',
+<<<<<<< HEAD
           ai_directive_attributes : {
+=======
+          ai_directive_attributes : {  
+>>>>>>> kob-editpage
               ai_class : '/css/row_a/style.css',
               ai_page_title:'',
               ai_page_menu_text :''
@@ -45,6 +54,7 @@ var projectConfig1=[// this is the app config
           rows:{
               row_1:{
                   ai_directive : true,
+<<<<<<< HEAD
                   ai_directive_type : 'layout',
                   ai_directive_name : 'ai_row',
                   ai_directive_page : '1',
@@ -178,7 +188,16 @@ var projectConfig1=[// this is the app config
                   ai_directive_row : '1',
                   ai_directive_col : '',
                   ai_directive_attributes : {
+=======
+                  ai_directive_type : 'layout',
+                  ai_directive_name : 'ai_row',
+                  ai_directive_page : '1',
+                  ai_directive_row : '1',
+                  ai_directive_col : '',
+                  ai_directive_attributes : {  
+>>>>>>> kob-editpage
                       ai_class : '/css/row_a/style.css',
+                      class : 'row',
                   },
                   cols:{
                       col_1:{
@@ -188,13 +207,18 @@ var projectConfig1=[// this is the app config
                           ai_directive_page : '1',
                           ai_directive_row : '1',
                           ai_directive_col: '1',
+<<<<<<< HEAD
                           ai_directive_attributes : {
+=======
+                          ai_directive_attributes : {  
+>>>>>>> kob-editpage
                               ai_class : '/css/row_a/style.css',
                               class : 'col-md-6'
                           },
                           ai_content: {
                                 ai_directive : true,
                                 ai_directive_type : 'content',
+<<<<<<< HEAD
                                 ai_directive_name : 'title-subtitle',
                                 ai_directive_page : '1',
                                 ai_directive_row : '1',
@@ -205,6 +229,17 @@ var projectConfig1=[// this is the app config
                                     ai_class : 'myclass',
                                     ai_info_source : 'myclass',
                                     ai_info_type : 'file'
+=======
+                                ai_directive_name : 'solo_table',
+                                ai_directive_page : '1',
+                                ai_directive_row : '1',
+                                ai_directive_col: '1',
+                                ai_directive_attributes : { 
+                                    solo_table_title: 'title',
+                                    solo_table_class : 'myclass',
+                                    solo_table_info_source : 'myclass',
+                                    solo_table_info_type : 'file'
+>>>>>>> kob-editpage
                                 }
                         }
                     },col_2:{
@@ -214,13 +249,18 @@ var projectConfig1=[// this is the app config
                           ai_directive_page : '1',
                           ai_directive_row : '1',
                           ai_directive_col: '2',
+<<<<<<< HEAD
                           ai_directive_attributes : {
+=======
+                          ai_directive_attributes : {  
+>>>>>>> kob-editpage
                               ai_class : 'myclass',
                               class : 'col-md-6'
                           },
                           ai_content: {
                                 ai_directive : true,
                                 ai_directive_type : 'content',
+<<<<<<< HEAD
                                 ai_directive_name : 'justatable',
                                 ai_directive_page : '1',
                                 ai_directive_row : '1',
@@ -273,11 +313,70 @@ var projectConfig1=[// this is the app config
                               }
                       }
                  }
+=======
+                                ai_directive_name : 'solo_table',
+                                ai_directive_page : '1',
+                                ai_directive_row : '1',
+                                ai_directive_col : '2',
+                                ai_directive_attributes : { 
+                                    solo_table_title: 'title',
+                                    solo_table_class : 'myclass',
+                                    solo_table_info_source : 'myclass',
+                                    solo_table_info_type : 'file'
+                                }
+                        }
+                    }  
+                }
+              },
+              row_2:{
+                   ai_directive : true,
+                    ai_directive_type : 'layout',
+                    ai_directive_name : 'ai_row',
+                    ai_directive_page : '1',
+                    ai_directive_row : '2',
+                    ai_directive_col : '',              
+                    ai_directive_attributes : {  
+                        ai_class : '/css/row_a/style.css',
+                        class : 'row',
+                    },
+                   cols:{
+                         col_1:{
+                                ai_directive : true,
+                                ai_directive_type : 'layout',
+                                ai_directive_name : 'ai_col',
+                                ai_directive_page : '1',
+                                ai_directive_row : '2',
+                                ai_directive_col: '1',
+                                ai_directive_attributes : {  
+                                    ai_class : '/css/row_a/style.css',
+                                    class : 'col-md-6'
+                                },
+                                ai_content: {
+                                          ai_directive : true,
+                                          ai_directive_type : 'content',
+                                          ai_directive_name : 'solo_table',
+                                          ai_directive_page : '1',
+                                          ai_directive_row : '2',
+                                          ai_directive_col : '1',
+                                          ai_directive_attributes : { 
+                                              solo_table_title: 'title',
+                                              solo_table_class : 'myclass',
+                                              solo_table_info_source : 'myclass',
+                                              solo_table_info_type : 'file'
+                                          }
+                                }
+                        }
+                   }
+>>>>>>> kob-editpage
               }
             }
         }
     }
+<<<<<<< HEAD
   }]// end projectConfig2
+=======
+}];
+>>>>>>> kob-editpage
 
 var wipeCollections = function() {
   var removeUsers = User.remove({});
