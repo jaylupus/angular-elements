@@ -26,123 +26,131 @@ var User = mongoose.model('User');
 var DataSource = mongoose.model('DataSource');
 var Project = mongoose.model('Project');
 
-var sampleConfig=[// this is the app config
-  {
-    project_name : 'ourfirst app',
+var sampleConfig=[
+    {project_name : 'ourfirst app',
     pages:{
         page_1:{
           ai_directive : true,
           ai_directive_type : 'layout',
-          ai_directive_params : {paramname : 'value'},
-          title : 'title',
-          menuText : '',
+          ai_directive_name : 'ai_page',
+          ai_directive_page : '1',
+          ai_directive_row : '',
+          ai_directive_col : '',
+          ai_directive_attributes : {  
+              ai_class : '/css/row_a/style.css',
+              ai_page_title:'',
+              ai_page_menu_text :''
+          },
           rows:{
               row_1:{
-                  aidirective : true,
-                  aidirectivetype : 'layout',
-                  ai_id : 'p1_r1',
+                  ai_directive : true,
+                  ai_directive_type : 'layout',
+                  ai_directive_name : 'ai_row',
                   ai_directive_page : '1',
                   ai_directive_row : '1',
-                  aidirectiveattributes : {
+                  ai_directive_col : '',
+                  ai_directive_attributes : {  
                       ai_class : '/css/row_a/style.css',
+                      class : 'row',
                   },
-                  ai_content: {
-                            ai_directive : true,
-                            ai_directive_type : 'content',
-                            ai_directive_name : 'solo_table',
-                            ai_directive_page : '1',
-                            ai_directive_row : '1',
-                            ai_directive_attributes : {
-                                ai_title: 'title',
-                                ai_id : 'p1_r1_solo_table',
-                                ai_class : 'myclass',
-                                ai_info_source : 'myclass',
-                                ai_info_type : 'file'
-                            }
-                  }
+                  cols:{
+                      col_1:{
+                          ai_directive : true,
+                          ai_directive_type : 'layout',
+                          ai_directive_name : 'ai_col',
+                          ai_directive_page : '1',
+                          ai_directive_row : '1',
+                          ai_directive_col: '1',
+                          ai_directive_attributes : {  
+                              ai_class : '/css/row_a/style.css',
+                              class : 'col-md-6'
+                          },
+                          ai_content: {
+                                ai_directive : true,
+                                ai_directive_type : 'content',
+                                ai_directive_name : 'solo_table',
+                                ai_directive_page : '1',
+                                ai_directive_row : '1',
+                                ai_directive_col: '1',
+                                ai_directive_attributes : { 
+                                    solo_table_title: 'title',
+                                    solo_table_class : 'myclass',
+                                    solo_table_info_source : 'myclass',
+                                    solo_table_info_type : 'file'
+                                }
+                        }
+                    },col_2:{
+                          ai_directive : true,
+                          ai_directive_type : 'layout',
+                          ai_directive_name : 'ai_col',
+                          ai_directive_page : '1',
+                          ai_directive_row : '1',
+                          ai_directive_col: '2',
+                          ai_directive_attributes : {  
+                              ai_class : 'myclass',
+                              class : 'col-md-6'
+                          },
+                          ai_content: {
+                                ai_directive : true,
+                                ai_directive_type : 'content',
+                                ai_directive_name : 'solo_table',
+                                ai_directive_page : '1',
+                                ai_directive_row : '1',
+                                ai_directive_col : '2',
+                                ai_directive_attributes : { 
+                                    solo_table_title: 'title',
+                                    solo_table_class : 'myclass',
+                                    solo_table_info_source : 'myclass',
+                                    solo_table_info_type : 'file'
+                                }
+                        }
+                    }  
+                }
               },
               row_2:{
-                  ai_directive : true,
-                  ai_directive_type : 'layout',
-                  ai_directive_attributes : {
-                      ai_id : 'p1_r2',
-                      ai_class : '/css/row_a/style.css',
-                  },
-                  ai_content: {
-                            ai_directive : true,
-                            ai_directive_type : 'content',
-                            ai_id : 'p1_r1',
-                            ai_directive_name : 'solo_table2',
-                            ai_directive_page : '1',
-                            ai_directive_row : '2',
-                            ai_directive_attributes : {
-                                ai_title: 'title',
-                                ai_id : 'p1_r1_solo_table',
-                                ai_class : 'myclass',
-                                ai_info_source : 'myclass',
-                                ai_info_type : 'file'
-                            }
-                  }
-              }
-            }
-        },
-        page_2:{
-          ai_directive : true,
-          ai_directive_type : 'layout',
-          ai_directive_params : {paramname : 'value'},
-          title : 'title',
-          menuText : '',
-          rows:{
-              row_1:{
-                  aidirective : true,
-                  aidirectivetype : 'layout',
-                  ai_id : 'p2_r1',
-                  ai_directive_page : '2',
-                  ai_directive_row : '1',
-                  aidirectiveattributes : {
-                      ai_class : '/css/row_a/style.css',
-                  },
-                  ai_content: {
-                            ai_directive : true,
-                            ai_directive_type : 'content',
-                            ai_directive_name : 'solo_table',
-                            ai_directive_page : '2',
-                            ai_directive_row : '1',
-                            ai_directive_attributes : {
-                                ai_title: 'title',
-                                ai_id : 'p2_r1_solo_table',
-                                ai_class : 'myclass',
-                                ai_info_source : 'myclass',
-                                ai_info_type : 'file'
-                            }
-                  }
-              },
-              row_2:{
-                  ai_directive : true,
-                  ai_directive_type : 'layout',
-                  ai_directive_attributes : {
-                      ai_id : 'p2_r2',
-                      ai_class : '/css/row_a/style.css',
-                  },
-                  ai_content: {
-                            ai_directive : true,
-                            ai_directive_type : 'content',
-                            ai_directive_name : 'solo_table2',
-                            ai_directive_page : '1',
-                            ai_directive_row : '2',
-                            ai_directive_attributes : {
-                                ai_title: 'title',
-                                ai_id : 'p2_r1_solo_table',
-                                ai_class : 'myclass',
-                                ai_info_source : 'myclass',
-                                ai_info_type : 'file'
-                            }
-                  }
+                   ai_directive : true,
+                    ai_directive_type : 'layout',
+                    ai_directive_name : 'ai_row',
+                    ai_directive_page : '1',
+                    ai_directive_row : '2',
+                    ai_directive_col : '',              
+                    ai_directive_attributes : {  
+                        ai_class : '/css/row_a/style.css',
+                        class : 'row',
+                    },
+                   cols:{
+                         col_1:{
+                                ai_directive : true,
+                                ai_directive_type : 'layout',
+                                ai_directive_name : 'ai_col',
+                                ai_directive_page : '1',
+                                ai_directive_row : '2',
+                                ai_directive_col: '1',
+                                ai_directive_attributes : {  
+                                    ai_class : '/css/row_a/style.css',
+                                    class : 'col-md-6'
+                                },
+                                ai_content: {
+                                          ai_directive : true,
+                                          ai_directive_type : 'content',
+                                          ai_directive_name : 'solo_table',
+                                          ai_directive_page : '1',
+                                          ai_directive_row : '2',
+                                          ai_directive_col : '1',
+                                          ai_directive_attributes : { 
+                                              solo_table_title: 'title',
+                                              solo_table_class : 'myclass',
+                                              solo_table_info_source : 'myclass',
+                                              solo_table_info_type : 'file'
+                                          }
+                                }
+                        }
+                   }
               }
             }
         }
     }
-  }]
+}];
 
 var wipeCollections = function() {
   var removeUsers = User.remove({});
