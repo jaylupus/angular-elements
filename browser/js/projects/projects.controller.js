@@ -1,8 +1,5 @@
 
-
 app.controller('ProjectEditCtrl', function($scope,$compile,$timeout,project,manifestFactory){
-
-
 // TEST THE FOLLOWING FUNCTIONS
 // add a page
 // add a row 
@@ -10,11 +7,19 @@ app.controller('ProjectEditCtrl', function($scope,$compile,$timeout,project,mani
 // add a directive
 $scope.appConfig={}; //init the appconfig
 // this is the app config 
+$scope.allManifests={};
 $scope.appConfigMaster={}; // this the version that is in sync with the database 0th position
 $scope.appConfigEditCopy={}; // this is the copy of of object being edited that copied to appConfigViewDriver when;
 $scope.appConfigViewDriver={}; // this is the copy of of object being edited that copied to appConfigViewDriver when
 $scope.referenceToEditInAppConfig={};
-$scope.allManifests=manifestFactory;
+
+
+manifestFactory.getAll()
+.then(function(data){
+  $scope.allManifests=data.data;
+  console.log(typeof(data.data));
+});
+
 $scope.builtInManifests=[];
 $scope.lastPage='0';
 $scope.lastRow='0';
@@ -30,7 +35,7 @@ $scope.ai_page_manifest={
         ai_page_title:'',
         ai_page_menu_text :''
     }
-          };
+};
 $scope.ai_row_manifest={
     ai_directive : true,
     ai_directive_type : 'layout',
@@ -50,178 +55,8 @@ $scope.ai_column_manifest={
     },
     ai_content : {}
 };
-
 $scope.builtInManifests[0]=$scope.ai_page_manifest;
 $scope.builtInManifests[1]=$scope.ai_row_manifest;
-
-
-
-/*
-$scope.appConfig_test={
-    project_name : 'ourfirst app',
-    pages:{
-        page_1:{
-          ai_directive : true,
-          ai_directive_type : 'layout',
-          ai_directive_name : 'ai_page',
-          ai_directive_page : '1',
-          ai_directive_row : '',
-          ai_directive_col : '',
-          ai_directive_attributes : {  
-              ai_class : '/css/row_a/style.css',
-              ai_page_title:'',
-              ai_page_menu_text :''
-          },
-          rows:{
-              row_1:{
-                  ai_directive : true,
-                  ai_directive_type : 'layout',
-                  ai_directive_name : 'ai_row',
-                  ai_directive_page : '1',
-                  ai_directive_row : '1',
-                  ai_directive_col : '',
-                  ai_directive_attributes : {  
-                      ai_class : '/css/row_a/style.css',
-                      class : 'row',
-                  },
-                  cols:{
-                      col_1:{
-                          ai_directive : true,
-                          ai_directive_type : 'layout',
-                          ai_directive_name : 'ai_col',
-                          ai_directive_page : '1',
-                          ai_directive_row : '1',
-                          ai_directive_col: '1',
-                          ai_directive_attributes : {  
-                              ai_class : '/css/row_a/style.css',
-                              class : 'col-md-6'
-                          },
-                          ai_content: {
-                                ai_directive : true,
-                                ai_directive_type : 'content',
-                                ai_directive_name : 'solo_table',
-                                ai_directive_page : '1',
-                                ai_directive_row : '1',
-                                ai_directive_col: '1',
-                                ai_directive_attributes : { 
-                                    solo_table_title: 'title',
-                                    solo_table_class : 'myclass',
-                                    solo_table_info_source : 'myclass',
-                                    solo_table_info_type : 'file'
-                                }
-                        }
-                    },col_2:{
-                          ai_directive : true,
-                          ai_directive_type : 'layout',
-                          ai_directive_name : 'ai_col',
-                          ai_directive_page : '1',
-                          ai_directive_row : '1',
-                          ai_directive_col: '2',
-                          ai_directive_attributes : {  
-                              ai_class : 'myclass',
-                              class : 'col-md-6'
-                          },
-                          ai_content: {
-                                ai_directive : true,
-                                ai_directive_type : 'content',
-                                ai_directive_name : 'solo_table',
-                                ai_directive_attributes : { 
-                                    solo_table_title: 'title',
-                                    solo_table_class : 'myclass',
-                                    solo_table_info_source : 'myclass',
-                                    solo_table_info_type : 'file'
-                                },
-                                website:"",
-
-                        }
-                    }  
-                }
-              },
-              row_2:{
-                   ai_directive : true,
-                    ai_directive_type : 'layout',
-                    ai_directive_name : 'ai_row',
-                    ai_directive_page : '1',
-                    ai_directive_row : '2',
-                    ai_directive_col : '',              
-                    ai_directive_attributes : {  
-                        ai_class : '/css/row_a/style.css',
-                        class : 'row',
-                    },
-                   cols:{
-                         col_1:{
-                                ai_directive : true,
-                                ai_directive_type : 'layout',
-                                ai_directive_name : 'ai_col',
-                                ai_directive_page : '1',
-                                ai_directive_row : '2',
-                                ai_directive_col: '1',
-                                ai_directive_attributes : {  
-                                    ai_class : '/css/row_a/style.css',
-                                    class : 'col-md-6'
-                                },
-                                ai_content: {
-                                          ai_directive : true,
-                                          ai_directive_type : 'content',
-                                          ai_directive_name : 'solo_table',
-                                          ai_directive_page : '1',
-                                          ai_directive_row : '2',
-                                          ai_directive_col : '1',
-                                          ai_directive_attributes : { 
-                                              solo_table_title: 'title',
-                                              solo_table_class : 'myclass',
-                                              solo_table_info_source : 'myclass',
-                                              solo_table_info_type : 'file'
-                                          }
-                                }
-                        }
-                   }
-              }
-            }
-        }
-    }
-};
-$scope.editTestObject={
-      ai_directive : true,
-      ai_directive_type : 'layout',
-      ai_directive_name : 'ai_col',
-      ai_directive_attributes : {  
-          ai_class : '/css/row_a/style.css',
-          class : 'col-md-6'
-      },
-      ai_content: {
-                ai_directive : true,
-                ai_directive_type : 'content',
-                ai_directive_name : 'solo_table',
-                ai_directive_attributes : { 
-                    solo_table_title: 'title',
-                    solo_table_class : 'myclass',
-                    solo_table_info_source : 'myclass',
-                    solo_table_info_type : 'file'
-                }
-      }
-};
-$scope.editTestObject2={
-      ai_directive : true,
-      ai_directive_type : 'layout',
-      ai_directive_name : 'ai_col',
-      ai_directive_attributes : {  
-          ai_class : '/css/row_a/style.css',
-          class : 'col-md-6'
-      },
-      ai_content: {
-                ai_directive : true,
-                ai_directive_type : 'content',
-                ai_directive_name : 'solo_table',
-                ai_directive_attributes : { 
-                    solo_table_title: 'My Results Table',
-                    solo_table_class : 'myclass',
-                    solo_table_info_source : 'myclass',
-                    solo_table_info_type : 'file'
-                }
-      }
-};
-*/
 
 // this function get the last page numb in config 
 $scope.getLastPage=function(){
@@ -296,7 +131,6 @@ $scope.renderattributeString=function(obj){
     }
     return attributeString;
 }; 
-
 // this function append a compiled page into the DOM
 $scope.renderPageHtmlFromAiConfig=function(obj) {
       if (obj.hasOwnProperty('ai_directive')) {
@@ -323,7 +157,6 @@ $scope.renderRowHtmlFromAiConfig=function(obj) {
                 }
       }
 };   
-
 // this function append a compiled Column into the DOM
 $scope.renderColHtmlFromAiConfig=function(obj) {
       if (obj.hasOwnProperty('ai_directive')) {
@@ -355,9 +188,6 @@ $scope.renderDirectiveHtmlFromAiConfig=function(obj) {
                 }
       }
 };
-
-
-
 
 // this function adds a new element to the config obj
 $scope.creatConfigObject=function(target,obj){
@@ -403,6 +233,7 @@ $scope.makeConfigTarget=function(page,row,column,landDirective){
     return  $scope.appConfig.pages['page_'+page]={};
   }
 };
+
 // add a page
 $scope.addNewPage=function(page,manifest){
   // get the next available page number
@@ -474,75 +305,6 @@ $scope.addToPage=function(manifest){
   $scope.cplopen=true;
 };
 
-$timeout(function(){
-  //$scope.addNewPage();
-/*
-$scope.configTarget=$scope.makeConfigTarget(1);
-console.log('$scope.configTarget >>>>>');
-console.dir($scope.configTarget);
-console.log('manifestToAppConfig');
-console.dir($scope.manifestToAppConfig(1,'','',$scope.ai_page_manifest));
-     $scope.creatConfigObject($scope.configTarget,'page_1',$scope.manifestToAppConfig(1,'','',$scope.ai_page_manifest));
-*/
-},22500);
-
-$timeout(function(){
- // $scope.addNewRow();
-    /*
-     $scope.configTarget=$scope.makeConfigTarget(1);
-console.log('$scope.configTarget');
-     console.dir($scope.configTarget);
-console.log('manifestToAppConfig');
-
-     console.dir($scope.manifestToAppConfig(1,'','',$scope.ai_page_manifest));
-     $scope.creatConfigObject($scope.configTarget,'page_1',$scope.manifestToAppConfig(1,'','',$scope.ai_page_manifest));
-     */
-     
-},22600);
-
-$timeout(function(){
-//  $scope.addNewColumn();
-    /*
-     $scope.configTarget=$scope.makeConfigTarget(1);
-console.log('$scope.configTarget');
-     console.dir($scope.configTarget);
-console.log('manifestToAppConfig');
-
-     console.dir($scope.manifestToAppConfig(1,'','',$scope.ai_page_manifest));
-     $scope.creatConfigObject($scope.configTarget,'page_1',$scope.manifestToAppConfig(1,'','',$scope.ai_page_manifest));
-     */
-},226500);
-$timeout(function(){
- // $scope.addNewDirective();
-    /*
-     $scope.configTarget=$scope.makeConfigTarget(1);
-console.log('$scope.configTarget');
-     console.dir($scope.configTarget);
-console.log('manifestToAppConfig');
-
-     console.dir($scope.manifestToAppConfig(1,'','',$scope.ai_page_manifest));
-     $scope.creatConfigObject($scope.configTarget,'page_1',$scope.manifestToAppConfig(1,'','',$scope.ai_page_manifest));
-     */
-},221000);
-
-/*
-$timeout(function(){
-    // $scope.readConfigObject($scope.appConfig.pages.page_1.rows.row_2.cols,'col_2',$scope.editTestObject);
-},3000);
-
-$timeout(function(){
-     $scope.configTarget=$scope.makeConfigTarget(1,1,2);
-     $scope.deleteconfigObject($scope.configTarget,'col_2');
-},4000);
-
-$timeout(function(){
-     $scope.configTarget=$scope.makeConfigTarget(1,1,2);
-    $scope.updateConfigObject($scope.configTarget,'col_2',$scope.editTestObject2);
-
-},5000);
-*/
-
-
 $scope.project=project; //init the $scope.project for resolve of project in state machine
 $timeout(function(){
     if($scope.project.config[0] === undefined){
@@ -578,163 +340,3 @@ $scope.$watch('appConfig',function(){
 
 
 
-
-
-
-app.factory('ProjectFactory', function($http) {
-  var projectObj;
-  var _projectCache = [];
-
-  projectObj = {
-    getAll: function() {
-      return $http.get('/api/projects')
-        .then(function(projects) {
-          console.log(projects);
-          angular.copy(projects.data, _projectCache);
-          return _projectCache;
-        });
-    },
-
-    getAllByUser: function(userId){
-      return $http.get('/api/projects/user/' + userId)
-          .then(function(projects){
-            console.log(projects);
-            angular.copy(projects.data, _projectCache);
-            return _projectCache;
-          })
-    },
-
-    getOne: function(id) {
-      return $http.get('/api/projects/' + id)
-        .then(function(project) {
-          return project.data;
-        });
-    },
-
-    add: function(project) {
-      return $http({
-            url: '/api/projects/',
-            method: "POST",
-            data: project
-      })
-        .then(function(_project) {
-          return _project.data;
-        });
-    },
-
-    delete: function(id){
-      return $http.delete('/api/projects/' + id)
-        .then(function(project) {
-          return project.data;
-        });
-    },
-
-    update: function(project) {
-      return $http({
-            url: '/api/projects/' + project._id,
-            method: "PUT",
-            data: project
-      })
-        .then(function(_project) {
-          return _project.data;
-        });
-    },
-
-    getDataSets: function(productId){
-      return null;
-    }
-
-  };
-
-  return projectObj;
-});
-
-
-
-app.factory('manifestFactory',function(){
-  return [{
-          ai_directive : true,
-          ai_directive_type : 'content',
-          ai_directive_name : 'solo_table',
-          ai_directive_attributes : { 
-              solo_table_title: 'title',
-              solo_table_class : 'myclass',
-              solo_table_info_source : 'myclass',
-              solo_table_info_type : 'file'
-          }
-      },{
-          ai_directive : true,
-          ai_directive_type : 'content',
-          ai_directive_name : 'solo_table',
-          ai_directive_attributes : { 
-              solo_table_title: 'title',
-              solo_table_class : 'myclass',
-              solo_table_info_source : 'myclass',
-              solo_table_info_type : 'file'
-          }
-      },
-      {
-          ai_directive : true,
-          ai_directive_type : 'content',
-          ai_directive_name : 'solo_table',
-          ai_directive_attributes : { 
-              solo_table_title: 'title',
-              solo_table_class : 'myclass',
-              solo_table_info_source : 'myclass',
-              solo_table_info_type : 'file'
-          }
-      }]
-});
-
-
-
-
-
-
-app.directive('aiPage',function(){
-  return{
-    transclude : true,
-    restrict : 'EA',
-    scope : {
-      aiClass : '/css/row_a/style.css',
-      aiPageTitle:'',
-      aiPageMenuText :''
-    },
-    template :  ''
-  };
-});
-app.directive('aiRow',function(){
-  return{
-    transclude : true,
-    restrict : 'EA',
-    scope : {
-      inceptRowOrder : '@',
-      inceptRowBgColor :  '@',
-      inceptRowBgImage :  '@',
-    },
-    template :  ''
-  };
-});
-
-app.directive('aiCol',function(){
-  return{
-    transclude : true,
-    restrict : 'E',
-    scope : {
-      inceptionColId : '@',
-      inceptionColWidth : '@',
-      inceptionRowId : '@',
-      inceptionColOrderInRow : '@'
-    },
-    template :  ''
-  };
-});
-app.directive('directiveShopCard',function(){
-  return{
-    restrict : "EA",
-    scope : {
-      manifest : '='
-    },
-    templateUrl :  'directiveStore/directiveStoreCard/card.html',
-  };
-});
