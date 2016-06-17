@@ -11,7 +11,7 @@ app.directive('flare', function($window,projectDataFactory){
     link : function(scope,elem,attr){
 
       var d3 = $window.d3;
-      var w = 600,
+      var w = 800,
       h = 600,
       i = 0,
       barHeight = 20,

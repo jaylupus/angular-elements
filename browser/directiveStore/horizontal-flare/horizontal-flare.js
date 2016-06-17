@@ -1,5 +1,5 @@
 "use strict";
-app.directive('vertFlare', function($window,projectDataFactory){
+app.directive('horizontalFlare', function($window,projectDataFactory){
   return {
     restrict : 'EA',
     scope : {
@@ -8,7 +8,7 @@ app.directive('vertFlare', function($window,projectDataFactory){
       aiWidth: '@',
       aiHeight:'@'
     },
-     templateUrl :  'directiveStore/vert-flare/vert-flare.html',
+     templateUrl :  'directiveStore/horizontal-flare/horizontal-flare.html',
      link : function(scope,elem,attr){
         var d3 = $window.d3;
 
@@ -16,16 +16,12 @@ app.directive('vertFlare', function($window,projectDataFactory){
 
         projectDataFactory.getInternal(attr.aiInfoSource,'json')
               .then(function(_data){
-                console.log('flare data',_data);
                 scope.data=_data;
-
                 return _data
         }).then(function(_data){
 
-          console.log(_data)
-
       var margin = {top: 20, right: 20, bottom: 20, left: 20},
-          width = attr.aiWidth - margin.right - margin.left,
+          width = attr.aiWidth + 20 - margin.right - margin.left,
           height = attr.aiHeight - margin.top - margin.bottom;
 
       var i = 0,
@@ -36,9 +32,9 @@ app.directive('vertFlare', function($window,projectDataFactory){
           .size([height, width]);
 
       var diagonal = d3.svg.diagonal()
-          .projection(function(d) { return [d.x, d.y]; });
+          .projection(function(d) { return [d.y, d.x]; });
 
-      var svg = d3.select("#chart10").append("svg")
+      var svg = d3.select("#chart11").append("svg")
           .attr("width", width + margin.right + margin.left)
           .attr("height", height + margin.top + margin.bottom)
         .append("g")
@@ -70,7 +66,7 @@ app.directive('vertFlare', function($window,projectDataFactory){
             links = tree.links(nodes);
 
         // Normalize for fixed-depth.
-        nodes.forEach(function(d) { d.y = d.depth * 80; });
+        nodes.forEach(function(d) { d.y = d.depth * 100; });
         //nodes.forEach(function(d){d.x = d.x+20});
 
         // Update the nodes…
@@ -80,7 +76,7 @@ app.directive('vertFlare', function($window,projectDataFactory){
         // Enter any new nodes at the parent's previous position.
         var nodeEnter = node.enter().append("g")
             .attr("class", "node")
-            .attr("transform", function(d) { return "translate(" + source.x0 + "," + source.y0 + ")"; })
+            .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
             .on("click", click);
 
         nodeEnter.append("circle")
@@ -88,8 +84,8 @@ app.directive('vertFlare', function($window,projectDataFactory){
             .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
 
         nodeEnter.append("text")
-            .attr("x", function(d) { return d.children || d._children ? 0 : 10; })
-            .attr("y", function(d) { return d.children || d._children ? (Math.floor(Math.random()*(4))*7) : (Math.floor(Math.random()*(6))*7); })
+            .attr("x", function(d) { return d.children || d._children ? -10 : 10;})
+            .attr("y", function(d) { return d.children || d._children ? -10 : 10 })
             .attr("dy", ".35em")
             .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
             .text(function(d) { return d.name || d.studentname || "student code: " +d.studentcode })
@@ -98,7 +94,7 @@ app.directive('vertFlare', function($window,projectDataFactory){
         // Transition nodes to their new position.
         var nodeUpdate = node.transition()
             .duration(duration)
-            .attr("transform", function(d) { return "translate(" + (d.x) + "," + d.y + ")"; });
+            .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
 
         nodeUpdate.select("circle")
             .attr("r", 4.5)
@@ -110,7 +106,7 @@ app.directive('vertFlare', function($window,projectDataFactory){
         // Transition exiting nodes to the parent's new position.
         var nodeExit = node.exit().transition()
             .duration(duration)
-            .attr("transform", function(d) { return "translate(" + source.x + "," + source.y + ")"; })
+            .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
             .remove();
 
         nodeExit.select("circle")
@@ -151,7 +147,6 @@ app.directive('vertFlare', function($window,projectDataFactory){
           d.y0 = d.y;
         });
       }
-
       // Toggle children on click.
       function click(d) {
         if (d.children) {
@@ -163,7 +158,6 @@ app.directive('vertFlare', function($window,projectDataFactory){
         }
         update(d);
       }
-
     })// end then
     }
   }
