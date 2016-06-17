@@ -4,7 +4,10 @@ module.exports = router;
 
 router.use('/members', require('./members'));
 router.use('/projects', require('./projects'));
+router.use('/users', require('./users'));
 router.use('/data', require('./data'));
+
+
 // Make sure this is after all of
 // the registered routes!
 router.use(function (req, res) {

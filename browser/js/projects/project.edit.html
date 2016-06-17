@@ -1,11 +1,21 @@
 <div class="container">
-      <div id="workarea"></div>
+{{lastPage}}<br>
+{{lastRow}}<br>
+{{lastColumn}}<br>
 
+      <div id="workarea"></div>
+{{appConfig}}
             <div id="directive_shop_panel" class="directive_shop_panel" ng-class="{directive_shop_panel_show: DSopen}" ng-mouseenter="DSopen = true;cplopen = false">
                   <div id="control_panel_minbut" class="control_panel_minbut" ng-click="DSopen = false"><span class="glyphicon glyphicon-minus"></span>
                   </div>
                   <div class="row directive_shop_panel_body">
-                      <directive_shop_card ng-repeat="currentManifest in allManifests" manifest="currentManifest" ng-click="addToPage(currentManifest)"></directive_shop_card>
+                        <div class="row">
+                            <directive_shop_card ng-repeat="builtInManifest in builtInManifests" manifest="builtInManifest" ng-click="addToPage(builtInManifest)"></directive_shop_card>
+                        </div>
+                        <div class="row">
+                        
+                            <directive_shop_card ng-repeat="currentManifest in allManifests" manifest="currentManifest" ng-click="addToPage(currentManifest)"></directive_shop_card>
+                        </div>
                   </div>
             </div>
 
