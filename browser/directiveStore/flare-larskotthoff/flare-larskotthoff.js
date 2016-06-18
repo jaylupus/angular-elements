@@ -4,15 +4,16 @@ app.directive('flare', function($window,projectDataFactory){
     restrict : 'EA',
     scope : {
       aiTitle  : '@',
-      aiInfoSource : '@'
-
+      aiInfoSource : '@',
+      aiWidth: '@',
+      aiHeight:'@'
     },
     templateUrl :  'directiveStore/flare-larskotthoff/flare-larskotthoff.html',
     link : function(scope,elem,attr){
 
       var d3 = $window.d3;
-      var w = 600,
-      h = 600,
+      var w = attr.aiWidth,
+      h = attr.aiHeight,
       i = 0,
       barHeight = 20,
       barWidth = w * 1,

@@ -6,6 +6,7 @@ router.use('/members', require('./members'));
 router.use('/projects', require('./projects'));
 router.use('/users', require('./users'));
 router.use('/data', require('./data'));
+router.use('/manifests', require('./manifests'));
 
 
 // Make sure this is after all of

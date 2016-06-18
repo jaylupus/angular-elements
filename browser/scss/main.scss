@@ -19,6 +19,21 @@ body {
   margin: 0 auto;
 }
 
+.cardtext {
+  min-width:200px;
+}
+.directive_card_body {
+  height: 350px;
+  width:300px;
+  img {
+    max-height: 200px;
+    max-width: 200px;
+  }
+  p {
+    font-size: 1em;
+  }
+}
+
 @import 'directives/main';
 @import 'home/main';
 @import 'about/main';

@@ -6,6 +6,7 @@ app.directive('nvd3ScatterChart',function(projectDataFactory){
       aiTitle  : '@',
       aiInfoSource : '@',
       aiInfoType : '@',
+      aiHeight:'@',
       xvalue: '@',
       yvalue:'@',
       size:'@',
@@ -51,7 +52,7 @@ app.directive('nvd3ScatterChart',function(projectDataFactory){
           scope.options = {
             chart: {
                 type: 'scatterChart',
-                height: 450,
+                height: attr.aiHeight,
                 color: d3.scale.category10().range(),
                 scatter: {
                     onlyCircles: true
