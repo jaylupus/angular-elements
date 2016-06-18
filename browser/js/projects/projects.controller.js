@@ -18,7 +18,7 @@ $scope.referenceToEditInAppConfig={};
 manifestFactory.getAll()
 .then(function(data){
   $scope.allManifests=data.data;
-  console.log(typeof(data.data));
+//console.log(typeof( $scope.allManifests[0]));
 });
 
 $scope.builtInManifests=[];
@@ -43,7 +43,8 @@ $scope.ai_row_manifest={
     ai_directive_name : 'ai_row',
     ai_directive_attributes : {
         ai_class : '/css/row_a/style.css',
-        class : 'row',
+        'class' : 'row',
+        
     }
 };
 $scope.ai_column_manifest={
@@ -52,7 +53,7 @@ $scope.ai_column_manifest={
     ai_directive_name : 'ai_col',
     ai_directive_attributes : {
         ai_class : '/css/row_a/style.css',
-        class : 'col-md-6'
+        class : 'col-md-6',
     },
     ai_content : {}
 };
@@ -152,7 +153,8 @@ $scope.renderRowHtmlFromAiConfig=function(obj) {
   console.log(obj)
       if (obj.hasOwnProperty('ai_directive')) {
         if((obj.ai_directive_type ==='layout') && (obj['ai_directive_name'] === 'ai_row')){
-                  angular.element(workarea).append($compile('<'+obj['ai_directive_name']+' id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row" '+ $scope.renderattributeString(obj['ai_directive_attributes'])+'></'+obj['ai_directive_name']+'>')($scope));
+                  //angular.element(workarea).append($compile('<'+obj['ai_directive_name']+' id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row" '+ $scope.renderattributeString(obj['ai_directive_attributes'])+'></'+obj['ai_directive_name']+'>')($scope));
+                  angular.element(workarea).append($compile('<div  id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row" '+ $scope.renderattributeString(obj['ai_directive_attributes'])+'ng-class="getActive(\'p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row\')"   ng-mouseenter="setActiveEdit(\'p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row\')" ng-mouseleave="setActiveEdit(\'\')"><ai-edit-hot-spot active-edit-element="activeEdit" ai-edit-hot-spot-id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row"></ai-edit-hot-spot></div>')($scope));
         }
       }
       for (var property in obj) {
@@ -169,12 +171,28 @@ $scope.renderColHtmlFromAiConfig=function(obj) {
         if((obj['ai_directive_type'] ==='layout') && (obj['ai_directive_name'] === 'ai_col')){
                  $scope.appendTarget='#p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row';
                  // console.log(obj);
-                  angular.element(document.querySelector( $scope.appendTarget )).append($compile('<'+obj['ai_directive_name']+' id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_c_'+obj['ai_directive_col']+'_ai_col" '+ $scope.renderattributeString(obj['ai_directive_attributes'])+'></'+obj['ai_directive_name']+'>')($scope));
+//                  angular.element(document.querySelector( $scope.appendTarget )).append($compile('<'+obj['ai_directive_name']+' id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_c_'+obj['ai_directive_col']+'_ai_col" '+ $scope.renderattributeString(obj['ai_directive_attributes'])+'></'+obj['ai_directive_name']+'>')($scope));
+                  angular.element(document.querySelector( $scope.appendTarget )).append($compile('<div id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_c_'+obj['ai_directive_col']+'_ai_col" '+ $scope.renderattributeString(obj['ai_directive_attributes'])+' ng-class="getActive(\'p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_c_'+obj['ai_directive_col']+'_ai_col\')" ng-mouseenter="setActiveEdit(\'p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_c_'+obj['ai_directive_col']+'_ai_col\')" ng-mouseleave="setActiveEdit(\'p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row\')"><ai-edit-hot-spot active-edit-element="activeEdit" ai-edit-hot-spot-id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_c_'+obj['ai_directive_col']+'_ai_col"></ai-edit-hot-spot></div>')($scope));
         }
       }
       for (var property in obj) {
                 if(typeof obj[property] == "object"){
                     $scope.renderColHtmlFromAiConfig(obj[property]);
+                }
+      }
+};
+$scope.renderClearfixHtmlFromAiConfig=function(obj) {
+      if (obj.hasOwnProperty('ai_directive')) {
+        if((obj['ai_directive_type'] ==='layout') && (obj['ai_directive_name'] === 'ai_row')){
+                 $scope.appendTarget='#p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row';
+                 // console.log(obj);
+//                  angular.element(document.querySelector( $scope.appendTarget )).append($compile('<'+obj['ai_directive_name']+' id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_c_'+obj['ai_directive_col']+'_ai_col" '+ $scope.renderattributeString(obj['ai_directive_attributes'])+'></'+obj['ai_directive_name']+'>')($scope));
+                  angular.element(document.querySelector( $scope.appendTarget )).append($compile('<div class="clearfix"></div><hr>')($scope));
+        }
+      }
+      for (var property in obj) {
+                if(typeof obj[property] == "object"){
+                    $scope.renderClearfixHtmlFromAiConfig(obj[property]); 
                 }
       }
 };
@@ -336,12 +354,26 @@ $scope.$watch('appConfig',function(){
   $timeout(function(){
      $scope.renderDirectiveHtmlFromAiConfig($scope.appConfig, '');
         $scope.getLastColumn();
-        console.log($scope.lastPage+':'+$scope.lastRow+':'+$scope.lastColumn);
+       // console.log($scope.lastPage+':'+$scope.lastRow+':'+$scope.lastColumn);
+     $scope.renderClearfixHtmlFromAiConfig($scope.appConfig, '');
 
+    
   },500);
+  
   console.dir($scope.appConfig);
 },true);
 
-});
+$scope.getActive=function(id){
+    if(id === $scope.activeEdit){
+      return 'edit_row_active'
+    }else{
+      return  'edit_row_passive';
+    }
+}
 
+$scope.setActiveEdit=function(id){
+    $scope.activeEdit = id      
+}
+
+});
 
