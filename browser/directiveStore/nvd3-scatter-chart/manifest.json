@@ -2,10 +2,12 @@
     "ai_directive" : "true",
     "ai_directive_type" : "content",
     "ai_directive_name" : "nvd3_scatter_chart",
+    "ai_directive_preview":"./directiveStore/nvd3-scatter-chart/preview.png",
+    "ai_directive_desc":"interactive scatter plot",
     "ai_directive_attributes" : {
         "ai_title": "NVD3 Scatter; Iris Petal Width vs Length",
         "ai_height" : "400",
-        "ai_info_source":"5765842c3830e8405813ab02",
+        "ai_info_source":"57658fcf5fdc42a75b246e32",
         "xvalue":"petalLength",
         "yvalue": "petalWidth",
         "size":"sepalLength",

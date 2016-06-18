@@ -213,6 +213,8 @@ var createForceManifest= function(dataRecord){
     "ai_directive" : "true",
     "ai_directive_type" : "content",
     "ai_directive_name" : "force_basic",
+    "ai_directive_preview":"./directiveStore/d3-force-basic/preview.png",
+    "ai_directive_desc":"simple example of a D3 force layout",
     "ai_directive_attributes" : {
         "ai_title": "Basic Force Graph",
         "ai_height" : "400",
@@ -254,6 +256,8 @@ var createFlareManifest= function(dataRecord){
     "ai_directive" : "true",
     "ai_directive_type" : "content",
     "ai_directive_name" : "flare",
+    "ai_directive_preview":"./directiveStore/flare-larskotthoff/preview.png",
+    "ai_directive_desc":"interactive hierarchy display",
     "ai_directive_attributes" : {
         "ai_title": "Flare hierarchy",
         "ai_height" : "400",
@@ -295,6 +299,8 @@ var createScatterManifest= function(dataRecord){
     "ai_directive" : "true",
     "ai_directive_type" : "content",
     "ai_directive_name" : "nvd3_scatter_chart",
+    "ai_directive_preview":"./directiveStore/nvd3-scatter-chart/preview.png",
+    "ai_directive_desc":"interactive scatter plot",
     "ai_directive_attributes" : {
         "ai_title": "NVD3 Scatter; Iris Petal Width vs Length",
         "ai_height" : "400",
@@ -335,6 +341,8 @@ var createSectionTextManifest= function(dataRecord){
     "ai_directive" : "true",
     "ai_directive_type" : "content",
     "ai_directive_name" : "section_text",
+    "ai_directive_preview":"./directiveStore/section-text/preview.png",
+    "ai_directive_desc":"section header and text",
     "ai_directive_attributes" : {
         "ai_title": "Informational Text",
         "ai_info_source":"${fileId}"

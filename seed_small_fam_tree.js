@@ -50,11 +50,10 @@ var createManifest= function(dataRecord){
         "ai_width" : "400",
         "node_width" : "5",
         "ai_info_source":"${fileId}"
-    }
-},`
+      }
+    },`
 
  return fsp.writeFile(manifestPath, manifestString)
-
 }
 
 
