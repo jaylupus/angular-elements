@@ -8,41 +8,12 @@ var child;
 router.get('/',function(req,res,next){
 // executes `pwd`
 child = exec("cat browser/directiveStore/*/manifest.json", function (error, stdout, stderr) {
- //JSON.parse(stdout)
-  res.json(JSON.parse('['+stdout+'{}]'));
+  var manifests=JSON.parse('['+stdout+'{}]');
+  console.log(manifests[1]);
+ manifests.splice(manifests.length-1,manifests.length-1);
+  //console.log(manifests[1]);
+  res.json(manifests);
 });
 	
-	/*res.json([{
-          ai_directive : true,
-          ai_directive_type : 'content',
-          ai_directive_name : 'solo_table',
-          ai_directive_attributes : { 
-              solo_table_title: 'title',
-              solo_table_class : 'myclass',
-              solo_table_info_source : 'myclass',
-              solo_table_info_type : 'file'
-          }
-      },{
-          ai_directive : true,
-          ai_directive_type : 'content',
-          ai_directive_name : 'solo_table',
-          ai_directive_attributes : { 
-              solo_table_title: 'title',
-              solo_table_class : 'myclass',
-              solo_table_info_source : 'myclass',
-              solo_table_info_type : 'file'
-          }
-      },{
-          ai_directive : true,
-          ai_directive_type : 'content',
-          ai_directive_name : 'solo_table',
-          ai_directive_attributes : { 
-              solo_table_title: 'title',
-              solo_table_class : 'myclass',
-              solo_table_info_source : 'myclass',
-              solo_table_info_type : 'file'
-          }
-      }]);
-      */
 });
 module.exports=router;

@@ -71,6 +71,7 @@ app.directive('aiCol',function(){
     template :  ''
   };
 });
+
 app.directive('directiveShopCard',function(){
   return{
     restrict : "EA",
@@ -78,6 +79,18 @@ app.directive('directiveShopCard',function(){
       manifest : '='
     },
     templateUrl :  'directiveStore/directiveStoreCard/card.html',
+  };
+});
+
+app.directive('aiEditHotSpot',function(){
+  return{
+    transclude : true,
+    restrict : 'EA',
+    scope : {
+      aiEditHotSpotId : '@',
+      activeEditElement : '='
+    },
+    templateUrl : 'js/projects/edithotspot.html'
   };
 });
 

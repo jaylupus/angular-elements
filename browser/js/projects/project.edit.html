@@ -1,26 +1,28 @@
-<div class="container">
-{{lastPage}}<br>
+<div class="container-fluid">
+<!--{{lastPage}}<br>
 {{lastRow}}<br>
 {{lastColumn}}<br>
 {{allManifests}}
-      <div id="workarea"></div>
 {{appConfig}}
+{{activeEdit}}-->
+      <div id="workarea"></div>
+
             <div id="directive_shop_panel" class="directive_shop_panel" ng-class="{directive_shop_panel_show: DSopen}" ng-mouseenter="DSopen = true;cplopen = false">
                   <div id="control_panel_minbut" class="control_panel_minbut" ng-click="DSopen = false"><span class="glyphicon glyphicon-minus"></span>
                   </div>
                   <div class="row directive_shop_panel_body">
                         <div class="row">
-                            <directive_shop_card ng-repeat="builtInManifest in builtInManifests" manifest="builtInManifest" ng-click="addToPage(builtInManifest)"></directive_shop_card>
+                            <directive_shop_card  ng-repeat="builtInManifest in builtInManifests" manifest="builtInManifest" ng-click="addToPage(builtInManifest)"></directive_shop_card>
                         </div>
                         <div class="row">
                         
-                            <directive_shop_card ng-repeat="currentManifest in allManifests" manifest="currentManifest" ng-click="addToPage(currentManifest)"></directive_shop_card>
+                            <directive_shop_card if-show="currentManifest.ai_directive == true" ng-repeat="currentManifest in allManifests" manifest="currentManifest" ng-click="addToPage(currentManifest)"></directive_shop_card>
                         </div>
                   </div>
             </div>
 
 
-      <div id="control_panel" class="control_panel" ng-class="{control_panel_show: cplopen}" ng-mouseenter="cplopen = true;DSopen = false">
+      <div id="control_panel" class="control_panel" ng-class="{control_panel_show: cplopen}" ng-mouseenter="cplopen1 = true;DSopen = false">
             <div id="control_panel_minbut" ng-show="cplopen" class="control_panel_minbut" ng-click="cplopen = false"><span class="glyphicon glyphicon-minus"></span>
             </div>
             <div id="control_paneleditbut" ng-show="!cplopen" class="control_panel_minbut" ng-click="cplopen = true;DSopen = false"><span class="glyphicon glyphicon-plus"></span>
