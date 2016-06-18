@@ -225,6 +225,90 @@ var createForceManifest= function(dataRecord){
  return fsp.writeFile(manifestPath, manifestString)
 }
 
+var seedFlare = function() {
+  return new Promise(function(fulfill, reject) {
+      fs.readFile('./sample_data_sets/flare.json', 'utf8', function(err, res) {
+        if (err) {
+          console.log(err);
+          reject(err);
+        }
+        else fulfill(res);
+      });
+    })
+    .then(function(contents) {
+      var dataSource = {
+        fileName: 'flareData',
+        dataType: 'linear',
+        data: contents
+      };
+      return DataSource.create(dataSource)
+    });
+};
+
+var createFlareManifest= function(dataRecord){
+ console.log(dataRecord);
+ let fileId= dataRecord._id;
+ let manifestPath=rootPath+ '/browser/directiveStore/flare-larskotthoff/manifest.json';
+
+ let manifestString= `{
+    "ai_directive" : "true",
+    "ai_directive_type" : "content",
+    "ai_directive_name" : "flare",
+    "ai_directive_attributes" : {
+        "ai_title": "Flare hierarchy",
+        "ai_height" : "400",
+        "ai_width" : "400",
+        "ai_info_source":"${fileId}"
+      }
+    },`
+
+ return fsp.writeFile(manifestPath, manifestString)
+}
+
+
+var seedIris = function() {
+  return new Promise(function(fulfill, reject) {
+      fs.readFile('./sample_data_sets/iris.json', 'utf8', function(err, res) {
+        if (err) {
+          console.log(err);
+          reject(err);
+        }
+        else fulfill(res);
+      });
+    })
+    .then(function(contents) {
+      var dataSource = {
+        fileName: 'Iris',
+        dataType: 'linear',
+        data: contents
+      };
+      return DataSource.create(dataSource)
+    });
+};
+
+var createScatterManifest= function(dataRecord){
+ console.log(dataRecord);
+ let fileId= dataRecord._id;
+ let manifestPath=rootPath+ '/browser/directiveStore/nvd3-scatter-chart/manifest.json';
+
+ let manifestString= `{
+    "ai_directive" : "true",
+    "ai_directive_type" : "content",
+    "ai_directive_name" : "nvd3_scatter_chart",
+    "ai_directive_attributes" : {
+        "ai_title": "NVD3 Scatter; Iris Petal Width vs Length",
+        "ai_height" : "400",
+        "ai_info_source":"${fileId}",
+        "xvalue":"petalLength",
+        "yvalue": "petalWidth",
+        "size":"sepalLength",
+        "label":"species"
+      }
+    },`
+
+ return fsp.writeFile(manifestPath, manifestString)
+}
+
 var paragraphData="Chambray iPhone bushwick, irony gastropub keffiyeh semiotics. Bushwick 90's cray, brooklyn helvetica cold-pressed retro cardigan cronut iPhone fanny pack. Fashion axe narwhal asymmetrical, selvage tacos celiac poutine meggings blue bottle authentic selfies shoreditch. Irony green juice fingerstache flexitarian, pork belly brooklyn locavore pabst mustache seitan.";
 
 var seedparagraphData = function() {
@@ -242,10 +326,27 @@ var seedparagraphData = function() {
       // })
 };
 
+var createSectionTextManifest= function(dataRecord){
+ console.log(dataRecord);
+ let fileId= dataRecord._id;
+ let manifestPath=rootPath+ '/browser/directiveStore/section-text/manifest.json';
+
+ let manifestString= `{
+    "ai_directive" : "true",
+    "ai_directive_type" : "content",
+    "ai_directive_name" : "section_text",
+    "ai_directive_attributes" : {
+        "ai_title": "Informational Text",
+        "ai_info_source":"${fileId}"
+      }
+    },`
+
+ return fsp.writeFile(manifestPath, manifestString)
+}
 
 var seedDataSource = function() {
   return new Promise(function(fulfill, reject) {
-      fs.readFile('./iris.json', 'utf8', function(err, res) {
+      fs.readFile('./sample_data_sets/iris.json', 'utf8', function(err, res) {
         if (err) {
           console.log(err);
           reject(err);
@@ -336,6 +437,12 @@ connectToDb
   })
   .then(seedSmallFamTree)
   .then(createForceManifest)
+  .then(seedFlare)
+  .then(createFlareManifest)
+  .then(seedIris)
+  .then(createScatterManifest)
+  .then(seedparagraphData)
+  .then(createSectionTextManifest)
   .then(function() {
     return Promise.all([seedDataSource(),seedparagraphData()])
   })

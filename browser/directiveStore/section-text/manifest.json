@@ -1,12 +1,9 @@
 {
     "ai_directive" : "true",
     "ai_directive_type" : "content",
-    "ai_directive_name" : "solo_table",
+    "ai_directive_name" : "section_text",
     "ai_directive_attributes" : {
-        "solo_table_title": "title",
-        "solo_table_class" : "myclass",
-        "solo_table_info_source" : "myclass",
-        "solo_table_info_type" : "file"
-    }
-},
-
+        "ai_title": "Informational Text",
+        "ai_info_source":"5765842c3830e8405813ab03"
+      }
+    },

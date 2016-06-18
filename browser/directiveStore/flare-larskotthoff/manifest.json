@@ -1,12 +1,11 @@
 {
     "ai_directive" : "true",
     "ai_directive_type" : "content",
-    "ai_directive_name" : "force_basic",
+    "ai_directive_name" : "flare",
     "ai_directive_attributes" : {
-        "ai_title": "Basic Force Graph",
+        "ai_title": "Flare hierarchy",
         "ai_height" : "400",
         "ai_width" : "400",
-        "node_width" : "5",
-        "ai_info_source":"5765842c3830e8405813ab00"
+        "ai_info_source":"5765842c3830e8405813ab01"
       }
     },
