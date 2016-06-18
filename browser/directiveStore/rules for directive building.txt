@@ -1,4 +1,3 @@
-/*
 Rules for contribution are as follows
 1.your factory name must be unique we willl check that for you when you submit it.
 2.your factory must be named as follows <directivename>Factory
@@ -9,30 +8,21 @@ Rules for contribution are as follows
 7.your directive can talk to another directive via the aiGlocalFactory factory. this can be don be done by creating an object that is named for both object directive (like creating a channel) this would allow for directive reuse.
 8.your template can be put directly into you directive or inclused via a link to /browser/<directiveName>/<templateFile.html>
 9.while you can include "dependancy_scripts_tags" that point directly to a cdn we recommend tha you include the library in you submission files as the cdn brake over time.
+10.you manifest file must be a file name manifest.json file with all keys and value enclosed in double quotes.
+11. the following is an example manifest files contents (minus the comments).
+
+{
+    "ai_directive" : "true", // you must include this property and value
+    "ai_directive_type" : "content", // you must include this property and value
+    "ai_directive_name" : "solo_table", // this is the directive tag is it will be inserted into the html (In this case the directive is name "SoloTable")
+    "ai_directive_attributes" : { 
+        "solo_table_title": "title", // this is the attribute tag is it will be inserted into the html  ( soloTableTitle)
+        "solo_table_class" : "myclass", // this is the attribute tag is it will be inserted into the html (soloTableClass)
+        "solo_table_info_source" : "myclass", // this is the attribute tag is it will be inserted into the html (soloTableInfoSource)
+        "solo_table_info_type" : "file" // this is the attribute tag is it will be inserted into the html (soloTableInfoType)
+    }
+}
+
 
 what do we do with the directive?
 we creat a directory named after the in the /browser/directiveStore
-
-*/
-ai_manifest{
-  'dependancy_scripts_tags':[
-        '<script src="https://d3js.org/d3.v3.min.js"></script>',
-  ],
-  directiveAttribute:{
-    "width": {
-      "type": "number",
-      "default": "400"
-    },
-    "height": {
-      "type": "number",
-      "default": "400"
-    },
-    "radius": {
-      "type": "number",
-      "default": "200"
-    },
-    "colorScale": "d3.scale.category10"
-  },
-  directiveUsageInstructions : 'www.github/'
-};
-*/
