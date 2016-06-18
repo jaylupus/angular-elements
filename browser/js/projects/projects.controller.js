@@ -149,6 +149,7 @@ $scope.renderPageHtmlFromAiConfig=function(obj) {
 };
 // this function append a compiled row into the DOM
 $scope.renderRowHtmlFromAiConfig=function(obj) {
+  console.log(obj)
       if (obj.hasOwnProperty('ai_directive')) {
         if((obj.ai_directive_type ==='layout') && (obj['ai_directive_name'] === 'ai_row')){
                   angular.element(workarea).append($compile('<'+obj['ai_directive_name']+' id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row" '+ $scope.renderattributeString(obj['ai_directive_attributes'])+'></'+obj['ai_directive_name']+'>')($scope));

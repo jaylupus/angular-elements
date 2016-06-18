@@ -16,7 +16,7 @@ fsg scaffolding, keep in mind that fsg always uses the same database
 name in the environment files.
 
 */
-
+"use strict";
 var fs = require('fs');
 var mongoose = require('mongoose');
 var Promise = require('bluebird');
@@ -25,147 +25,12 @@ var connectToDb = require('./server/db');
 var User = mongoose.model('User');
 var DataSource = mongoose.model('DataSource');
 var Project = mongoose.model('Project');
+var fsp = require('fs-promise');
+var rootPathArray = __dirname.split("server/app/routes/data");
+var rootPath=rootPathArray[0]
 
-<<<<<<< HEAD
-var projectConfig1=[// this is the app config
-  {
-    project_name : 'ourfirst app',
-=======
 var sampleConfig=[
     {project_name : 'ourfirst app',
->>>>>>> kob-editpage
-    pages:{
-        page_1:{
-          ai_directive : true,
-          ai_directive_type : 'layout',
-          ai_directive_name : 'ai_page',
-          ai_directive_page : '1',
-          ai_directive_row : '',
-          ai_directive_col : '',
-<<<<<<< HEAD
-          ai_directive_attributes : {
-=======
-          ai_directive_attributes : {  
->>>>>>> kob-editpage
-              ai_class : '/css/row_a/style.css',
-              ai_page_title:'',
-              ai_page_menu_text :''
-          },
-          rows:{
-              row_1:{
-                  ai_directive : true,
-<<<<<<< HEAD
-                  ai_directive_type : 'layout',
-                  ai_directive_name : 'ai_row',
-                  ai_directive_page : '1',
-                  ai_directive_row : '1',
-                  ai_directive_col : '',
-                  ai_directive_attributes : {
-                      ai_class : '/css/row_a/style.css',
-                  },
-                  cols:{
-                      col_1:{
-                          ai_directive : true,
-                          ai_directive_type : 'layout',
-                          ai_directive_name : 'ai_col',
-                          ai_directive_page : '1',
-                          ai_directive_row : '1',
-                          ai_directive_col: '1',
-                          ai_directive_attributes : {
-                              ai_class : '/css/row_a/style.css',
-                              class : 'col-md-6'
-                          },
-                          ai_content: {
-                                ai_directive : true,
-                                ai_directive_type : 'content',
-                                ai_directive_name : 'title-subtitle',
-                                ai_directive_page : '1',
-                                ai_directive_row : '1',
-                                ai_directive_col: '1',
-                                ai_directive_attributes : {
-                                    ai_title: 'Dumb Report',
-                                    ai_subtitle:' A Report for Idiots',
-                                    ai_class : 'myclass',
-                                    ai_info_source : 'myclass',
-                                    ai_info_type : 'file'
-                                }
-                        }
-                    },col_2:{
-                          ai_directive : true,
-                          ai_directive_type : 'layout',
-                          ai_directive_name : 'ai_col',
-                          ai_directive_page : '1',
-                          ai_directive_row : '1',
-                          ai_directive_col: '2',
-                          ai_directive_attributes : {
-                              ai_class : 'myclass',
-                              class : 'col-md-6'
-                          },
-                          ai_content: {
-                                ai_directive : true,
-                                ai_directive_type : 'content',
-                                ai_directive_name : 'section-text',
-                                ai_directive_page : '1',
-                                ai_directive_row : '1',
-                                ai_directive_col : '2',
-                                ai_directive_attributes : {
-                                    ai_title: 'The Deal',
-                                    ai_class : 'myclass',
-                                    ai_info_source : 'myclass',
-                                    ai_info_type : 'file'
-                                }
-                        }
-                    }
-                }
-              },
-              row_2:{
-                 ai_directive : true,
-                  ai_directive_type : 'layout',
-                  ai_directive_name : 'ai_row',
-                  ai_directive_page : '1',
-                  ai_directive_row : '2',
-                  ai_directive_col : '',
-                  ai_directive_attributes : {
-                      ai_class : '/css/row_a/style.css',
-                  },
-                 cols:{
-                       col_1:{
-                              ai_directive : true,
-                              ai_directive_type : 'layout',
-                              ai_directive_name : 'ai_col',
-                              ai_directive_page : '1',
-                              ai_directive_row : '2',
-                              ai_directive_col: '1',
-                              ai_directive_attributes : {
-                                  ai_class : '/css/row_a/style.css',
-                                  class : 'col-md-6'
-                              },
-                              ai_content: {
-                                        ai_directive : true,
-                                        ai_directive_type : 'content',
-                                        ai_directive_name : 'pie-graph',
-                                        ai_directive_page : '1',
-                                        ai_directive_row : '2',
-                                        ai_directive_col : '1',
-                                        ai_directive_attributes : {
-                                            ai_title: 'Color Pizza',
-                                            ai_class : 'myclass',
-                                            ai_info_source : 'myclass',
-                                            ai_info_type : 'file'
-                                        }
-                              }
-                      }
-                 }
-              }
-            }
-        }
-    }
-  }]// end projectConfig1
-
-
-  var projectConfig2=[// this is the app config
-  {
-    project_name : 'our second app',
     pages:{
         page_1:{
           ai_directive : true,
@@ -188,14 +53,6 @@ var sampleConfig=[
                   ai_directive_row : '1',
                   ai_directive_col : '',
                   ai_directive_attributes : {
-=======
-                  ai_directive_type : 'layout',
-                  ai_directive_name : 'ai_row',
-                  ai_directive_page : '1',
-                  ai_directive_row : '1',
-                  ai_directive_col : '',
-                  ai_directive_attributes : {  
->>>>>>> kob-editpage
                       ai_class : '/css/row_a/style.css',
                       class : 'row',
                   },
@@ -207,40 +64,25 @@ var sampleConfig=[
                           ai_directive_page : '1',
                           ai_directive_row : '1',
                           ai_directive_col: '1',
-<<<<<<< HEAD
                           ai_directive_attributes : {
-=======
-                          ai_directive_attributes : {  
->>>>>>> kob-editpage
                               ai_class : '/css/row_a/style.css',
                               class : 'col-md-6'
                           },
                           ai_content: {
                                 ai_directive : true,
-                                ai_directive_type : 'content',
-<<<<<<< HEAD
-                                ai_directive_name : 'title-subtitle',
+                                ai_directive_type : "content",
+                                ai_directive_name : "force_basic",
                                 ai_directive_page : '1',
                                 ai_directive_row : '1',
-                                ai_directive_col: '1',
+                                ai_directive_col : '1',
                                 ai_directive_attributes : {
-                                    ai_title: 'Much Better Report',
-                                    ai_subtitle:' A Report for Tiny Men',
-                                    ai_class : 'myclass',
-                                    ai_info_source : 'myclass',
-                                    ai_info_type : 'file'
-=======
-                                ai_directive_name : 'solo_table',
-                                ai_directive_page : '1',
-                                ai_directive_row : '1',
-                                ai_directive_col: '1',
-                                ai_directive_attributes : { 
-                                    solo_table_title: 'title',
-                                    solo_table_class : 'myclass',
-                                    solo_table_info_source : 'myclass',
-                                    solo_table_info_type : 'file'
->>>>>>> kob-editpage
-                                }
+                                    ai_title: "Basic Force Data",
+                                    ai_height : "400",
+                                    ai_width : "400",
+                                    node_width : "5",
+                                    ai_info_type:"file",
+                                    ai_info_source:"hello"
+                                  }
                         }
                     },col_2:{
                           ai_directive : true,
@@ -249,83 +91,25 @@ var sampleConfig=[
                           ai_directive_page : '1',
                           ai_directive_row : '1',
                           ai_directive_col: '2',
-<<<<<<< HEAD
                           ai_directive_attributes : {
-=======
-                          ai_directive_attributes : {  
->>>>>>> kob-editpage
                               ai_class : 'myclass',
                               class : 'col-md-6'
                           },
                           ai_content: {
                                 ai_directive : true,
                                 ai_directive_type : 'content',
-<<<<<<< HEAD
-                                ai_directive_name : 'justatable',
+                                ai_directive_name : 'section_text',
                                 ai_directive_page : '1',
                                 ai_directive_row : '1',
                                 ai_directive_col : '2',
                                 ai_directive_attributes : {
-                                    ai_title: 'some folks',
-                                    ai_class : 'myclass',
-                                    ai_info_source : 'myclass',
-                                    ai_info_type : 'file'
-                                }
-                        }
-                    }
-                }
-              },
-              row_2:{
-                 ai_directive : true,
-                  ai_directive_type : 'layout',
-                  ai_directive_name : 'ai_row',
-                  ai_directive_page : '1',
-                  ai_directive_row : '2',
-                  ai_directive_col : '',
-                  ai_directive_attributes : {
-                      ai_class : '/css/row_a/style.css',
-                  },
-                 cols:{
-                       col_1:{
-                              ai_directive : true,
-                              ai_directive_type : 'layout',
-                              ai_directive_name : 'ai_col',
-                              ai_directive_page : '1',
-                              ai_directive_row : '2',
-                              ai_directive_col: '1',
-                              ai_directive_attributes : {
-                                  ai_class : '/css/row_a/style.css',
-                                  class : 'col-md-6'
-                              },
-                              ai_content: {
-                                        ai_directive : true,
-                                        ai_directive_type : 'content',
-                                        ai_directive_name : 'pie-graph',
-                                        ai_directive_page : '1',
-                                        ai_directive_row : '2',
-                                        ai_directive_col : '1',
-                                        ai_directive_attributes : {
-                                            ai_title: 'Frizbee?',
-                                            ai_class : 'myclass',
-                                            ai_info_source : 'myclass',
-                                            ai_info_type : 'file'
-                                        }
-                              }
-                      }
-                 }
-=======
-                                ai_directive_name : 'solo_table',
-                                ai_directive_page : '1',
-                                ai_directive_row : '1',
-                                ai_directive_col : '2',
-                                ai_directive_attributes : { 
-                                    solo_table_title: 'title',
+                                    ai_title: 'Some info',
                                     solo_table_class : 'myclass',
                                     solo_table_info_source : 'myclass',
                                     solo_table_info_type : 'file'
                                 }
                         }
-                    }  
+                    }
                 }
               },
               row_2:{
@@ -334,8 +118,8 @@ var sampleConfig=[
                     ai_directive_name : 'ai_row',
                     ai_directive_page : '1',
                     ai_directive_row : '2',
-                    ai_directive_col : '',              
-                    ai_directive_attributes : {  
+                    ai_directive_col : '',
+                    ai_directive_attributes : {
                         ai_class : '/css/row_a/style.css',
                         class : 'row',
                     },
@@ -347,7 +131,7 @@ var sampleConfig=[
                                 ai_directive_page : '1',
                                 ai_directive_row : '2',
                                 ai_directive_col: '1',
-                                ai_directive_attributes : {  
+                                ai_directive_attributes : {
                                     ai_class : '/css/row_a/style.css',
                                     class : 'col-md-6'
                                 },
@@ -358,8 +142,8 @@ var sampleConfig=[
                                           ai_directive_page : '1',
                                           ai_directive_row : '2',
                                           ai_directive_col : '1',
-                                          ai_directive_attributes : { 
-                                              solo_table_title: 'title',
+                                          ai_directive_attributes : {
+                                              solo_table_title: 'Solo table',
                                               solo_table_class : 'myclass',
                                               solo_table_info_source : 'myclass',
                                               solo_table_info_type : 'file'
@@ -367,16 +151,13 @@ var sampleConfig=[
                                 }
                         }
                    }
->>>>>>> kob-editpage
               }
             }
         }
     }
-<<<<<<< HEAD
-  }]// end projectConfig2
-=======
+
 }];
->>>>>>> kob-editpage
+
 
 var wipeCollections = function() {
   var removeUsers = User.remove({});
@@ -400,6 +181,49 @@ var seedUsers = function() {
   return User.create(users);
 
 };
+
+var seedSmallFamTree = function() {
+  return new Promise(function(fulfill, reject) {
+      fs.readFile('./sample_data_sets/small_fam_tree.json', 'utf8', function(err, res) {
+        if (err) {
+          console.log(err);
+          reject(err);
+        }
+        else fulfill(res);
+      });
+    })
+    .then(function(contents) {
+      var dataSource = {
+        fileName: 'roster',
+        dataType: 'linear',
+        data: contents
+      };
+      return DataSource.create(dataSource)
+    });
+};
+
+var createForceManifest= function(dataRecord){
+ console.log(dataRecord);
+ let fileId= dataRecord._id;
+ // going to also seed config object!
+ sampleConfig[0].pages.page_1.rows.row_1.cols.col_1.ai_content.ai_directive_attributes.ai_info_source=fileId;
+ let manifestPath=rootPath+ '/browser/directiveStore/d3-force-basic/manifest.json';
+
+ let manifestString= `{
+    "ai_directive" : "true",
+    "ai_directive_type" : "content",
+    "ai_directive_name" : "force_basic",
+    "ai_directive_attributes" : {
+        "ai_title": "Basic Force Graph",
+        "ai_height" : "400",
+        "ai_width" : "400",
+        "node_width" : "5",
+        "ai_info_source":"${fileId}"
+      }
+    },`
+
+ return fsp.writeFile(manifestPath, manifestString)
+}
 
 var paragraphData="Chambray iPhone bushwick, irony gastropub keffiyeh semiotics. Bushwick 90's cray, brooklyn helvetica cold-pressed retro cardigan cronut iPhone fanny pack. Fashion axe narwhal asymmetrical, selvage tacos celiac poutine meggings blue bottle authentic selfies shoreditch. Irony green juice fingerstache flexitarian, pork belly brooklyn locavore pabst mustache seitan.";
 
@@ -442,9 +266,9 @@ var seedDataSource = function() {
 var seedProject = function(data1,data2) {
   console.log(data1._id);
   console.log(data2._id);
-  console.log(projectConfig1[0].pages.page_1)
-  projectConfig1[0].pages.page_1.rows.row_1.cols.col_2.ai_content.ai_directive_attributes.ai_info_source=data2._id;
-  console.log(projectConfig1[0].pages.page_1.rows.row_1.cols.col_2.ai_content.ai_directive_attributes.ai_info_source);
+  console.log(sampleConfig[0].pages.page_1)
+  sampleConfig[0].pages.page_1.rows.row_1.cols.col_2.ai_content.ai_directive_attributes.ai_info_source=data2._id;
+  console.log(sampleConfig[0].pages.page_1.rows.row_1.cols.col_2.ai_content.ai_directive_attributes.ai_info_source);
   debugger;
 
   return User.findOne({ email: 'obama@gmail.com' })
@@ -453,7 +277,7 @@ var seedProject = function(data1,data2) {
           return {
             name: 'Obama\s Iris',
             user: obama._id,
-            config:projectConfig1,
+            config:sampleConfig,
             dataSource: [data1._id,data2._id]
           };
 
@@ -473,7 +297,7 @@ var seedProject2 = function() {
           return {
             name: 'tester Iris',
             user: tester._id,
-            config:projectConfig2,
+            config:sampleConfig,
             dataSource: iris._id
           };
         });
@@ -493,7 +317,7 @@ var seedProject3 = function() {
           return {
             name: 'Obama Secret Project',
             user: obama._id,
-            config:projectConfig2,
+            config:sampleConfig,
             dataSource: iris._id
           };
         });
@@ -510,6 +334,8 @@ connectToDb
   .then(function() {
     return seedUsers();
   })
+  .then(seedSmallFamTree)
+  .then(createForceManifest)
   .then(function() {
     return Promise.all([seedDataSource(),seedparagraphData()])
   })
