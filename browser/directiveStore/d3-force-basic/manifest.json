@@ -1,0 +1,12 @@
+{
+    "ai_directive" : "true",
+    "ai_directive_type" : "content",
+    "ai_directive_name" : "force_basic",
+    "ai_directive_attributes" : {
+        "ai_title": "Basic Force Graph",
+        "ai_height" : "400",
+        "ai_width" : "400",
+        "node_width" : "5",
+        "ai_info_source":"5764766789ad8a8a23011d7e"
+    }
+},
