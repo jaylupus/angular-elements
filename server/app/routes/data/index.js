@@ -5,6 +5,8 @@ var DataSource = require('mongoose').model('DataSource');
 var Busboy = require('connect-busboy');
 var fs = require('fs-extra')
 var rootPath = __dirname.slice(0, 34);
+var Converter = require('csvtojson').Converter;
+var converter = new Converter({});
 
 
 router.post('/', function(req, res, next){
@@ -21,17 +23,30 @@ router.post('/', function(req, res, next){
     fstream.on('close', function () {    
         console.log("Upload Finished of " + filename);              
         // res.redirect('/');           //where to go next
-        fs.readFile(rootPath + '/files/' + filename, 'utf8', function(err, data){
-        	if (err){
-        		console.log(err);
-        	}
-        	var dataSource = {
-        		fileName: filename,
-        		dataType: 'linear',
-        		data: data
-        	}
-        	DataSource.create(dataSource);
-        })
+        // fs.readFile(rootPath + '/files/' + filename, 'utf8', function(err, data){
+        // 	if (err){
+        // 		console.log(err);
+        // 	}
+        // 	var dataSource = {
+        // 		fileName: filename,
+        // 		dataType: 'linear',
+        // 		data: data
+        // 	}
+        // 	DataSource.create(dataSource);
+        // })
+
+        fs.createReadStream(rootPath + '/files/' + filename).pipe(converter);
+
+        converter.on('end_parsed', function(data) {
+          console.log(data);
+          var dataSource = {
+            fileName: filename,
+            dataType: 'linear',
+            data: JSON.stringify(data)
+          }
+          DataSource.create(dataSource);    
+        });
+
       });
 	})
 });
