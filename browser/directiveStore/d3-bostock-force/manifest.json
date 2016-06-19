@@ -1,0 +1,15 @@
+{
+    "ai_directive" : "true",
+    "ai_directive_type" : "content",
+    "ai_directive_name" : "bostock-force-example",
+    "ai_directive_attributes" : {
+        "ai_title": "Bostock Force-Directed Graph Example",
+        "ai_height" : "600",
+        "ai_width" : "600",
+        "node_width" : "5",
+        "charge":"-120",
+        "linkDistance":"30",
+        "ai_info_node_source":"57669ec58cf007ed8133532e",
+        "ai_info_edge_source":"57669ec58cf007ed8133532f"
+      }
+    },

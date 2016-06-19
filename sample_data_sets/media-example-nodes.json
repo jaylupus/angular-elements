@@ -1,0 +1,121 @@
+[
+  {
+    "id": "s01",
+    "name": "NY Times",
+    "group": 1,
+    "type.label": "Newspaper",
+    "audience.size": 20
+  },
+  {
+    "id": "s02",
+    "name": "Washington Post",
+    "group": 1,
+    "type.label": "Newspaper",
+    "audience.size": 25
+  },
+  {
+    "id": "s03",
+    "name": "Wall Street Journal",
+    "group": 1,
+    "type.label": "Newspaper",
+    "audience.size": 30
+  },
+  {
+    "id": "s04",
+    "name": "USA Today",
+    "group": 1,
+    "type.label": "Newspaper",
+    "audience.size": 32
+  },
+  {
+    "id": "s05",
+    "name": "LA Times",
+    "group": 1,
+    "type.label": "Newspaper",
+    "audience.size": 20
+  },
+  {
+    "id": "s06",
+    "name": "New York Post",
+    "group": 1,
+    "type.label": "Newspaper",
+    "audience.size": 50
+  },
+  {
+    "id": "s07",
+    "name": "CNN",
+    "group": 2,
+    "type.label": "TV",
+    "audience.size": 56
+  },
+  {
+    "id": "s08",
+    "name": "MSNBC",
+    "group": 2,
+    "type.label": "TV",
+    "audience.size": 34
+  },
+  {
+    "id": "s09",
+    "name": "FOX News",
+    "group": 2,
+    "type.label": "TV",
+    "audience.size": 60
+  },
+  {
+    "id": "s10",
+    "name": "ABC",
+    "group": 2,
+    "type.label": "TV",
+    "audience.size": 23
+  },
+  {
+    "id": "s11",
+    "name": "BBC",
+    "group": 2,
+    "type.label": "TV",
+    "audience.size": 34
+  },
+  {
+    "id": "s12",
+    "name": "Yahoo News",
+    "group": 3,
+    "type.label": "Online",
+    "audience.size": 33
+  },
+  {
+    "id": "s13",
+    "name": "Google News",
+    "group": 3,
+    "type.label": "Online",
+    "audience.size": 23
+  },
+  {
+    "id": "s14",
+    "name": "Reuters.com",
+    "group": 3,
+    "type.label": "Online",
+    "audience.size": 12
+  },
+  {
+    "id": "s15",
+    "name": "NYTimes.com",
+    "group": 3,
+    "type.label": "Online",
+    "audience.size": 24
+  },
+  {
+    "id": "s16",
+    "name": "WashingtonPost.com",
+    "group": 3,
+    "type.label": "Online",
+    "audience.size": 28
+  },
+  {
+    "id": "s17",
+    "name": "AOL.com",
+    "group": 3,
+    "type.label": "Online",
+    "audience.size": 33
+  }
+]

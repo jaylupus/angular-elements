@@ -182,6 +182,77 @@ var seedUsers = function() {
 
 };
 
+var seedNodes_lm = function() {
+  return new Promise(function(fulfill, reject) {
+      fs.readFile('./sample_data_sets/lemis_nodes.json', 'utf8', function(err, res) {
+        if (err) {
+          console.log(err);
+          reject(err);
+        }
+        else fulfill(res);
+      });
+    })
+    .then(function(contents) {
+      var dataSource = {
+        fileName: 'roster',
+        dataType: 'linear',
+        data: contents
+      };
+      return DataSource.create(dataSource);
+    });
+};
+
+
+var seedEdges_lm = function() {
+  return new Promise(function(fulfill, reject) {
+      fs.readFile('./sample_data_sets/lemis_edges.json', 'utf8', function(err, res) {
+        if (err) {
+          console.log(err);
+          reject(err);
+        }
+        else fulfill(res);
+      });
+    })
+    .then(function(contents) {
+      var dataSource = {
+        fileName: 'roster',
+        dataType: 'linear',
+        data: contents
+      };
+      return DataSource.create(dataSource);
+    });
+};
+
+var createManifest_lm= function(nodeData,edgeData){
+  console.log(nodeData);
+  console.log(edgeData);
+
+  debugger;
+
+ let nodeId= nodeData._id;
+ let edgeId= edgeData._id;
+
+ let manifestPath=rootPath+ '/browser/directiveStore/d3-bostock-force/manifest.json';
+
+ let manifestString= `{
+    "ai_directive" : "true",
+    "ai_directive_type" : "content",
+    "ai_directive_name" : "bostock-force-example",
+    "ai_directive_attributes" : {
+        "ai_title": "Bostock Force-Directed Graph Example",
+        "ai_height" : "600",
+        "ai_width" : "600",
+        "node_width" : "5",
+        "charge":"-120",
+        "linkDistance":"30",
+        "ai_info_node_source":"${nodeId}",
+        "ai_info_edge_source":"${edgeId}"
+      }
+    },`
+
+ return fsp.writeFile(manifestPath, manifestString)
+}
+
 var seedSmallFamTree = function() {
   return new Promise(function(fulfill, reject) {
       fs.readFile('./sample_data_sets/small_fam_tree.json', 'utf8', function(err, res) {
@@ -443,6 +514,10 @@ connectToDb
   .then(function() {
     return seedUsers();
   })
+  .then(function() {
+    return Promise.all([seedNodes_lm(),seedEdges_lm()])
+  })
+  .spread(createManifest_lm)
   .then(seedSmallFamTree)
   .then(createForceManifest)
   .then(seedFlare)
