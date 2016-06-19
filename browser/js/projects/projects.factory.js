@@ -88,7 +88,8 @@ app.directive('aiEditHotSpot',function(){
     restrict : 'EA',
     scope : {
       aiEditHotSpotId : '@',
-      activeEditElement : '='
+      activeEditElement : '=',
+    setActiveEditElement : '&'
     },
     templateUrl : 'js/projects/edithotspot.html'
   };
