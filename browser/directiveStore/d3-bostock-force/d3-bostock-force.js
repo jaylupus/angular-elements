@@ -8,9 +8,8 @@ app.directive('bostockForceExample', function($window, projectDataFactory) {
           aiInfoEdgeSource: '@',
           aiWidth: '@',
           aiHeight: '@',
+          labels:'@',
           nodeWidth: '@',
-          groupField:'@',
-          labelField:'@',
           colorSet:'@'
         },
         templateUrl: 'directiveStore/d3-bostock-force/d3-bostock-force.html',
@@ -20,13 +19,12 @@ app.directive('bostockForceExample', function($window, projectDataFactory) {
           let width = attr.aiWidth;
           let height = attr.aiHeight;
           let nodeWidth = parseInt(attr.nodeWidth);
-
+          let showLabels = attr.labels;
           var color = d3.scale.category20(); // abstract this
 
           if(attr.colorSet==="10") {
             color = d3.scale.category10();
           }
-
 
           var force = d3.layout.force()
             .charge(-120)
@@ -37,12 +35,8 @@ app.directive('bostockForceExample', function($window, projectDataFactory) {
             .attr("width", width)
             .attr("height", height);
 
-
           Promise.all([projectDataFactory.getInternal(attr.aiInfoNodeSource, 'json'), projectDataFactory.getInternal(attr.aiInfoEdgeSource, 'json')])
             .spread(function(nodeData, edgeData) {
-                console.log(nodeData);
-                console.log(edgeData);
-
                 var _nodes = nodeData;
                 var _links = edgeData;
 
@@ -56,7 +50,6 @@ app.directive('bostockForceExample', function($window, projectDataFactory) {
                   .enter().append("line")
                   .attr("class", "link")
                   .style("stroke-width", function(d){
-                    console.log(d);
                     return Math.sqrt(d.value);
                   });
 
@@ -64,7 +57,7 @@ app.directive('bostockForceExample', function($window, projectDataFactory) {
                   .data(_nodes)
                   .enter().append("circle")
                   .attr("class", "node")
-                  .attr("r", nodeWidth)
+                  .attr("r", 5)
                   .style("fill", function(d) {
                     return color(d.group);
                   }) // abstract group
@@ -74,6 +67,18 @@ app.directive('bostockForceExample', function($window, projectDataFactory) {
                   .text(function(d) {
                     return d.name;
                   }); // abstract this
+
+                if(showLabels==="true"){
+                  console.log("labels turned on")
+                  var label = svg.selectAll(".label")
+                      .data(_nodes)
+                      .enter().append("g")
+                      .attr("class", "label")
+                      .call(force.drag);
+
+                  label.append('text')
+                    .text((d)=>{return d.name})
+                }
 
                 force.on("tick", function() {
                     link.attr("x1", function(d) {
@@ -95,7 +100,14 @@ app.directive('bostockForceExample', function($window, projectDataFactory) {
                       .attr("cy", function(d) {
                         return d.y;
                       });
-                    });
+
+                    if(showLabels==="true"){
+                      label.attr('transform', function(d,i){
+                      return 'translate('+ d.x +','+d.y +')';
+                        })
+                    }
+
+                    }); // end force.on
                   }); //end of promise.all
               } // end link
             }; // end return

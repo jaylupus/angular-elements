@@ -238,13 +238,15 @@ var createManifest_lm= function(nodeData,edgeData){
     "ai_directive" : "true",
     "ai_directive_type" : "content",
     "ai_directive_name" : "bostock-force-example",
+    "ai_directive_preview":"./directiveStore/d3-bostock-force/preview.png",
+    "ai_directive_desc":"Example Force Layout from D3",
     "ai_directive_attributes" : {
         "ai_title": "Bostock Force-Directed Graph Example",
-        "ai_height" : "600",
-        "ai_width" : "600",
+        "ai_height" : "500",
+        "ai_width" : "500",
         "node_width" : "5",
-        "charge":"-120",
-        "linkDistance":"30",
+        "labels":"false",
+        "colorSet":"20",
         "ai_info_node_source":"${nodeId}",
         "ai_info_edge_source":"${edgeId}"
       }
