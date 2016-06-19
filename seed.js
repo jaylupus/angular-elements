@@ -182,6 +182,72 @@ var seedUsers = function() {
 
 };
 
+var seedNodes_media = function() {
+  return new Promise(function(fulfill, reject) {
+      fs.readFile('./sample_data_sets/media-example-nodes.json', 'utf8', function(err, res) {
+        if (err) {
+          console.log(err);
+          reject(err);
+        }
+        else fulfill(res);
+      });
+    })
+    .then(function(contents) {
+      var dataSource = {
+        fileName: 'roster',
+        dataType: 'linear',
+        data: contents
+      };
+      return DataSource.create(dataSource);
+    });
+};
+
+
+var seedEdges_media = function() {
+  return new Promise(function(fulfill, reject) {
+      fs.readFile('./sample_data_sets/media-example-edges.json', 'utf8', function(err, res) {
+        if (err) {
+          console.log(err);
+          reject(err);
+        }
+        else fulfill(res);
+      });
+    })
+    .then(function(contents) {
+      var dataSource = {
+        fileName: 'roster',
+        dataType: 'linear',
+        data: contents
+      };
+      return DataSource.create(dataSource);
+    });
+};
+
+var createManifest_media= function(nodeData,edgeData){
+ let nodeId= nodeData._id;
+ let edgeId= edgeData._id;
+
+ let manifestPath=rootPath+ '/browser/directiveStore/d3-force-images/manifest.json';
+
+ let manifestString= `{
+    "ai_directive" : "true",
+    "ai_directive_type" : "content",
+    "ai_directive_name" : "d3-force-images",
+    "ai_directive_preview":"./directiveStore/d3-force-images/preview.png",
+    "ai_directive_desc":"Force Layout with Images for Nodes",
+    "ai_directive_attributes" : {
+        "ai_title": "Force Network with Image Nodes",
+        "ai_height" : "500",
+        "ai_width" : "500",
+        "bcolor": "#b3d1ff",
+        "ai_info_node_source":"${nodeId}",
+        "ai_info_edge_source":"${edgeId}"
+      }
+    },`
+
+ return fsp.writeFile(manifestPath, manifestString)
+}
+
 var seedNodes_lm = function() {
   return new Promise(function(fulfill, reject) {
       fs.readFile('./sample_data_sets/lemis_nodes.json', 'utf8', function(err, res) {
@@ -516,6 +582,10 @@ connectToDb
   .then(function() {
     return seedUsers();
   })
+  .then(function() {
+    return Promise.all([seedNodes_media(),seedEdges_media()])
+  })
+  .spread(createManifest_media)
   .then(function() {
     return Promise.all([seedNodes_lm(),seedEdges_lm()])
   })

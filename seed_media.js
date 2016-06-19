@@ -15,7 +15,7 @@ var rootPath=rootPathArray[0]
 // var nodeId;
 // var edgeId;
 
-var seedNodes = function() {
+var seedNodes_media = function() {
   return new Promise(function(fulfill, reject) {
       fs.readFile('./sample_data_sets/media-example-nodes.json', 'utf8', function(err, res) {
         if (err) {
@@ -36,7 +36,7 @@ var seedNodes = function() {
 };
 
 
-var seedEdges = function() {
+var seedEdges_media = function() {
   return new Promise(function(fulfill, reject) {
       fs.readFile('./sample_data_sets/media-example-edges.json', 'utf8', function(err, res) {
         if (err) {
@@ -56,35 +56,28 @@ var seedEdges = function() {
     });
 };
 
-// var createManifest= function(nodeData,edgeData){
-//   console.log(nodeData);
-//   console.log(edgeData);
+var createManifest_media= function(nodeData,edgeData){
+ let nodeId= nodeData._id;
+ let edgeId= edgeData._id;
 
-//   debugger;
+ let manifestPath=rootPath+ '/browser/directiveStore/d3-force-images/manifest.json';
 
-//  let nodeId= nodeData._id;
-//  let edgeId= edgeData._id;
+ let manifestString= `{
+    "ai_directive" : "true",
+    "ai_directive_type" : "content",
+    "ai_directive_name" : "d3-force-images",
+    "ai_directive_attributes" : {
+        "ai_title": "Force Network with Image Nodes",
+        "ai_height" : "500",
+        "ai_width" : "500",
+        "bcolor": "#b3d1ff",
+        "ai_info_node_source":"${nodeId}",
+        "ai_info_edge_source":"${edgeId}"
+      }
+    },`
 
-//  let manifestPath=rootPath+ '/browser/directiveStore/d3-bostock-force/manifest.json';
-
-//  let manifestString= `{
-//     "ai_directive" : "true",
-//     "ai_directive_type" : "content",
-//     "ai_directive_name" : "bostock-force-example",
-//     "ai_directive_attributes" : {
-//         "ai_title": "Bostock Force-Directed Graph Example",
-//         "ai_height" : "600",
-//         "ai_width" : "600",
-//         "node_width" : "5",
-//         "charge":"-120",
-//         "linkDistance":"30",
-//         "ai_info_node_source":"${nodeId}",
-//         "ai_info_edge_source":"${edgeId}"
-//       }
-//     },`
-
-//  return fsp.writeFile(manifestPath, manifestString)
-// }
+ return fsp.writeFile(manifestPath, manifestString)
+}
 
 
 
