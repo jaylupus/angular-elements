@@ -8,13 +8,13 @@ app.directive('aiDownload', ['DownloadFactory', function(DownloadFactory){
 		link: function(scope, element, attribute){
 			DownloadFactory.getHtml(scope.manifest)
 			.then(function(htmlfile){
-				scope.htmlurl = window.URL.createObjectURL(new File([htmlfile.data], 'index.html'));
+				scope.htmlurl = window.URL.createObjectURL(new File([htmlfile.data], 'index.html', {type: 'text/html'}));
 			})
 			.then(function(){
 				return DownloadFactory.getJs(scope.manifest);
 			})
 			.then(function(jsfile){
-				scope.jsurl = window.URL.createObjectURL(new File([jsfile.data], 'script.js'));
+				scope.jsurl = window.URL.createObjectURL(new File([jsfile.data], 'script.js', {type: 'application/javascript'}));
 			});
 		}
 	};
