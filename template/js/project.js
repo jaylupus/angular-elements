@@ -1,3 +1,7 @@
+'use strict';
+
+window.app = angular.module('AngularInceptionApp', []);
+
 app.controller('ProjectCtrl', function($scope, $compile, $timeout, project, manifestFactory) {
 
   // TEST THE FOLLOWING FUNCTIONS
@@ -79,19 +83,6 @@ app.controller('ProjectCtrl', function($scope, $compile, $timeout, project, mani
       $scope.lastColumn++;
       console.log(key);
     }
-  };
-
-  // this function takes a manifest and sets it up for being inserted into the appConfig.
-  // it does this bt adding the page,row,and,column properites.
-  $scope.moveConfigObjectToEdit = function(configObject) {
-    $scope.referenceToEditInAppConfig = configObject; // this is reference to the needed appConfig object
-    angular.copy(configObject, $scope.appConfigEditCopy);
-  };
-
-  // this function moves the edit version of teh appconfig object beging edit from edit object to it place in te appConfig objec
-  $scope.saveEdit = function() {
-    console.log('running save');
-    angular.copy($scope.appConfigEditCopy, $scope.referenceToEditInAppConfig);
   };
 
   // this function takes your manifest object and add the ai-page,ai-row and ai-col attributes makeing is suitable for insertion into the appConfig
@@ -225,76 +216,6 @@ app.controller('ProjectCtrl', function($scope, $compile, $timeout, project, mani
       return $scope.appConfig.pages['page_' + page] = {};
     }
   };
-  // add a page
-  $scope.addNewPage = function(page, manifest) {
-    // get the next available page number
-    // call manifestToAppConfig on that page number to the config
-    $scope.configTarget = $scope.makeConfigTarget(1);
-    // copy it to the edit object
-    // send it to the server 
-    // replace the appconfig the servers reply (now the server and the page are in sync)
-    // it will then take that page object and add it
-    console.dir($scope.manifestToAppConfig(1, '', '', manifest));
-    $scope.creatConfigObject($scope.configTarget, $scope.manifestToAppConfig(page, '', '', manifest));
-  };
-  // add a row
-  $scope.addNewRow = function(page, row, manifest) {
-    console.log(page, row)
-      // call manifestToAppConfig on that page number to the config
-    $scope.configTarget = $scope.makeConfigTarget(page, row);
-    // copy it to the edit object
-    // send it to the server 
-    // replace the appconfig the servers reply (now the server and the page are in sync)
-    // it will then take that page object and add it
-    //console.log($scope.configTarget);
-    console.log($scope.manifestToAppConfig(page, row, '', manifest));
-    $scope.creatConfigObject($scope.configTarget, $scope.manifestToAppConfig(page, row, '', manifest));
-  };
-  $scope.addNewColumn = function(page, row, column, manifest) {
-    // get the next available row number
-    // call manifestToAppConfig on that page number to the config
-    $scope.configTarget = $scope.makeConfigTarget(page, row, column);
-    // copy it to the edit object
-    // send it to the server 
-    // replace the appconfig the servers reply (now the server and the page are in sync)
-    // it will then take that page object and add it
-    console.log($scope.configTarget);
-    $scope.creatConfigObject($scope.configTarget, $scope.manifestToAppConfig(page, row, column, manifest));
-  };
-  // add new directive NOTE: there is no add column because there is a one to one relationshiop between direstives and columns
-  $scope.addNewDirective = function(page, row, column, manifest) {
-    // get the next available column number
-    // call manifestToAppConfig on that page number to the config
-    $scope.configTarget = $scope.makeConfigTarget(page, row, column, column);
-    // copy it to the edit object
-    // send it to the server 
-    // replace the appconfig the servers reply (now the server and the page are in sync)
-    // it will then take that page object and add it
-    console.log($scope.configTarget);
-    $scope.creatConfigObject($scope.configTarget, $scope.manifestToAppConfig(page, row, column, manifest));
-    $scope.moveConfigObjectToEdit($scope.configTarget);
-  };
-
-  $scope.addToPage = function(manifest) {
-    console.log('running add', manifest);
-    //if the directive is a layout type
-    if (manifest.ai_directive_type === 'layout') {
-      if (manifest.ai_directive_name === 'ai_page') {
-        $scope.addNewPage($scope.lastPage + 1, manifest);
-      } else if (manifest.ai_directive_name === 'ai_row') {
-        $scope.addNewRow($scope.lastPage, $scope.lastRow + 1, manifest);
-      } else if (manifest.ai_directive_name === 'ai_col') {
-        $scope.addNewColumn($scope.lastPage, $scope.lastRow, $scope.lastColumn + 1, manifest);
-      }
-    } else {
-      $scope.addNewColumn($scope.lastPage, $scope.lastRow, $scope.lastColumn + 1, $scope.ai_column_manifest);
-      $timeout(function() {
-        $scope.addNewDirective($scope.lastPage, $scope.lastRow, $scope.lastColumn, manifest);
-      }, 1000);
-    }
-    $scope.DSopen = false;
-    $scope.cplopen = true;
-  };
 
   $scope.project = project; //init the $scope.project for resolve of project in state machine
   $timeout(function() {
@@ -325,74 +246,6 @@ app.controller('ProjectCtrl', function($scope, $compile, $timeout, project, mani
     console.dir($scope.appConfig);
   }, true);
 
-});
-
-app.factory('ProjectFactory', function($http) {
-  var projectObj;
-  var _projectCache = [];
-
-  projectObj = {
-    getAll: function() {
-      return $http.get('/api/projects')
-        .then(function(projects) {
-          console.log(projects);
-          angular.copy(projects.data, _projectCache);
-          return _projectCache;
-        });
-    },
-
-    getAllByUser: function(userId) {
-      return $http.get('/api/projects/user/' + userId)
-        .then(function(projects) {
-          console.log(projects);
-          angular.copy(projects.data, _projectCache);
-          return _projectCache;
-        })
-    },
-
-    getOne: function(id) {
-      return $http.get('/api/projects/' + id)
-        .then(function(project) {
-          return project.data;
-        });
-    },
-
-    add: function(project) {
-      return $http({
-          url: '/api/projects/',
-          method: "POST",
-          data: project
-        })
-        .then(function(_project) {
-          return _project.data;
-        });
-    },
-
-    delete: function(id) {
-      return $http.delete('/api/projects/' + id)
-        .then(function(project) {
-          return project.data;
-        });
-    },
-
-    update: function(project) {
-      return $http({
-          url: '/api/projects/' + project._id,
-          method: "PUT",
-          data: project
-        })
-        .then(function(_project) {
-          return _project.data;
-        });
-    },
-
-    getDataSets: function(productId) {
-      return null;
-    }
-
-  };
-
-  return projectObj;
 });
 
 app.factory('manifestFactory', function() {

@@ -1,10 +1,7 @@
 var fs = require('fs');
 var path = require('path');
 
-var directiveStore = path.join(__dirname, '../browser/directiveStore');
-var templateURL = path.join(__dirname, '/template.html');
-
-var writeTemplate = function(directiveName) {
+module.exports.writeTemplate = function(directiveName) {
   var directiveUrl =  path.join('directiveStore', directiveName, directiveName + '.html');
 
   return new Promise(function(resolve, reject) {
@@ -12,13 +9,12 @@ var writeTemplate = function(directiveName) {
         if (err)
           reject(err);
         else
-          console.log(directiveHTML);
           resolve(directiveHTML);
       })
     })
     .then(function(directiveHTML) {
       return new Promise(function(resolve, reject) {
-        fs.readFile(templateURL, 'utf8', function(err, templateHTML) {
+        fs.readFile(path.join(__dirname, '/template.html'), 'utf8', function(err, templateHTML) {
           if (err)
             reject(err);
           else
@@ -26,4 +22,15 @@ var writeTemplate = function(directiveName) {
         })
       })
     });
+};
+
+module.exports.writeFactory = function(manifestObj) {
+  return new Promise(function(resolve, reject){
+    fs.readFile(path.join(__dirname, '/factory.js'), 'utf8', function(err, factoryJS){
+      if (err)
+        reject(err);
+      else
+        resolve(factoryJS.replace('{{manifests}}', JSON.stringify(manifestObj)));
+    });
+  });
 };
