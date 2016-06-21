@@ -2,15 +2,15 @@ var router = require('express').Router();
 var path = require('path');
 var generator = require(path.join(__dirname, '../../../../generator'));
 
-router.get('/js', function(req, res){
-	generator.writeFactory(req.body)
+router.post('/js', function(req, res){
+	generator.writeFactory(req.body.name)
 	.then(function(factory){
 		res.send(factory);
 	});
 });
 
-router.get('/html', function(req, res){
-	generator.writeTemplate(req.body)
+router.post('/html', function(req, res){
+	generator.writeTemplate(req.body.name)
 	.then(function(index){
 		res.send(index);
 	});
