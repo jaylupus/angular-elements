@@ -124,3 +124,33 @@
 .directive_card_body{
 	width:40px
 }
+.edit_row{
+	padding:0 20 20 20px
+}
+.edit_col{
+	padding:20px
+}
+
+.edit_row_active{
+	border : 3px solid green;
+	border-radius:5px;
+	min-height : 100px ;
+	min-width: 50px;
+	padding:0px;
+	transition-property: border;
+    transition-duration: .2s;
+}
+.edit_row_passive{
+	border : 3px solid rgba(0,0,0,0);
+	min-height : 100px ;
+	min-width: 50px;
+	padding:0px;
+    }
+
+.edit_spot_active{
+display:block;
+}
+.edit_spot_active{
+display:none;
+
+}

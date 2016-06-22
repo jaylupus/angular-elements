@@ -10,15 +10,16 @@ app.controller('ProjectEditCtrl', function($scope,$compile,$timeout,project,mani
 $scope.allManifests={};
 
 $scope.appConfigMaster={}; // this the version that is in sync with the database 0th position
+$scope.appConfigLayoutEditCopy={}
 $scope.appConfigEditCopy={}; // this is the copy of of object being edited that copied to appConfigViewDriver when;
 $scope.appConfigViewDriver={}; // this is the copy of of object being edited that copied to appConfigViewDriver when
 $scope.referenceToEditInAppConfig={};
-
+$scope.activeEdit={};
 
 manifestFactory.getAll()
 .then(function(data){
   $scope.allManifests=data.data;
-  console.log(typeof(data.data));
+//console.log(typeof( $scope.allManifests[0]));
 });
 
 $scope.builtInManifests=[];
@@ -43,7 +44,8 @@ $scope.ai_row_manifest={
     ai_directive_name : 'ai_row',
     ai_directive_attributes : {
         ai_class : '/css/row_a/style.css',
-        class : 'row',
+        'class' : 'row',
+        
     }
 };
 $scope.ai_column_manifest={
@@ -52,7 +54,7 @@ $scope.ai_column_manifest={
     ai_directive_name : 'ai_col',
     ai_directive_attributes : {
         ai_class : '/css/row_a/style.css',
-        class : 'col-md-6'
+        class : 'col-md-6',
     },
     ai_content : {}
 };
@@ -71,13 +73,13 @@ $scope.getLastPage=function(){
 };
 // this function get the last row numb in config
 $scope.getLastRow=function(){
-try{
-    $scope.getLastPage();
-    $scope.lastRow=0;
-    for(var key in $scope.appConfig.pages['page_'+$scope.lastPage].rows){
-        $scope.lastRow++;
-    }
-}catch(e){}
+  try{
+      $scope.getLastPage();
+      $scope.lastRow=0;
+      for(var key in $scope.appConfig.pages['page_'+$scope.lastPage].rows){
+          $scope.lastRow++;
+      }
+  }catch(e){}
 };
 // this function get the last col numb in config
 $scope.getLastColumn=function(){
@@ -152,7 +154,8 @@ $scope.renderRowHtmlFromAiConfig=function(obj) {
   console.log(obj)
       if (obj.hasOwnProperty('ai_directive')) {
         if((obj.ai_directive_type ==='layout') && (obj['ai_directive_name'] === 'ai_row')){
-                  angular.element(workarea).append($compile('<'+obj['ai_directive_name']+' id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row" '+ $scope.renderattributeString(obj['ai_directive_attributes'])+'></'+obj['ai_directive_name']+'>')($scope));
+                  //angular.element(workarea).append($compile('<'+obj['ai_directive_name']+' id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row" '+ $scope.renderattributeString(obj['ai_directive_attributes'])+'></'+obj['ai_directive_name']+'>')($scope));
+                  angular.element(workarea).append($compile('<div  id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row" '+ $scope.renderattributeString(obj['ai_directive_attributes'])+'ng-class="getEditCandidate(\'p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row\')"   ng-mouseenter="setEditCandidate(\'p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row\')" ng-mouseleave="setEditCandidate(\'\')"><ai-edit-hot-spot set-active-edit-element="setEditSelect()" active-edit-element="editCandidate" ai-edit-hot-spot-id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row"></ai-edit-hot-spot></div>')($scope));
         }
       }
       for (var property in obj) {
@@ -169,12 +172,28 @@ $scope.renderColHtmlFromAiConfig=function(obj) {
         if((obj['ai_directive_type'] ==='layout') && (obj['ai_directive_name'] === 'ai_col')){
                  $scope.appendTarget='#p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row';
                  // console.log(obj);
-                  angular.element(document.querySelector( $scope.appendTarget )).append($compile('<'+obj['ai_directive_name']+' id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_c_'+obj['ai_directive_col']+'_ai_col" '+ $scope.renderattributeString(obj['ai_directive_attributes'])+'></'+obj['ai_directive_name']+'>')($scope));
+//                  angular.element(document.querySelector( $scope.appendTarget )).append($compile('<'+obj['ai_directive_name']+' id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_c_'+obj['ai_directive_col']+'_ai_col" '+ $scope.renderattributeString(obj['ai_directive_attributes'])+'></'+obj['ai_directive_name']+'>')($scope));
+                  angular.element(document.querySelector( $scope.appendTarget )).append($compile('<div id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_c_'+obj['ai_directive_col']+'_ai_col" '+ $scope.renderattributeString(obj['ai_directive_attributes'])+' ng-class="getEditCandidate(\'p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_c_'+obj['ai_directive_col']+'_ai_col\')" ng-mouseenter="setEditCandidate(\'p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_c_'+obj['ai_directive_col']+'_ai_col\')" ng-mouseleave="setEditCandidate(\'p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row\')"><ai-edit-hot-spot set-active-edit-element="setEditSelect()" active-edit-element="editCandidate" ai-edit-hot-spot-id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_c_'+obj['ai_directive_col']+'_ai_col"></ai-edit-hot-spot></div>')($scope));
         }
       }
       for (var property in obj) {
                 if(typeof obj[property] == "object"){
                     $scope.renderColHtmlFromAiConfig(obj[property]);
+                }
+      }
+};
+$scope.renderClearfixHtmlFromAiConfig=function(obj) {
+      if (obj.hasOwnProperty('ai_directive')) {
+        if((obj['ai_directive_type'] ==='layout') && (obj['ai_directive_name'] === 'ai_row')){
+                 $scope.appendTarget='#p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row';
+                 // console.log(obj);
+//                  angular.element(document.querySelector( $scope.appendTarget )).append($compile('<'+obj['ai_directive_name']+' id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_c_'+obj['ai_directive_col']+'_ai_col" '+ $scope.renderattributeString(obj['ai_directive_attributes'])+'></'+obj['ai_directive_name']+'>')($scope));
+                  angular.element(document.querySelector( $scope.appendTarget )).append($compile('<div class="clearfix"></div><hr>')($scope));
+        }
+      }
+      for (var property in obj) {
+                if(typeof obj[property] == "object"){
+                    $scope.renderClearfixHtmlFromAiConfig(obj[property]); 
                 }
       }
 };
@@ -311,7 +330,6 @@ $scope.addToPage=function(manifest){
   $scope.cplopen=true;
 };
 
-
 $scope.project=project; //init the $scope.project for resolve of project in state machine
 $timeout(function(){
     if($scope.project.config[0] === undefined){
@@ -334,14 +352,50 @@ $scope.$watch('appConfig',function(){
     $scope.renderColHtmlFromAiConfig($scope.appConfig, '');
   },200);
   $timeout(function(){
-     $scope.renderDirectiveHtmlFromAiConfig($scope.appConfig, '');
-        $scope.getLastColumn();
-        console.log($scope.lastPage+':'+$scope.lastRow+':'+$scope.lastColumn);
+      $scope.renderDirectiveHtmlFromAiConfig($scope.appConfig, '');
+      $scope.getLastColumn();
+      $scope.renderClearfixHtmlFromAiConfig($scope.appConfig, '');
 
+    
   },500);
-  console.dir($scope.appConfig);
 },true);
 
-});
+$scope.getEditCandidate=function(id){
+    if(id === $scope.editCandidate){
+      return 'edit_row_active'
+    }else{
+      return  'edit_row_passive';
+    }
+}
 
+$scope.setEditCandidate=function(id){
+    $scope.editCandidate = id      
+}
+
+$scope.findDirectiveToMakeActiveEdit=function(obj,idToMatch) {
+  console.log(obj)
+      if (obj.hasOwnProperty('ai_directive')) {
+        if((obj.ai_directive_type ==='layout') && (obj['ai_directive_name'] === 'ai_col')){
+                  var idstring='p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_c_'+obj['ai_directive_col']+'_ai_col'
+                 if(idToMatch == idstring){
+                  $scope.activeEdit=obj.ai_content;
+                  angular.copy(obj.ai_content,$scope.appConfigEditCopy);
+                  angular.copy(obj,$scope.appConfigLayoutEditCopy);
+                };
+        }
+      }
+      for (var property in obj) {
+                if(typeof obj[property] == "object"){
+                    $scope.findDirectiveToMakeActiveEdit(obj[property],idToMatch);
+                }
+      }
+
+};
+
+$scope.setEditSelect=function(id){
+    // THE DIRECTIVE THAT IS IN THE EDIT CANDIDATE COLUMN
+    $scope.findDirectiveToMakeActiveEdit($scope.appConfig,$scope.editCandidate);
+}
+
+});
 
