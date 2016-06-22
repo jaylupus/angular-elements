@@ -23,8 +23,7 @@ body {
   min-width:200px;
 }
 .directive_card_body {
-  height: 350px;
-  width:300px;
+
   img {
     max-height: 200px;
     max-width: 200px;
@@ -32,6 +31,21 @@ body {
   p {
     font-size: 1em;
   }
+}
+
+.dcard-img-wrapper {
+  /*height:200px;
+  width:200px;*/
+   img {
+    border: 1px rgba(91, 192, 222, 0.62) solid;
+    border-radius: 5px;
+   }
+};
+
+.directive_card_container {
+  height: 350px;
+  width:300px;
+  overflow: scroll;
 }
 
 @import 'directives/main';
