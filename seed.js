@@ -104,9 +104,7 @@ var sampleConfig=[
                                 ai_directive_col : '2',
                                 ai_directive_attributes : {
                                     ai_title: 'Some info',
-                                    solo_table_class : 'myclass',
-                                    solo_table_info_source : 'myclass',
-                                    solo_table_info_type : 'file'
+                                    ai_text:"Chambray iPhone bushwick, irony gastropub keffiyeh semiotics. Bushwick 90's cray, brooklyn helvetica cold-pressed retro cardigan cronut iPhone fanny pack. Fashion axe narwhal asymmetrical, selvage tacos celiac poutine meggings blue bottle authentic selfies shoreditch. Irony green juice fingerstache flexitarian, pork belly brooklyn locavore pabst mustache seitan."
                                 }
                         }
                     }
@@ -502,42 +500,42 @@ var createScatterManifest= function(dataRecord){
  return fsp.writeFile(manifestPath, manifestString)
 }
 
-var paragraphData="Chambray iPhone bushwick, irony gastropub keffiyeh semiotics. Bushwick 90's cray, brooklyn helvetica cold-pressed retro cardigan cronut iPhone fanny pack. Fashion axe narwhal asymmetrical, selvage tacos celiac poutine meggings blue bottle authentic selfies shoreditch. Irony green juice fingerstache flexitarian, pork belly brooklyn locavore pabst mustache seitan.";
+// var paragraphData="Chambray iPhone bushwick, irony gastropub keffiyeh semiotics. Bushwick 90's cray, brooklyn helvetica cold-pressed retro cardigan cronut iPhone fanny pack. Fashion axe narwhal asymmetrical, selvage tacos celiac poutine meggings blue bottle authentic selfies shoreditch. Irony green juice fingerstache flexitarian, pork belly brooklyn locavore pabst mustache seitan.";
 
-var seedparagraphData = function() {
+// var seedparagraphData = function() {
 
-      var dataSource = {
-        fileName: 'hipster',
-        dataType: 'text',
-        data: paragraphData
-      }
-      return DataSource.create(dataSource)
-      // .then(function(data){
-      //   console.log(data);
-      //   debugger;
-      //   return data
-      // })
-};
+//       var dataSource = {
+//         fileName: 'hipster',
+//         dataType: 'text',
+//         data: paragraphData
+//       }
+//       return DataSource.create(dataSource)
+//       // .then(function(data){
+//       //   console.log(data);
+//       //   debugger;
+//       //   return data
+//       // })
+// };
 
-var createSectionTextManifest= function(dataRecord){
- console.log(dataRecord);
- let fileId= dataRecord._id;
- let manifestPath=rootPath+ '/browser/directiveStore/section-text/manifest.json';
+// var createSectionTextManifest= function(dataRecord){
+//  console.log(dataRecord);
+//  let fileId= dataRecord._id;
+//  let manifestPath=rootPath+ '/browser/directiveStore/section-text/manifest.json';
 
- let manifestString= `{
-    "ai_directive" : "true",
-    "ai_directive_type" : "content",
-    "ai_directive_name" : "section_text",
-    "ai_directive_preview":"./directiveStore/section-text/preview.png",
-    "ai_directive_desc":"section header and text",
-    "ai_directive_attributes" : {
-        "ai_title": "Informational Text",
-        "ai_info_source":"${fileId}"
-      }
-    },`
+//  let manifestString= `{
+//     "ai_directive" : "true",
+//     "ai_directive_type" : "content",
+//     "ai_directive_name" : "section_text",
+//     "ai_directive_preview":"./directiveStore/section-text/preview.png",
+//     "ai_directive_desc":"section header and text",
+//     "ai_directive_attributes" : {
+//         "ai_title": "Informational Text",
+//         "ai_info_source":"${fileId}"
+//       }
+//     },`
 
- return fsp.writeFile(manifestPath, manifestString)
-}
+//  return fsp.writeFile(manifestPath, manifestString)
+// }
 
 var seedDataSource = function() {
   return new Promise(function(fulfill, reject) {
@@ -559,11 +557,9 @@ var seedDataSource = function() {
     });
 };
 
-var seedProject = function(data1,data2) {
+var seedProject = function(data1) {
   console.log(data1._id);
-  console.log(data2._id);
-  console.log(sampleConfig[0].pages.page_1)
-  sampleConfig[0].pages.page_1.rows.row_1.cols.col_2.ai_content.ai_directive_attributes.ai_info_source=data2._id;
+
   console.log(sampleConfig[0].pages.page_1.rows.row_1.cols.col_2.ai_content.ai_directive_attributes.ai_info_source);
   debugger;
 
@@ -574,7 +570,7 @@ var seedProject = function(data1,data2) {
             name: 'Obama\s Iris',
             user: obama._id,
             config:sampleConfig,
-            dataSource: [data1._id,data2._id]
+            dataSource: [data1._id]
           };
 
     })
@@ -644,12 +640,12 @@ connectToDb
   .then(createFlareManifest)
   .then(seedIris)
   .then(createScatterManifest)
-  .then(seedparagraphData)
-  .then(createSectionTextManifest)
+  // .then(seedparagraphData)
+  // .then(createSectionTextManifest)
   .then(seedDataSource_company)
   .then(createManifest_company)
   .then(function() {
-    return Promise.all([seedDataSource(),seedparagraphData()])
+    return Promise.all([seedDataSource()])
   })
   .spread(seedProject)
   .then(seedProject2)

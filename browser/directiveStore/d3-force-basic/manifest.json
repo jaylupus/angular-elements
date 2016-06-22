@@ -2,11 +2,13 @@
     "ai_directive" : "true",
     "ai_directive_type" : "content",
     "ai_directive_name" : "force_basic",
+    "ai_directive_preview":"./directiveStore/d3-force-basic/preview.png",
+    "ai_directive_desc":"simple example of a D3 force layout",
     "ai_directive_attributes" : {
         "ai_title": "Basic Force Graph",
         "ai_height" : "400",
         "ai_width" : "400",
         "node_width" : "5",
-        "ai_info_source":"576ab262e5a6b1c241bd5508"
+        "ai_info_source":"576b0f5cc72b63ca0c6b43dd"
       }
     },
