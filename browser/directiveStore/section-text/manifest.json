@@ -4,6 +4,7 @@
     "ai_directive_name" : "section_text",
     "ai_directive_preview":"./directiveStore/section-text/preview.png",
     "ai_directive_desc":"section header and text",
+    "ai_directive_external_docs_url":"",
     "ai_directive_attributes" : {
         "ai_title": "Informational Text",
         "ai_info_source":"57672914230decceab32eb96"

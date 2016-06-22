@@ -4,6 +4,7 @@
     "ai_directive_name" : "nvd3_scatter_chart",
     "ai_directive_preview":"./directiveStore/nvd3-scatter-chart/preview.png",
     "ai_directive_desc":"interactive scatter plot",
+    "ai_directive_external_docs_url":"",
     "ai_directive_attributes" : {
         "ai_title": "NVD3 Scatter; Iris Petal Width vs Length",
         "ai_height" : "400",
