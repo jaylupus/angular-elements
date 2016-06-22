@@ -23,7 +23,7 @@ app.directive('userProfile', function() {
         "src": attr.aiImgUrl
       };
 
-      if(round){
+      if(round==="true"){
         scope.prof.image["round"]="border-radius:100%";
       };
     },
