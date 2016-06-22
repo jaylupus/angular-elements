@@ -39,8 +39,8 @@ app.directive('d3ForceImages', function($window, projectDataFactory) {
             .spread(function(nodeData, edgeData) {
                 var _nodes = nodeData;
                 var _links = edgeData;
-                console.log(nodeData);
-                console.log("fuck you");
+
+
                 force
                   .nodes(_nodes)
                   .links(_links)
