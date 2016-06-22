@@ -6,12 +6,12 @@
     "ai_directive_desc":"Example Force Layout from D3",
     "ai_directive_attributes" : {
         "ai_title": "Bostock Force-Directed Graph Example",
-        "ai_height" : "500",
-        "ai_width" : "500",
+        "ai_height" : "400",
+        "ai_width" : "400",
         "node_width" : "5",
         "labels":"false",
         "colorSet":"20",
-        "ai_info_node_source":"57672914230decceab32eb91",
-        "ai_info_edge_source":"57672914230decceab32eb92"
+        "ai_info_node_source":"576a9677e2e8b39109ece230",
+        "ai_info_edge_source":"576a9677e2e8b39109ece231"
       }
     },
