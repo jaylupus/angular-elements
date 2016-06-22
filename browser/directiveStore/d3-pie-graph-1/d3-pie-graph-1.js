@@ -1,42 +1,50 @@
 
-app.factory('dataFactoryBarGraph', function() {
-  return {
 
-    getPiedata: function(source_location, source_type) {
-      return [{
-        label: "Steve",
-        value: 40
-      }, {
-        label: "Bob",
-        value: 60
-      }, {
-        label: "Jen",
-        value: 35
-      }, {
-        label: "Amy",
-        value: 15
-      }];
-    }
-  }
-});
+app.directive('pieGraphUserInput', function($window) {
 
-app.directive('pieGraph', function($window, dataFactoryBarGraph) {
-  let dataFactory=dataFactoryBarGraph;
   return {
     restrict: 'E',
     templateUrl: 'directiveStore/d3-pie-graph-1/pie-graph.html',
     scope: {
-      aiTitle  : '@'
+      aiTitle  : '@',
+      aiWidth:'@',
+      aiHeight:'@',
+      aiRadius:'@',
+      label1:'@',
+      value1:'@',
+      label2:'@',
+      value2:'@',
+      label3:'@',
+      value3:'@',
+      label4:'@',
+      value4:'@',
+      label5:'@',
+      value5:'@',
+      label6:'@',
+      value6:'@',
+      label7:'@',
+      value7:'@',
+      label8:'@',
+      value8:'@'
+
     },
-    link: function(scope, elem, attrs) {
+    link: function(scope, elem, attr) {
       var d3 = $window.d3;
-      var width = 400;
-      var height = 400;
-      var radius = 200;
-      var colors = d3.scale.category10();
+      var width = attr.aiWidth || 400;
+      var height = attr.aiHeight || 400;
+      var radius = attr.aiRadius || 200;
+      var colors = attr.colors || d3.scale.category10(); // come back to this!
+      var piedata =[];
 
-      var piedata = dataFactory.getPiedata();
-
+      for (var i = 1; i < 9; i++) {
+        let labelString= "label"+i;
+        let valueString = "value"+i;
+        if(attr[labelString] && attr[valueString] && attr[labelString]!="undefined" && attr[valueString]!="undefined"){
+          let _label=attr[labelString];
+          let _value=attr[valueString];
+          piedata.push({"label":_label,"value":_value})
+        };
+      }
       var pie = d3.layout.pie()
         .value(function(d) {
           return d.value;
@@ -45,7 +53,7 @@ app.directive('pieGraph', function($window, dataFactoryBarGraph) {
       var arc = d3.svg.arc()
         .outerRadius(radius)
 
-      var myChart = d3.select('#chart').append('svg')
+      var myChart = d3.select('#pie-chart').append('svg')
         .attr('width', width)
         .attr('height', height)
         .append('g')
