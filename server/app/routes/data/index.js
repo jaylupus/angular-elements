@@ -4,14 +4,16 @@ var router = require('express').Router();
 var DataSource = require('mongoose').model('DataSource');
 var Busboy = require('connect-busboy');
 var fs = require('fs-extra')
-var rootPath = __dirname.slice(0, 34);
+//var rootPath = __dirname.slice(0, 34);
+var rootPathStr = __dirname.split('server/app/routes/data');
+var rootPath = rootPathStr[0];
 var Converter = require('csvtojson').Converter;
 var converter = new Converter({});
 
 
 router.post('/', function(req, res, next){
 	console.log('made it here');
-	
+	console.log(rootPath);
 	var fstream;
 	req.pipe(req.busboy);
 	req.busboy.on('file', function(fieldname, file, filename){

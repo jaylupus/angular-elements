@@ -6,6 +6,10 @@
     "ai_directive_desc":"section header and text",
     "ai_directive_attributes" : {
         "ai_title": "Informational Text",
+<<<<<<< HEAD
         "ai_info_source":"5765c87f0c9b38eff0f8dcb8"
+=======
+        "ai_info_source":"57672914230decceab32eb96"
+>>>>>>> 0490455beefebbc8c86b4770c95915f6e599461a
       }
     },
