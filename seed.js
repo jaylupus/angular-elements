@@ -218,8 +218,8 @@ var createManifest_company= function(dataRecord){
     "ai_directive_desc":"NVD3 Discrete Bar Chart",
     "ai_directive_attributes" : {
         "ai_title": "Corporate Profits",
-        "ai_height" : "500",
-        "ai_width" : "600",
+        "ai_height" : "400",
+        "ai_width" : "400",
         "key":"Profits",
         "label":"Company",
         "yvalue":"2014",
@@ -285,8 +285,8 @@ var createManifest_media= function(nodeData,edgeData){
     "ai_directive_desc":"Force Layout with Images for Nodes",
     "ai_directive_attributes" : {
         "ai_title": "Force Network with Image Nodes",
-        "ai_height" : "500",
-        "ai_width" : "500",
+        "ai_height" : "400",
+        "ai_width" : "400",
         "bcolor": "#b3d1ff",
         "ai_info_node_source":"${nodeId}",
         "ai_info_edge_source":"${edgeId}"
@@ -356,8 +356,8 @@ var createManifest_lm= function(nodeData,edgeData){
     "ai_directive_desc":"Example Force Layout from D3",
     "ai_directive_attributes" : {
         "ai_title": "Bostock Force-Directed Graph Example",
-        "ai_height" : "500",
-        "ai_width" : "500",
+        "ai_height" : "400",
+        "ai_width" : "400",
         "node_width" : "5",
         "labels":"false",
         "colorSet":"20",
