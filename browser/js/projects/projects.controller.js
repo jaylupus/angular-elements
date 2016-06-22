@@ -48,8 +48,7 @@ $scope.ai_row_manifest={
         ai_class : '/css/row_a/style.css',
         'class' : 'row',
         'style' : '',
-        'ai_bootstrap_width': {'xs':'12','sm':'12','md':'12','lg':'12','xl':'12'},
-        'ai_bootstrap_show': {'xs':'true','sm':'true','md':'true','lg':'true','xl':'true'}
+        'ai_bootstrap_show': {'xs':'true','sm':'true','md':'false','lg':'true','xl':'true'}
     }
 };
 
@@ -60,7 +59,13 @@ $scope.ai_column_manifest={
     ai_directive_attributes : {
         ai_class : '/css/row_a/style.css',
         class : 'col-md-6',
-        'ai_bootstrap_width': {'xs':'12','sm':'12','md':'12','lg':'12','xl':'12'},
+        'ai_bootstrap_width': {
+          'xs':'12',
+          'sm':'12',
+          'md':'12',
+          'lg':'12',
+          'xl':'12'
+        },
         'ai_bootstrap_show': {'xs':'true','sm':'true','md':'true','lg':'true','xl':'true'}
     },
     ai_content : {}
@@ -140,9 +145,29 @@ $scope.manifestToAppConfig=function(page,row,column,manifestObj){
 // This function renders the string of attributes to include in the directive being rendered
 $scope.renderattributeString=function(obj){
     var attributeString='';
-    for(var keys in obj){
-      attributeString+=keys+'="'+obj[keys]+'" ';
+    var ngClassString=' ng-class="{';
+    for(var attribName in obj){
+        if(attribName.indexOf('ai_bootstrap_width') > -1 ){
+            for(var bootSize in obj[attribName]){
+              console.log(bootSize);
+          //    ngClassString+='col-'+bootSize+'-'+obj['ai_bootstrap_width'][attribName][bootSize]+' ';
+            }
+        }else if(attribName.indexOf('ai_bootstrap_show') > -1){
+           for(var bootShow in obj[attribName]){
+            console.log(bootShow);
+              if(obj[attribName][bootShow] == 'false'){
+                ngClassString+="'hidden-"+bootShow+"' : true,";
+              }
+
+
+            }
+        }else{
+            attributeString+=attribName+'="'+obj[attribName]+'" ';
+        }
     }
+    ngClassString+="'falkenothingclass' : false}\"";
+    attributeString+=ngClassString;
+    console.log(attributeString);
     return attributeString;
 };
 
