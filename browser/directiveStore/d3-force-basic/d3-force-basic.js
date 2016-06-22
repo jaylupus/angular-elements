@@ -55,6 +55,7 @@ app.directive('forceBasic', function($window,projectDataFactory){
               }
             }
 
+
             var myChart = d3.select('#chart-force-basic')
                 .append('svg')
                 .attr('width',w)
