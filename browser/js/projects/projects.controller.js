@@ -1,10 +1,20 @@
 
-app.controller('ProjectEditCtrl', function($scope,$compile,$timeout,project,manifestFactory){
+app.controller('ProjectEditCtrl', function($scope,$compile,$timeout,project,manifestFactory,$stateParams,AuthService){
 // TEST THE FOLLOWING FUNCTIONS
 // add a page
 // add a row
 // add a column
 // add a directive
+
+// Project Id & User Id
+$scope.projId = $stateParams.id;
+var getUserId = function(){
+  AuthService.getLoggedInUser().then(function (user){
+    $scope.userId = user._id;
+  })
+}
+getUserId();
+
 
 // this is the app config
 $scope.allManifests={};
