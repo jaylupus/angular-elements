@@ -11,14 +11,12 @@ var Converter = require('csvtojson').Converter;
 var converter = new Converter({});
 
 
-router.post('/', function(req, res, next){
+router.post('/:projId/:userId', function(req, res, next){
 	console.log('made it here');
-	console.log(rootPath);
 	var fstream;
 	req.pipe(req.busboy);
 	req.busboy.on('file', function(fieldname, file, filename){
 		console.log('Uploading: ' + filename);
-
 		//Path where image will be uploaded
     fstream = fs.createWriteStream(rootPath + '/files/' + filename);
     file.pipe(fstream);
@@ -42,6 +40,8 @@ router.post('/', function(req, res, next){
         converter.on('end_parsed', function(data) {
           console.log(data);
           var dataSource = {
+            user: req.params.userId,
+            project: req.params.projId,
             fileName: filename,
             dataType: 'linear',
             data: JSON.stringify(data)
