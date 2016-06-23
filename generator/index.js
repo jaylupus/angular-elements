@@ -3,6 +3,7 @@ var path = require('path');
 var jade = require('jade');
 var Promise = require('bluebird');
 var Project = require('mongoose').model('Project');
+var _ = require('lodash');
 
 var readFile = Promise.promisify(require("fs").readFile);
 
@@ -37,7 +38,7 @@ module.exports.writeTemplate = function(directiveNames) {
 //   var controllerUrl;
 //   var directiveUrls;
 //   var factoryUrl;
-//   return Promise.all([controllerUrl, directiveUrls, factoryUrl].map(url => readFile(url, 'utf8')))
+//   return Promise.all(_.concat(controllerUrl, directiveUrls, factoryUrl).map(url => readFile(url, 'utf8')))
 //   .then(function(contents){
 //     return contents.join('\n').replace('{{manifests}}', JSON.stringify(appConfig));
 //   });
