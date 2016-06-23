@@ -26,7 +26,7 @@ app.factory('DownloadFactory', ['$http', function($http){
 			return $http.post('/api/generator/js', {name: 'dummy_fac'});
 		},
 		getHtml: function(manifestObj){
-			return $http.post('/api/generator/html', {name: 'vert-flare'});
+			return $http.post('/api/generator/html', {name: ['vert-flare']});
 		}
 	};
 }]);

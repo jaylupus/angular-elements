@@ -1,32 +1,18 @@
 var fs = require('fs');
 var path = require('path');
+var jade = require('jade');
+var Promise = require('bluebird');
+var Project = require('mongoose').model('Project');
 
-module.exports.writeTemplate = function(directiveName) {
-  var directiveUrl =  path.join('directiveStore', directiveName, directiveName + '.html');
+var readFile = Promise.promisify(require("fs").readFile);
 
-  return new Promise(function(resolve, reject) {
-      fs.readFile(path.join(__dirname, '../browser', directiveUrl), 'utf8', function(err, directiveHTML) {
-        if (err)
-          reject(err);
-        else
-          resolve(directiveHTML);
-      })
-    })
-    .then(function(directiveHTML) {
-      return new Promise(function(resolve, reject) {
-        fs.readFile(path.join(__dirname, '/template.html'), 'utf8', function(err, templateHTML) {
-          if (err)
-            reject(err);
-          else
-            resolve(templateHTML.replace('{{directiveURL}}', directiveUrl).replace('{{directiveHTML}}', directiveHTML));
-        })
-      })
-    });
+var getDirectiveUrl = function(directiveName) {
+  return path.join('directiveStore', directiveName, directiveName + '.html');
 };
 
 module.exports.writeFactory = function(manifestObj) {
-  return new Promise(function(resolve, reject){
-    fs.readFile(path.join(__dirname, '/factory.js'), 'utf8', function(err, factoryJS){
+  return new Promise(function(resolve, reject) {
+    fs.readFile(path.join(__dirname, '/factory.js'), 'utf8', function(err, factoryJS) {
       if (err)
         reject(err);
       else
@@ -34,3 +20,25 @@ module.exports.writeFactory = function(manifestObj) {
     });
   });
 };
+
+module.exports.writeTemplate = function(directiveNames) {
+  var directiveUrls = directiveNames.map(getDirectiveUrl);
+
+  return Promise.all(directiveUrls.map(url => readFile(path.join(__dirname, '../browser', url), 'utf8')))
+    .then(function(directiveContents) {
+      var directives = directiveUrls.map(function(elem, index) {
+        return { url: elem, content: directiveContents[index] };
+      });
+      return jade.renderFile(path.join(__dirname, '/index.jade'), { directives: directives });
+    });
+};
+
+// module.exports.writeApp = function(appConfig) {
+//   var controllerUrl;
+//   var directiveUrls;
+//   var factoryUrl;
+//   return Promise.all([controllerUrl, directiveUrls, factoryUrl].map(url => readFile(url, 'utf8')))
+//   .then(function(contents){
+//     return contents.join('\n').replace('{{manifests}}', JSON.stringify(appConfig));
+//   });
+// };
