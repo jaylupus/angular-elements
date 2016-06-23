@@ -6,8 +6,8 @@
     "ai_directive_desc":"Force Layout with Images for Nodes",
     "ai_directive_attributes" : {
         "ai_title": "Force Network with Image Nodes",
-        "ai_height" : "500",
-        "ai_width" : "500",
+        "ai_height" : "400",
+        "ai_width" : "400",
         "bcolor": "#b3d1ff",
         "ai_info_node_source":"576a01db7835839b0b004851",
         "ai_info_edge_source":"576a01db7835839b0b004852"
