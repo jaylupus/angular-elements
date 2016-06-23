@@ -228,6 +228,76 @@ var createManifest_company= function(dataRecord){
  return fsp.writeFile(manifestPath, manifestString)
 }
 
+var seedRosterData = function() {
+  return new Promise(function(fulfill, reject) {
+      fs.readFile('./sample_data_sets/roster.json', 'utf8', function(err, res) {
+        if (err) {
+          console.log(err);
+          reject(err);
+        }
+        else fulfill(res);
+      });
+    })
+    .then(function(contents) {
+      var dataSource = {
+        fileName: 'roster',
+        dataType: 'linear',
+        data: contents
+      };
+      return DataSource.create(dataSource);
+    });
+};
+
+var createManifest_twoflare= function(dataRecord){
+ console.log(dataRecord);
+ let fileId= dataRecord._id;
+ console.log(rootPath);
+ console.log(fileId);
+ debugger;
+ let manifestPath1=rootPath+ '/browser/directiveStore/vert-flare/manifest.json';
+ let manifestPath2=rootPath+ '/browser/directiveStore/horizontal-flare/manifest.json';
+
+ let manifestString1= `{
+    "ai_directive" : "true",
+    "ai_directive_type" : "content",
+    "ai_diretive_category":"data_vis",
+    "ai_directive_name" : "vert_flare",
+    "ai_directive_title": "Vertical Tree",
+    "ai_directive_preview":"./directiveStore/vert-flare/preview.png",
+    "ai_directive_desc":"D3 Vertical Collapsable Tree. Heavily based off Mike Bostock's Collapsable Tree Example: https://bl.ocks.org/mbostock/4339083 ",
+    "ai_directive_data_desc":"this directive takes heirarchical JSON data with defined arrays for children properites. See roster.json for an example.",
+    "ai_directive_attributes" : {
+        "ai_title": "School Roster Data",
+        "ai_height" : "400",
+        "ai_width" : "400",
+        "ai_info_source":"${fileId}"
+      }
+    },`
+
+  let manifestString2= `{
+    "ai_directive" : "true",
+    "ai_directive_type" : "content",
+    "ai_diretive_category":"data_vis",
+    "ai_directive_name" : "vert_flare",
+    "ai_directive_title": "Horizontal Tree",
+    "ai_directive_preview":"./directiveStore/vert-flare/preview.png",
+    "ai_directive_desc":"D3 Vertical Collapsable Tree. Heavily based off Mike Bostock's Collapsable Tree Example: https://bl.ocks.org/mbostock/4339083 ",
+    "ai_directive_data_desc":"this directive takes heirarchical JSON data with defined arrays for children properites. See roster.json for an example.",
+    "ai_directive_name" : "horizontal_flare",
+    "ai_directive_preview":"./directiveStore/horizontal-flare/preview.png",
+    "ai_directive_desc":"D3 Horizontal Flare Hierarchy",
+    "ai_directive_attributes" : {
+        "ai_title": "School Roster Data",
+        "ai_height" : "400",
+        "ai_width" : "400",
+        "ai_info_source":"${fileId}"
+      }
+    },`
+
+ return Promise.all([fsp.writeFile(manifestPath1, manifestString1),fsp.writeFile(manifestPath2, manifestString2)])
+}
+
+
 var seedNodes_media = function() {
   return new Promise(function(fulfill, reject) {
       fs.readFile('./sample_data_sets/media-example-nodes.json', 'utf8', function(err, res) {
@@ -500,42 +570,7 @@ var createScatterManifest= function(dataRecord){
  return fsp.writeFile(manifestPath, manifestString)
 }
 
-// var paragraphData="Chambray iPhone bushwick, irony gastropub keffiyeh semiotics. Bushwick 90's cray, brooklyn helvetica cold-pressed retro cardigan cronut iPhone fanny pack. Fashion axe narwhal asymmetrical, selvage tacos celiac poutine meggings blue bottle authentic selfies shoreditch. Irony green juice fingerstache flexitarian, pork belly brooklyn locavore pabst mustache seitan.";
 
-// var seedparagraphData = function() {
-
-//       var dataSource = {
-//         fileName: 'hipster',
-//         dataType: 'text',
-//         data: paragraphData
-//       }
-//       return DataSource.create(dataSource)
-//       // .then(function(data){
-//       //   console.log(data);
-//       //   debugger;
-//       //   return data
-//       // })
-// };
-
-// var createSectionTextManifest= function(dataRecord){
-//  console.log(dataRecord);
-//  let fileId= dataRecord._id;
-//  let manifestPath=rootPath+ '/browser/directiveStore/section-text/manifest.json';
-
-//  let manifestString= `{
-//     "ai_directive" : "true",
-//     "ai_directive_type" : "content",
-//     "ai_directive_name" : "section_text",
-//     "ai_directive_preview":"./directiveStore/section-text/preview.png",
-//     "ai_directive_desc":"section header and text",
-//     "ai_directive_attributes" : {
-//         "ai_title": "Informational Text",
-//         "ai_info_source":"${fileId}"
-//       }
-//     },`
-
-//  return fsp.writeFile(manifestPath, manifestString)
-// }
 
 var seedDataSource = function() {
   return new Promise(function(fulfill, reject) {
@@ -640,8 +675,8 @@ connectToDb
   .then(createFlareManifest)
   .then(seedIris)
   .then(createScatterManifest)
-  // .then(seedparagraphData)
-  // .then(createSectionTextManifest)
+  .then(seedRosterData)
+  .then(createManifest_twoflare)
   .then(seedDataSource_company)
   .then(createManifest_company)
   .then(function() {
