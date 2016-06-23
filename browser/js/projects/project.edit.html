@@ -1,36 +1,30 @@
 
-<div class="{{containermode}}">
+<div class="{{containermode}}" >
       <!--{{lastPage}}<br>
       {{lastRow}}<br>
       {{lastColumn}}<br>
       all manifests
       <!-- {{allManifests}} -->
-            <div id="workarea"></div>
       <!-- 
-      {{appConfig}} 
-      {{allManifests}}
       <p>{{appConfig}}</p>
-
+      {{allManifests}}
+      <p>{{referenceToEditInAppConfig}}</p>
       <p>{{appConfigEditCopy}}</p>
-      <p>{{referenceToEditInAppConfig}}</p>-->
-            <div id="workarea"></div>
-
-                  <div id="directive_shop_panel" class="directive_shop_panel" ng-class="{directive_shop_panel_show: DSopen}" ng-mouseenter="DSopen = true;cplopen = false">
-                        <div id="control_panel_minbut" class="control_panel_minbut" ng-click="DSopen = false"><span class="glyphicon glyphicon-minus"></span>
+      <p>{{appConfigEditCopy.ai_directive_attributes.ai_bootstrap_width}}</p>-->
+            <div id="workarea" ></div>
+                  <div id="directive_shop_panel" class="directive_shop_panel" ng-class="{directive_shop_panel_show: DSopen}" ng-click="DSopen = true;cplopen = false" > 
+                        <div id="control_panel_minbut" class="control_panel_minbut" ng-click="DSopen = false">
+                            <span class="glyphicon glyphicon-minus"></span>
                         </div>
                         <div class="row directive_shop_panel_body">
                               <div class="row">
                                   <directive_shop_card  ng-repeat="builtInManifest in builtInManifests" manifest="builtInManifest" ng-click="addToPage(builtInManifest)"></directive_shop_card>
                               </div>
                               <div class="row">
-
-                              
                                   <directive_shop_card if-show="currentManifest.ai_directive == true" ng-repeat="currentManifest in allManifests" manifest="currentManifest" ng-click="addToPage(currentManifest)"></directive_shop_card>
                               </div>
                         </div>
                   </div>
-
-
             <div id="control_panel" class="control_panel" ng-class="{control_panel_show: cplopen}" ng-mouseenter="cplopen1 = true;DSopen = false">
                   <div id="control_panel_minbut" ng-show="cplopen" class="control_panel_minbut" ng-click="cplopen = false"><span class="glyphicon glyphicon-minus"></span>
                   </div>
@@ -56,7 +50,6 @@
                                           
                                           <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" ><label class="cpl_input_labels">info source</label><select ng-options="sources.id as sources.description for sources in project_info_sources" class="form-control" type="text" id={{key}} ng-model="appConfigEditCopy.ai_content.ai_directive_attributes.ai_info_source" name={{key}}></select>
                                           </div>
-                                          
                                     </div>
                                     <!-- save and canel -->
                                     <div class="col-sm-1">
@@ -73,23 +66,34 @@
                                     </div>
                                         <!-- move box -->
                                     <div class="col-xs-2 col-xs-offset-1 ">
-                                     <div class="row">
+                                          <div class="row">
                                               <div id="cpl_move">
                                                    <table>
                                                    <tr><td></td><td class="arrow"><span class="glyphicon glyphicon-triangle-top"></span></td><td></td></tr>
                                                    <tr><td class="arrow"><span class="glyphicon glyphicon-triangle-left"></td><td></td><td class="arrow"> <span class="glyphicon glyphicon-triangle-right"></span></td></tr>
                                                    <tr><td></td><td class="arrow"><span class="glyphicon glyphicon-triangle-bottom"></span></td><td></td></tr>
                                                    </table>
-                                              </div>  
-                                        <div> 
-                                        <div class="row">
-                                              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                                  <input type="button" class="btn btn-default" value="REMOVE" style="height: 70px; width: 70px;;margin-top: 10px;padding: 0px 0px;">
-                                              </div >
-                                        <div>                             
-                                    </div>
-                        </div>
-                  </div>
-                  </div>
-            </div>
+                                              </div>
+                                              <div ng-repeat="(key, value) in appConfigEditCopy.ai_directive_attributes.ai_bootstrap_width">
+                                                   <label class="visible-{{key}}">Columns used viewed on {{appConfigEditCopy.ai_directive_attributes.ai_bootstrap_width[key].devicename}} 
+                                                     <select ng-options=" availSizes.width as availSizes.width for availSizes in availableColumnWidths" class="form-control" type="text" id={{}} ng-model="appConfigEditCopy.ai_directive_attributes.ai_bootstrap_width[key].size" name={{key}}>
+                                                     </select>
+                                                   </label>
+                                              </div>
+                                              <div ng-repeat="(key, value) in appConfigEditCopy.ai_directive_attributes.ai_bootstrap_show">
+                                                   <label class="visible-{{key}}">Visible when viewed on {{appConfigEditCopy.ai_directive_attributes.ai_bootstrap_show[key].devicename}}
+                                                     <select ng-options=" availshow.show as availshow.show for availshow in availableColumnShow" class="form-control" type="text" id={{}} ng-model="appConfigEditCopy.ai_directive_attributes.ai_bootstrap_show[key].show" name={{key}}>
+                                                     </select>
+                                                   </label>
+                                              </div>
+                                              <div> 
+                                                  <div class="row">
+                                                      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                                                          <input type="button" class="btn btn-danger" value="REMOVE" style="height: 70px; width: 70px;;margin-top: 10px;padding: 0px 0px;">
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                        </div>
+                                  </div>
+                            </div>
 <div>
