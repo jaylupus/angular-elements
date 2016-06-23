@@ -4,7 +4,7 @@ app.factory('manifestFactoryStatic',function(){
           ai_directive : true,
           ai_directive_type : 'content',
           ai_directive_name : 'solo_table',
-          ai_directive_attributes : { 
+          ai_directive_attributes : {
               solo_table_title: 'title',
               solo_table_class : 'myclass',
               solo_table_info_source : 'myclass',
@@ -14,7 +14,7 @@ app.factory('manifestFactoryStatic',function(){
           ai_directive : true,
           ai_directive_type : 'content',
           ai_directive_name : 'solo_table',
-          ai_directive_attributes : { 
+          ai_directive_attributes : {
               solo_table_title: 'title',
               solo_table_class : 'myclass',
               solo_table_info_source : 'myclass',
@@ -24,7 +24,7 @@ app.factory('manifestFactoryStatic',function(){
           ai_directive : true,
           ai_directive_type : 'content',
           ai_directive_name : 'solo_table',
-          ai_directive_attributes : { 
+          ai_directive_attributes : {
               solo_table_title: 'title',
               solo_table_class : 'myclass',
               solo_table_info_source : 'myclass',
@@ -71,6 +71,7 @@ app.directive('aiCol',function(){
     template :  ''
   };
 });
+
 app.directive('directiveShopCard',function(){
   return{
     restrict : "EA",
@@ -78,6 +79,19 @@ app.directive('directiveShopCard',function(){
       manifest : '='
     },
     templateUrl :  'directiveStore/directiveStoreCard/card.html',
+  };
+});
+
+app.directive('aiEditHotSpot',function(){
+  return{
+    transclude : true,
+    restrict : 'EA',
+    scope : {
+      aiEditHotSpotId : '@',
+      activeEditElement : '=',
+    setActiveEditElement : '&'
+    },
+    templateUrl : 'js/projects/edithotspot.html'
   };
 });
 
@@ -110,7 +124,7 @@ app.factory('ProjectFactory', function($http) {
     getAllByUser: function(userId){
       return $http.get('/api/projects/user/' + userId)
           .then(function(projects){
-            console.log(projects);
+            //console.log(projects);
             angular.copy(projects.data, _projectCache);
             return _projectCache;
           })

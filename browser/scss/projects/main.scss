@@ -1,4 +1,11 @@
+.viewPortSimulator{
+	width: 50%
+}
+#control_panel{
+  color: rgba(255,255,255,0.7);
+}
 .control_panel {
+
     height: 25px;
     margin: auto auto;
     position: fixed;
@@ -6,13 +13,13 @@
     left: 10%;
     width: 80%;
     bottom: 0px;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: rgba(0, 0, 0, 0.8);
     border-radius: 4px 4px 0px 0px;
     transition: all .7s;
 }
 
 .control_panel_show {
-    height: 250px;
+    height: 300px;
 }
 
 .control_panel_minbut{
@@ -20,13 +27,9 @@
 	margin-right: 8px;
 }
 #cpl_move {
-	padding: 5px;
-	//border: 1px solid rgba(0,0,0,1);
 	border-radius: 4px;
-	display: inline-block;
 	margin: 10px;
-	float: right;
-	clear: both;
+
 }
 #cpl_move table {
 	border-collapse: separate;
@@ -47,9 +50,14 @@
 	background-color: rgba(0,0,0,0.5);
 	color: rgba(255,255,255,1);
 }
+
+.cpl_input_rows > td{
+padding : 4px;
+color:#fff
+};
 .form_container{
 	margin : 30px;
-	
+
 }
 .form_container > div{
 	width:400px;
@@ -77,7 +85,7 @@
     border: 1px solid rgba(0, 0, 0, 0.9);
     border-radius: 0px 4px 4px 0px;
     transition: all .4s;
-   
+
 }
 .directive_shop_panel_show {
 	position: none;
@@ -119,8 +127,38 @@
 	margin : 10px;
 	border-radius: 4px 4px 4px 4px;
     border: 1px solid rgba(0, 0, 0, 0.2);
-     
+
 }
 .directive_card_body{
 	width:40px
+}
+.edit_row{
+	padding:0 20 20 20px
+}
+.edit_col{
+	padding:20px
+}
+
+.edit_row_active{
+	border : 3px solid green;
+	border-radius:5px;
+	min-height : 100px ;
+	min-width: 50px;
+	padding:0px;
+	transition-property: border;
+    transition-duration: .2s;
+}
+.edit_row_passive{
+	border : 3px solid rgba(0,0,0,0);
+	min-height : 100px ;
+	min-width: 50px;
+	padding:0px;
+    }
+
+.edit_spot_active{
+display:block;
+}
+.edit_spot_active{
+display:none;
+
 }

@@ -1,0 +1,16 @@
+{
+    "ai_directive" : "true",
+    "ai_directive_type" : "content",
+    "ai_directive_name" : "user_profile",
+    "ai_directive_preview":"./directiveStore/user_profile/preview.png",
+    "ai_directive_desc":"Personal Profile",
+    "ai_directive_attributes" : {
+        "ai_height": "200",
+        "ai_width":"200",
+        "ai_img_url":"https://www.purlew.com/content/images/profile_placeholder.png",
+        "round":"true",
+        "ai_name":"Eric Katz",
+        "ai_title":"The Professor",
+        "ai_profile":"I like two things, teachin code and drinking beers. Looks to me like you already code pretty good."
+    }
+},

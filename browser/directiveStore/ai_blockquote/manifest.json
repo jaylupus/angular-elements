@@ -1,0 +1,11 @@
+{
+    "ai_directive" : "true",
+    "ai_directive_type" : "content",
+    "ai_directive_name" : "ai_blockquote",
+    "ai_directive_preview":"./directiveStore/ai_blockquote/preview.png",
+    "ai_directive_desc":"Block Quote",
+    "ai_directive_attributes" : {
+        "ai_quote": "These charts are awesome",
+        "ai_person":"Edward Tufte"
+    }
+},

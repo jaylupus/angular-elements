@@ -1,0 +1,16 @@
+{
+    "ai_directive" : "true",
+    "ai_directive_type" : "content",
+    "ai_directive_name" : "ai_click_img",
+    "ai_directive_preview":"./directiveStore/ai_click_img/preview.png",
+    "ai_directive_desc":"Clickable Image",
+    "ai_directive_attributes" : {
+        "ai_height": "200",
+        "ai_width":"400",
+        "ai_img_url":"http://lorempixel.com/400/200",
+        "ai_link":"http://www.fullstackacademy.com",
+        "bordertype":"solid",
+        "bordercolor":"black",
+        "borderweight":"2px"
+    }
+},
