@@ -1,5 +1,5 @@
 "use strict";
-app.directive('forceBasic', function($window,projectDataFactory){
+app.directive('d3ForceBasic', function($window,projectDataFactory){
   return {
     restrict : 'EA',
     scope : {
@@ -10,7 +10,7 @@ app.directive('forceBasic', function($window,projectDataFactory){
       nodeWidth:'@'
 
     },
-    templateUrl :  'directiveStore/d3-force-basic/d3-force-basic.html',
+    templateUrl :  'directiveStore/d3_force_basic/d3_force_basic.html',
     link : function(scope,elem,attr){
       const d3 = $window.d3;
       let w = attr.aiWidth;

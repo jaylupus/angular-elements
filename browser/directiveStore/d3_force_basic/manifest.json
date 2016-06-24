@@ -1,8 +1,8 @@
 {
     "ai_directive" : "true",
     "ai_directive_type" : "content",
-    "ai_directive_name" : "force_basic",
-    "ai_directive_preview":"./directiveStore/d3-force-basic/preview.png",
+    "ai_directive_name" : "d3_force_basic",
+    "ai_directive_preview":"./directiveStore/d3_force_basic/preview.png",
     "ai_directive_desc":"simple example of a D3 force layout",
     "ai_datatype":"network",
     "ai_directive_attributes" : {
@@ -10,6 +10,6 @@
         "ai_height" : "400",
         "ai_width" : "400",
         "node_width" : "5",
-        "ai_info_source":"576d8a732c4c06ac1e9c648a"
+        "ai_info_source":"576d8cd93ff1f7541fa0fb9a"
       }
     },

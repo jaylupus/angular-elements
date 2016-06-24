@@ -71,7 +71,7 @@ var sampleConfig=[
                           ai_content: {
                                 ai_directive : true,
                                 ai_directive_type : "content",
-                                ai_directive_name : "force_basic",
+                                ai_directive_name : "d3_force_basic",
                                 ai_directive_page : '1',
                                 ai_directive_row : '1',
                                 ai_directive_col : '1',
@@ -464,13 +464,13 @@ var createForceManifest= function(dataRecord){
  let fileId= dataRecord._id;
  // going to also seed config object!
  sampleConfig[0].pages.page_1.rows.row_1.cols.col_1.ai_content.ai_directive_attributes.ai_info_source=fileId;
- let manifestPath=rootPath+ '/browser/directiveStore/d3-force-basic/manifest.json';
+ let manifestPath=rootPath+ '/browser/directiveStore/d3_force_basic/manifest.json';
 
  let manifestString= `{
     "ai_directive" : "true",
     "ai_directive_type" : "content",
-    "ai_directive_name" : "force_basic",
-    "ai_directive_preview":"./directiveStore/d3-force-basic/preview.png",
+    "ai_directive_name" : "d3_force_basic",
+    "ai_directive_preview":"./directiveStore/d3_force_basic/preview.png",
     "ai_directive_desc":"simple example of a D3 force layout",
     "ai_datatype":"network",
     "ai_directive_attributes" : {
