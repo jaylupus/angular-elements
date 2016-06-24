@@ -214,6 +214,7 @@ var createManifest_company= function(dataRecord){
     "ai_directive_name" : "nvd3-bar-chart",
     "ai_directive_preview":"./directiveStore/nvd3-bar-chart/preview.png",
     "ai_directive_desc":"NVD3 Discrete Bar Chart",
+    "ai_datatype":"linear",
     "ai_directive_attributes" : {
         "ai_title": "Corporate Profits",
         "ai_height" : "400",
@@ -241,7 +242,7 @@ var seedRosterData = function() {
     .then(function(contents) {
       var dataSource = {
         fileName: 'roster',
-        dataType: 'linear',
+        dataType: 'hierarchy',
         data: contents
       };
       return DataSource.create(dataSource);
@@ -266,6 +267,7 @@ var createManifest_twoflare= function(dataRecord){
     "ai_directive_preview":"./directiveStore/vert-flare/preview.png",
     "ai_directive_desc":"D3 Vertical Collapsable Tree. Heavily based off Mike Bostock's Collapsable Tree Example: https://bl.ocks.org/mbostock/4339083 ",
     "ai_directive_data_desc":"this directive takes heirarchical JSON data with defined arrays for children properites. See roster.json for an example.",
+    "ai_datatype":"hierarchy",
     "ai_directive_attributes" : {
         "ai_title": "School Roster Data",
         "ai_height" : "400",
@@ -278,14 +280,12 @@ var createManifest_twoflare= function(dataRecord){
     "ai_directive" : "true",
     "ai_directive_type" : "content",
     "ai_diretive_category":"data_vis",
-    "ai_directive_name" : "vert_flare",
+    "ai_directive_name" : "horizontal_flare",
     "ai_directive_title": "Horizontal Tree",
-    "ai_directive_preview":"./directiveStore/vert-flare/preview.png",
+    "ai_directive_preview":"./directiveStore/horizontal_flare/preview.png",
     "ai_directive_desc":"D3 Vertical Collapsable Tree. Heavily based off Mike Bostock's Collapsable Tree Example: https://bl.ocks.org/mbostock/4339083 ",
     "ai_directive_data_desc":"this directive takes heirarchical JSON data with defined arrays for children properites. See roster.json for an example.",
-    "ai_directive_name" : "horizontal_flare",
-    "ai_directive_preview":"./directiveStore/horizontal-flare/preview.png",
-    "ai_directive_desc":"D3 Horizontal Flare Hierarchy",
+    "ai_datatype":"hierarchy",
     "ai_directive_attributes" : {
         "ai_title": "School Roster Data",
         "ai_height" : "400",
@@ -311,7 +311,7 @@ var seedNodes_media = function() {
     .then(function(contents) {
       var dataSource = {
         fileName: 'roster',
-        dataType: 'linear',
+        dataType: 'network',
         data: contents
       };
       return DataSource.create(dataSource);
@@ -331,8 +331,8 @@ var seedEdges_media = function() {
     })
     .then(function(contents) {
       var dataSource = {
-        fileName: 'roster',
-        dataType: 'linear',
+        fileName: 'media-example',
+        dataType: 'network',
         data: contents
       };
       return DataSource.create(dataSource);
@@ -351,6 +351,7 @@ var createManifest_media= function(nodeData,edgeData){
     "ai_directive_name" : "d3-force-images",
     "ai_directive_preview":"./directiveStore/d3-force-images/preview.png",
     "ai_directive_desc":"Force Layout with Images for Nodes",
+    "ai_datatype":"network",
     "ai_directive_attributes" : {
         "ai_title": "Force Network with Image Nodes",
         "ai_height" : "400",
@@ -376,8 +377,8 @@ var seedNodes_lm = function() {
     })
     .then(function(contents) {
       var dataSource = {
-        fileName: 'roster',
-        dataType: 'linear',
+        fileName: 'lemis',
+        dataType: 'network',
         data: contents
       };
       return DataSource.create(dataSource);
@@ -397,8 +398,8 @@ var seedEdges_lm = function() {
     })
     .then(function(contents) {
       var dataSource = {
-        fileName: 'roster',
-        dataType: 'linear',
+        fileName: 'lemis',
+        dataType: 'network',
         data: contents
       };
       return DataSource.create(dataSource);
@@ -422,6 +423,7 @@ var createManifest_lm= function(nodeData,edgeData){
     "ai_directive_name" : "bostock-force-example",
     "ai_directive_preview":"./directiveStore/d3-bostock-force/preview.png",
     "ai_directive_desc":"Example Force Layout from D3",
+    "ai_datatype":"network",
     "ai_directive_attributes" : {
         "ai_title": "Bostock Force-Directed Graph Example",
         "ai_height" : "400",
@@ -449,8 +451,8 @@ var seedSmallFamTree = function() {
     })
     .then(function(contents) {
       var dataSource = {
-        fileName: 'roster',
-        dataType: 'linear',
+        fileName: 'small_fam_tree',
+        dataType: 'network',
         data: contents
       };
       return DataSource.create(dataSource)
@@ -470,6 +472,7 @@ var createForceManifest= function(dataRecord){
     "ai_directive_name" : "force_basic",
     "ai_directive_preview":"./directiveStore/d3-force-basic/preview.png",
     "ai_directive_desc":"simple example of a D3 force layout",
+    "ai_datatype":"network",
     "ai_directive_attributes" : {
         "ai_title": "Basic Force Graph",
         "ai_height" : "400",
@@ -495,7 +498,7 @@ var seedFlare = function() {
     .then(function(contents) {
       var dataSource = {
         fileName: 'flareData',
-        dataType: 'linear',
+        dataType: 'hierarchy',
         data: contents
       };
       return DataSource.create(dataSource)
@@ -513,6 +516,7 @@ var createFlareManifest= function(dataRecord){
     "ai_directive_name" : "flare",
     "ai_directive_preview":"./directiveStore/flare-larskotthoff/preview.png",
     "ai_directive_desc":"interactive hierarchy display",
+    "ai_datatype":"hierarchy",
     "ai_directive_attributes" : {
         "ai_title": "Flare hierarchy",
         "ai_height" : "400",
@@ -556,6 +560,7 @@ var createScatterManifest= function(dataRecord){
     "ai_directive_name" : "nvd3_scatter_chart",
     "ai_directive_preview":"./directiveStore/nvd3-scatter-chart/preview.png",
     "ai_directive_desc":"interactive scatter plot",
+    "ai_datatype":"linear",
     "ai_directive_attributes" : {
         "ai_title": "NVD3 Scatter; Iris Petal Width vs Length",
         "ai_height" : "400",
