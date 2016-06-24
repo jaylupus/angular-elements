@@ -256,7 +256,7 @@ var createManifest_twoflare= function(dataRecord){
  console.log(fileId);
  debugger;
  let manifestPath1=rootPath+ '/browser/directiveStore/vert-flare/manifest.json';
- let manifestPath2=rootPath+ '/browser/directiveStore/horizontal-flare/manifest.json';
+ let manifestPath2=rootPath+ '/browser/directiveStore/horizontal_flare/manifest.json';
 
  let manifestString1= `{
     "ai_directive" : "true",

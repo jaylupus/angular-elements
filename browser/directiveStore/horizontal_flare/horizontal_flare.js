@@ -8,7 +8,7 @@ app.directive('horizontalFlare', function($window,projectDataFactory){
       aiWidth: '@',
       aiHeight:'@'
     },
-     templateUrl :  'directiveStore/horizontal-flare/horizontal-flare.html',
+     templateUrl :  'directiveStore/horizontal_flare/horizontal_flare.html',
      link : function(scope,elem,attr){
         var d3 = $window.d3;
 
