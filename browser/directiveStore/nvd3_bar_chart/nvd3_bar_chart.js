@@ -12,7 +12,7 @@ app.directive('nvd3BarChart',function($window,projectDataFactory){
       label:'@',
       key:'@'
     },
-    templateUrl :  'directiveStore/nvd3-scatter-chart/nvd3-scatter-chart.html',
+    templateUrl :  'directiveStore/nvd3_bar_chart/nvd3_bar_chart.html',
     //controller : function($scope, dataFactory){
     //$scope.data=dataFactory.getdata($scope.sectionLocation,$scope.sectionType);
     //},

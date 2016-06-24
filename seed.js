@@ -206,13 +206,13 @@ var createManifest_company= function(dataRecord){
  console.log(rootPath);
  console.log(fileId);
  debugger;
- let manifestPath=rootPath+ '/browser/directiveStore/nvd3-bar-chart/manifest.json';
+ let manifestPath=rootPath+ '/browser/directiveStore/nvd3_bar_chart/manifest.json';
 
  let manifestString= `{
     "ai_directive" : "true",
     "ai_directive_type" : "content",
-    "ai_directive_name" : "nvd3-bar-chart",
-    "ai_directive_preview":"./directiveStore/nvd3-bar-chart/preview.png",
+    "ai_directive_name" : "nvd3_bar_chart",
+    "ai_directive_preview":"./directiveStore/nvd3_bar_chart/preview.png",
     "ai_directive_desc":"NVD3 Discrete Bar Chart",
     "ai_datatype":"linear",
     "ai_directive_attributes" : {

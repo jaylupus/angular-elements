@@ -1,8 +1,8 @@
 {
     "ai_directive" : "true",
     "ai_directive_type" : "content",
-    "ai_directive_name" : "nvd3-bar-chart",
-    "ai_directive_preview":"./directiveStore/nvd3-bar-chart/preview.png",
+    "ai_directive_name" : "nvd3_bar_chart",
+    "ai_directive_preview":"./directiveStore/nvd3_bar_chart/preview.png",
     "ai_directive_desc":"NVD3 Discrete Bar Chart",
     "ai_datatype":"linear",
     "ai_directive_attributes" : {
@@ -12,6 +12,6 @@
         "key":"Profits",
         "label":"Company",
         "yvalue":"2014",
-        "ai_info_source":"576d8e8e1d8665c41f4b84f9"
+        "ai_info_source":"576d912fd53c7a7b20f50fac"
       }
     },
