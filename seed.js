@@ -508,13 +508,13 @@ var seedFlare = function() {
 var createFlareManifest= function(dataRecord){
  console.log(dataRecord);
  let fileId= dataRecord._id;
- let manifestPath=rootPath+ '/browser/directiveStore/flare-larskotthoff/manifest.json';
+ let manifestPath=rootPath+ '/browser/directiveStore/flare_larskotthoff/manifest.json';
 
  let manifestString= `{
     "ai_directive" : "true",
     "ai_directive_type" : "content",
-    "ai_directive_name" : "flare",
-    "ai_directive_preview":"./directiveStore/flare-larskotthoff/preview.png",
+    "ai_directive_name" : "flare_larskotthoff",
+    "ai_directive_preview":"./directiveStore/flare_larskotthoff/preview.png",
     "ai_directive_desc":"interactive hierarchy display",
     "ai_datatype":"hierarchy",
     "ai_directive_attributes" : {

@@ -1,5 +1,5 @@
 "use strict";
-app.directive('flare', function($window,projectDataFactory){
+app.directive('flareLarskotthoff', function($window,projectDataFactory){
   return {
     restrict : 'EA',
     scope : {
@@ -8,7 +8,7 @@ app.directive('flare', function($window,projectDataFactory){
       aiWidth: '@',
       aiHeight:'@'
     },
-    templateUrl :  'directiveStore/flare-larskotthoff/flare-larskotthoff.html',
+    templateUrl :  'directiveStore/flare_larskotthoff/flare_larskotthoff.html',
     link : function(scope,elem,attr){
 
       var d3 = $window.d3;
