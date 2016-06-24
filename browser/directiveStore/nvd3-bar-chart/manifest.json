@@ -4,6 +4,7 @@
     "ai_directive_name" : "nvd3-bar-chart",
     "ai_directive_preview":"./directiveStore/nvd3-bar-chart/preview.png",
     "ai_directive_desc":"NVD3 Discrete Bar Chart",
+    "ai_datatype":"linear",
     "ai_directive_attributes" : {
         "ai_title": "Corporate Profits",
         "ai_height" : "400",
@@ -11,6 +12,6 @@
         "key":"Profits",
         "label":"Company",
         "yvalue":"2014",
-        "ai_info_source":"576a01db7835839b0b004859"
+        "ai_info_source":"576d8a732c4c06ac1e9c648e"
       }
     },

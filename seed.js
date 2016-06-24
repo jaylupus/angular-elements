@@ -415,13 +415,13 @@ var createManifest_lm= function(nodeData,edgeData){
  let nodeId= nodeData._id;
  let edgeId= edgeData._id;
 
- let manifestPath=rootPath+ '/browser/directiveStore/d3-bostock-force/manifest.json';
+ let manifestPath=rootPath+ '/browser/directiveStore/d3_bostock_force/manifest.json';
 
  let manifestString= `{
     "ai_directive" : "true",
     "ai_directive_type" : "content",
-    "ai_directive_name" : "bostock-force-example",
-    "ai_directive_preview":"./directiveStore/d3-bostock-force/preview.png",
+    "ai_directive_name" : "d3_bostock_force",
+    "ai_directive_preview":"./directiveStore/d3_bostock_force/preview.png",
     "ai_directive_desc":"Example Force Layout from D3",
     "ai_datatype":"network",
     "ai_directive_attributes" : {

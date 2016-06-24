@@ -4,10 +4,11 @@
     "ai_directive_name" : "flare",
     "ai_directive_preview":"./directiveStore/flare-larskotthoff/preview.png",
     "ai_directive_desc":"interactive hierarchy display",
+    "ai_datatype":"hierarchy",
     "ai_directive_attributes" : {
         "ai_title": "Flare hierarchy",
         "ai_height" : "400",
         "ai_width" : "400",
-        "ai_info_source":"576a01db7835839b0b004856"
+        "ai_info_source":"576d8a732c4c06ac1e9c648b"
       }
     },
