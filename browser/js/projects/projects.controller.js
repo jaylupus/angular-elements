@@ -1,5 +1,5 @@
 
-app.controller('ProjectEditCtrl', function($scope,$compile,$timeout,project,manifestFactory,$stateParams,AuthService){
+app.controller('ProjectEditCtrl', function($scope,$compile,$timeout,project,manifestFactory,$stateParams,AuthService,ProjectFactory){
 // TEST THE FOLLOWING FUNCTIONS
 // add a page
 // add a row
@@ -27,16 +27,17 @@ $scope.activeEdit={};
 $scope.CurrentViewWidth='0';
 $scope.containermode='container';
 $scope.project_info_sources=[{"id":"5765c87f0c9b38eff0f8dcb7","description":"this is an info"},{"id":"0930ej2n32dj023dn23d02n3d","description":"this is also an info"}];
-
-manifestFactory.getAll()
-.then(function(data){
-  $scope.allManifests=data.data;
-});
-
+$scope.availableColumnWidths=[{'width':'1'},{'width':'2'},{'width':'3'},{'width':'4'},{'width':'5'},{'width':'6'},{'width':'7'},{'width':'8'},{'width':'9'},{'width':'10'},{'width':'11'},{'width':'12'}];
+$scope.availableColumnShow=[{'show':'true'},{'show':'false'}];
 $scope.builtInManifests=[];
 $scope.lastPage='0';
 $scope.lastRow='0';
 $scope.lastColumn='0';
+//get all manifests
+manifestFactory.getAll()
+.then(function(data){
+  $scope.allManifests=data.data;
+});
 // this object gets
 
 $scope.ai_page_manifest={
@@ -61,8 +62,6 @@ $scope.ai_row_manifest={
         'ai_bootstrap_show': {'xs':{'colsize':'xs','show':'true','devicename':'phone'},'sm':{'colsize':'sm','show':'true','devicename':'tablet'},'md':{'colsize':'md','show':'true','devicename':'laptop'},'lg':{'colsize':'lg','show':'true','devicename':'desktop'}}
     }
 };
-$scope.availableColumnWidths=[{'width':'1'},{'width':'2'},{'width':'3'},{'width':'4'},{'width':'5'},{'width':'6'},{'width':'7'},{'width':'8'},{'width':'9'},{'width':'10'},{'width':'11'},{'width':'12'}];
-$scope.availableColumnShow=[{'show':'true'},{'show':'false'}];
 
 $scope.ai_column_manifest={
     ai_directive : true,
@@ -124,7 +123,15 @@ $scope.moveConfigObjectToEdit=function(configObject){
 
 // this function moves the edit version of teh appconfig object beging edit from edit object to it place in te appConfig objec
 $scope.saveEdit=function(){
+    angular.copy($scope.appConfigEditCopy,$scope.referenceToEditInAppConfig);
+    $scope.project.config.shift($scope.appConfig);
     console.log('running save');
+
+    ProjectFactory.update($scope.project)
+    .then(function(result){
+      console.log(result);
+    });
+
     angular.copy($scope.appConfigEditCopy,$scope.referenceToEditInAppConfig);
 };
 
