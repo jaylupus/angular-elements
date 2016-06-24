@@ -12,7 +12,7 @@ app.directive('d3ForceImages', function($window, projectDataFactory) {
           nodeImage: '@',
           bcolor:'@',
         },
-        templateUrl: 'directiveStore/d3-force-images/d3-force-images.html',
+        templateUrl: 'directiveStore/d3_force_images/d3_force_images.html',
         link: function(scope, elem, attr) {
           const d3 = $window.d3;
           //const Promise = $window.bluebird;

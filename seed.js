@@ -343,13 +343,13 @@ var createManifest_media= function(nodeData,edgeData){
  let nodeId= nodeData._id;
  let edgeId= edgeData._id;
 
- let manifestPath=rootPath+ '/browser/directiveStore/d3-force-images/manifest.json';
+ let manifestPath=rootPath+ '/browser/directiveStore/d3_force_images/manifest.json';
 
  let manifestString= `{
     "ai_directive" : "true",
     "ai_directive_type" : "content",
-    "ai_directive_name" : "d3-force-images",
-    "ai_directive_preview":"./directiveStore/d3-force-images/preview.png",
+    "ai_directive_name" : "d3_force_images",
+    "ai_directive_preview":"./directiveStore/d3_force_images/preview.png",
     "ai_directive_desc":"Force Layout with Images for Nodes",
     "ai_datatype":"network",
     "ai_directive_attributes" : {
