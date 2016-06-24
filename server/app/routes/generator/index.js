@@ -1,19 +1,26 @@
 var router = require('express').Router();
 var path = require('path');
+var Project = require('mongoose').model('Project');
 var generator = require(path.join(__dirname, '../../../../generator'));
 
-router.post('/js', function(req, res){
-	generator.writeFactory(req.body.name)
-	.then(function(factory){
-		res.send(factory);
-	});
+router.get('/js/:id', function(req, res) {
+  Project.findById(req.params.id).populate('dataSource')
+    .then(function(project) {
+      return generator.writeApp(project.config[0]);
+    })
+    .then(function(app) {
+      res.send(app);
+    });
 });
 
-router.post('/html', function(req, res){
-	generator.writeTemplate(req.body.name)
-	.then(function(index){
-		res.send(index);
-	});
+router.get('/html/:id', function(req, res) {
+  Project.findById(req.params.id)
+    .then(function(project) {
+      return generator.writeTemplate(project.config[0]);
+    })
+    .then(function(index) {
+      res.send(index);
+    });
 });
 
 module.exports = router;
