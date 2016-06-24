@@ -124,7 +124,7 @@ $scope.moveConfigObjectToEdit=function(configObject){
 // this function moves the edit version of teh appconfig object beging edit from edit object to it place in te appConfig objec
 $scope.saveEdit=function(){
     angular.copy($scope.appConfigEditCopy,$scope.referenceToEditInAppConfig);
-    $scope.project.config.shift($scope.appConfig);
+    $scope.project.config.unshift($scope.appConfig);
     console.log('running save');
 
     ProjectFactory.update($scope.project)
