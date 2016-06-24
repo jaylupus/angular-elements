@@ -1,12 +1,15 @@
 <div class=" col-sm-4  col-md-4 col-lg-4">
-<div class="directive_card_container">
-<h3>{{manifest.ai_directive_name}}</h3>
-	<div class="directive_card_body">
-		<ul>
-			<li ng-repeat="(key, value) in manifest" >
-				{{key}}
-			</li>
-		</ul>
-	</div>
-	</div>
+  <div class="directive_card_container">
+    <h3>{{manifest.ai_directive_name}}</h3>
+    <h4>{{manifest.ai_directive_title}}</h4>
+  	<div class="directive_card_body">
+      <div class="dcard-img-wrapper">
+        <img src="{{manifest.ai_directive_preview}}">
+      </div>
+      <div class="cardtext">
+          <p>{{manifest.ai_directive_desc}}</p>
+          <p>{{manifest.ai_directive_data_desc}}</p>
+      <div>
+    </div>
+  </div>
 </div>

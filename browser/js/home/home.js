@@ -56,8 +56,5 @@ app.controller('HomeControl', function($scope,projects,$rootScope,AuthService,AU
         $state.go('project',{id:newProject._id});
       })
   };
-
   getUser();
-
-
 });

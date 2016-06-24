@@ -1,11 +1,16 @@
-
-//what goes here?
 {
-  "3rd_party_library": {
-    "nvd3": {
-      "script": "<script src=\"https://cdnjs.cloudflare.com/ajax/libs/angular-nvd3/1.0.7/angular-nvd3.min.js\"></script>}"
+    "ai_directive" : "true",
+    "ai_directive_type" : "content",
+    "ai_directive_name" : "nvd3_scatter_chart",
+    "ai_directive_preview":"./directiveStore/nvd3-scatter-chart/preview.png",
+    "ai_directive_desc":"interactive scatter plot",
+    "ai_directive_attributes" : {
+        "ai_title": "NVD3 Scatter; Iris Petal Width vs Length",
+        "ai_height" : "400",
+        "ai_info_source":"576a01db7835839b0b004857",
+        "xvalue":"petalLength",
+        "yvalue": "petalWidth",
+        "size":"sepalLength",
+        "label":"species"
+      }
     },
-
-  "css_file":null,
-  "render_target":"chart2"
-}

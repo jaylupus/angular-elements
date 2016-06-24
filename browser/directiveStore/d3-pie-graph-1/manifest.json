@@ -1,27 +1,30 @@
-/*
-//what goes here?
 {
-  "3rd_party_library": {
-    "d3": {
-      "script": "<script src=\"https://d3js.org/d3.v3.min.js\"></script>}"
-    }
-  },
-  "schema": {
-    "width": {
-      "type": "number",
-      "default": "400"
+    "ai_directive" : "true",
+    "ai_directive_type" : "content",
+    "ai_directive_name" : "pie_graph_user_input",
+    "ai_directive_preview":"./directiveStore/d3-pie-graph-1/preview.png",
+    "ai_directive_desc":"Pie Chart with User Input",
+    "ai_directive_attributes" : {
+        "ai_title": "People's Pie Chart",
+        "ai_height" : "400",
+        "ai_width" : "400",
+        "ai_radius": "200",
+        "label1":"Steve",
+        "value1":40,
+        "label2":"Bob",
+        "value2":60,
+        "label3":"Jen",
+        "value3":35,
+        "label4":"Amy",
+        "value4":15,
+        "label5":"Sue",
+        "value5":80,
+        "label6":"undefined",
+        "value6":"undefined",
+        "label7":"undefined",
+        "value7":"undefined",
+        "label8":"undefined",
+        "value8":"undefined"
+      }
     },
-    "height": {
-      "type": "number",
-      "default": "400"
-    },
-    "radius": {
-      "type": "number",
-      "default": "200"
-    },
-    "colorScale": "d3.scale.category10"
-  },
-  "css_file":null,
-  "render_target":"chart"
-}
-*/
+
