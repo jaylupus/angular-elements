@@ -71,7 +71,7 @@ var sampleConfig=[
                           ai_content: {
                                 ai_directive : true,
                                 ai_directive_type : "content",
-                                ai_directive_name : "force_basic",
+                                ai_directive_name : "d3_force_basic",
                                 ai_directive_page : '1',
                                 ai_directive_row : '1',
                                 ai_directive_col : '1',
@@ -206,13 +206,13 @@ var createManifest_company= function(dataRecord){
  console.log(rootPath);
  console.log(fileId);
  debugger;
- let manifestPath=rootPath+ '/browser/directiveStore/nvd3-bar-chart/manifest.json';
+ let manifestPath=rootPath+ '/browser/directiveStore/nvd3_bar_chart/manifest.json';
 
  let manifestString= `{
     "ai_directive" : "true",
     "ai_directive_type" : "content",
-    "ai_directive_name" : "nvd3-bar-chart",
-    "ai_directive_preview":"./directiveStore/nvd3-bar-chart/preview.png",
+    "ai_directive_name" : "nvd3_bar_chart",
+    "ai_directive_preview":"./directiveStore/nvd3_bar_chart/preview.png",
     "ai_directive_desc":"NVD3 Discrete Bar Chart",
     "ai_datatype":"linear",
     "ai_directive_attributes" : {
@@ -255,8 +255,8 @@ var createManifest_twoflare= function(dataRecord){
  console.log(rootPath);
  console.log(fileId);
  debugger;
- let manifestPath1=rootPath+ '/browser/directiveStore/vert-flare/manifest.json';
- let manifestPath2=rootPath+ '/browser/directiveStore/horizontal-flare/manifest.json';
+ let manifestPath1=rootPath+ '/browser/directiveStore/vert_flare/manifest.json';
+ let manifestPath2=rootPath+ '/browser/directiveStore/horizontal_flare/manifest.json';
 
  let manifestString1= `{
     "ai_directive" : "true",
@@ -264,7 +264,7 @@ var createManifest_twoflare= function(dataRecord){
     "ai_diretive_category":"data_vis",
     "ai_directive_name" : "vert_flare",
     "ai_directive_title": "Vertical Tree",
-    "ai_directive_preview":"./directiveStore/vert-flare/preview.png",
+    "ai_directive_preview":"./directiveStore/vert_flare/preview.png",
     "ai_directive_desc":"D3 Vertical Collapsable Tree. Heavily based off Mike Bostock's Collapsable Tree Example: https://bl.ocks.org/mbostock/4339083 ",
     "ai_directive_data_desc":"this directive takes heirarchical JSON data with defined arrays for children properites. See roster.json for an example.",
     "ai_datatype":"hierarchy",
@@ -343,13 +343,13 @@ var createManifest_media= function(nodeData,edgeData){
  let nodeId= nodeData._id;
  let edgeId= edgeData._id;
 
- let manifestPath=rootPath+ '/browser/directiveStore/d3-force-images/manifest.json';
+ let manifestPath=rootPath+ '/browser/directiveStore/d3_force_images/manifest.json';
 
  let manifestString= `{
     "ai_directive" : "true",
     "ai_directive_type" : "content",
-    "ai_directive_name" : "d3-force-images",
-    "ai_directive_preview":"./directiveStore/d3-force-images/preview.png",
+    "ai_directive_name" : "d3_force_images",
+    "ai_directive_preview":"./directiveStore/d3_force_images/preview.png",
     "ai_directive_desc":"Force Layout with Images for Nodes",
     "ai_datatype":"network",
     "ai_directive_attributes" : {
@@ -415,13 +415,13 @@ var createManifest_lm= function(nodeData,edgeData){
  let nodeId= nodeData._id;
  let edgeId= edgeData._id;
 
- let manifestPath=rootPath+ '/browser/directiveStore/d3-bostock-force/manifest.json';
+ let manifestPath=rootPath+ '/browser/directiveStore/d3_bostock_force/manifest.json';
 
  let manifestString= `{
     "ai_directive" : "true",
     "ai_directive_type" : "content",
-    "ai_directive_name" : "bostock-force-example",
-    "ai_directive_preview":"./directiveStore/d3-bostock-force/preview.png",
+    "ai_directive_name" : "d3_bostock_force",
+    "ai_directive_preview":"./directiveStore/d3_bostock_force/preview.png",
     "ai_directive_desc":"Example Force Layout from D3",
     "ai_datatype":"network",
     "ai_directive_attributes" : {
@@ -464,13 +464,13 @@ var createForceManifest= function(dataRecord){
  let fileId= dataRecord._id;
  // going to also seed config object!
  sampleConfig[0].pages.page_1.rows.row_1.cols.col_1.ai_content.ai_directive_attributes.ai_info_source=fileId;
- let manifestPath=rootPath+ '/browser/directiveStore/d3-force-basic/manifest.json';
+ let manifestPath=rootPath+ '/browser/directiveStore/d3_force_basic/manifest.json';
 
  let manifestString= `{
     "ai_directive" : "true",
     "ai_directive_type" : "content",
-    "ai_directive_name" : "force_basic",
-    "ai_directive_preview":"./directiveStore/d3-force-basic/preview.png",
+    "ai_directive_name" : "d3_force_basic",
+    "ai_directive_preview":"./directiveStore/d3_force_basic/preview.png",
     "ai_directive_desc":"simple example of a D3 force layout",
     "ai_datatype":"network",
     "ai_directive_attributes" : {
@@ -508,13 +508,13 @@ var seedFlare = function() {
 var createFlareManifest= function(dataRecord){
  console.log(dataRecord);
  let fileId= dataRecord._id;
- let manifestPath=rootPath+ '/browser/directiveStore/flare-larskotthoff/manifest.json';
+ let manifestPath=rootPath+ '/browser/directiveStore/flare_larskotthoff/manifest.json';
 
  let manifestString= `{
     "ai_directive" : "true",
     "ai_directive_type" : "content",
-    "ai_directive_name" : "flare",
-    "ai_directive_preview":"./directiveStore/flare-larskotthoff/preview.png",
+    "ai_directive_name" : "flare_larskotthoff",
+    "ai_directive_preview":"./directiveStore/flare_larskotthoff/preview.png",
     "ai_directive_desc":"interactive hierarchy display",
     "ai_datatype":"hierarchy",
     "ai_directive_attributes" : {
@@ -552,13 +552,13 @@ var seedIris = function() {
 var createScatterManifest= function(dataRecord){
  console.log(dataRecord);
  let fileId= dataRecord._id;
- let manifestPath=rootPath+ '/browser/directiveStore/nvd3-scatter-chart/manifest.json';
+ let manifestPath=rootPath+ '/browser/directiveStore/nvd3_scatter_chart/manifest.json';
 
  let manifestString= `{
     "ai_directive" : "true",
     "ai_directive_type" : "content",
     "ai_directive_name" : "nvd3_scatter_chart",
-    "ai_directive_preview":"./directiveStore/nvd3-scatter-chart/preview.png",
+    "ai_directive_preview":"./directiveStore/nvd3_scatter_chart/preview.png",
     "ai_directive_desc":"interactive scatter plot",
     "ai_datatype":"linear",
     "ai_directive_attributes" : {
