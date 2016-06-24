@@ -5,7 +5,7 @@ app.directive('titleSubtitle',function(){
       aiTitle  : '@',
       aiSubtitle : '@'
     },
-    templateUrl :  'directiveStore/title-subtitle/title-subtitle.html',
+    templateUrl :  'directiveStore/title_subtitle/title_subtitle.html',
     link : function(scope,elem,attr){
 
        },

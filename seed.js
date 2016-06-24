@@ -255,7 +255,7 @@ var createManifest_twoflare= function(dataRecord){
  console.log(rootPath);
  console.log(fileId);
  debugger;
- let manifestPath1=rootPath+ '/browser/directiveStore/vert-flare/manifest.json';
+ let manifestPath1=rootPath+ '/browser/directiveStore/vert_flare/manifest.json';
  let manifestPath2=rootPath+ '/browser/directiveStore/horizontal_flare/manifest.json';
 
  let manifestString1= `{
@@ -264,7 +264,7 @@ var createManifest_twoflare= function(dataRecord){
     "ai_diretive_category":"data_vis",
     "ai_directive_name" : "vert_flare",
     "ai_directive_title": "Vertical Tree",
-    "ai_directive_preview":"./directiveStore/vert-flare/preview.png",
+    "ai_directive_preview":"./directiveStore/vert_flare/preview.png",
     "ai_directive_desc":"D3 Vertical Collapsable Tree. Heavily based off Mike Bostock's Collapsable Tree Example: https://bl.ocks.org/mbostock/4339083 ",
     "ai_directive_data_desc":"this directive takes heirarchical JSON data with defined arrays for children properites. See roster.json for an example.",
     "ai_datatype":"hierarchy",
@@ -552,13 +552,13 @@ var seedIris = function() {
 var createScatterManifest= function(dataRecord){
  console.log(dataRecord);
  let fileId= dataRecord._id;
- let manifestPath=rootPath+ '/browser/directiveStore/nvd3-scatter-chart/manifest.json';
+ let manifestPath=rootPath+ '/browser/directiveStore/nvd3_scatter_chart/manifest.json';
 
  let manifestString= `{
     "ai_directive" : "true",
     "ai_directive_type" : "content",
     "ai_directive_name" : "nvd3_scatter_chart",
-    "ai_directive_preview":"./directiveStore/nvd3-scatter-chart/preview.png",
+    "ai_directive_preview":"./directiveStore/nvd3_scatter_chart/preview.png",
     "ai_directive_desc":"interactive scatter plot",
     "ai_datatype":"linear",
     "ai_directive_attributes" : {

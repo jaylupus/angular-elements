@@ -8,7 +8,7 @@ app.directive('vertFlare', function($window,projectDataFactory){
       aiWidth: '@',
       aiHeight:'@'
     },
-     templateUrl :  'directiveStore/vert-flare/vert-flare.html',
+     templateUrl :  'directiveStore/vert_flare/vert_flare.html',
      link : function(scope,elem,attr){
         var d3 = $window.d3;
 

@@ -7,7 +7,7 @@ app.factory('soloTable_Factory',function($http){
     getdata :  function(dataSourceLocation,dataSourceType){
      // alert (dataSourceType);
       if(dataSourceType === 'file'){
-      // put node fs asyncopen  
+      // put node fs asyncopen
         return [
           {firstname:'first name', lastname:'last name', age : 'age'},
           {firstname:'John', lastname:'Doe', age : '22'},
@@ -29,17 +29,17 @@ app.directive('soloTable',function(soloTable_Factory){
       soloTableInfoSource : '@',
       soloTableInfoType : '@',
     },
-    templateUrl :  'directiveStore/solotable/solo_table.html',
+    templateUrl :  'directiveStore/solo_table/solo_table.html',
     //controller : function($scope, dataFactory){
     //$scope.data=dataFactory.getdata($scope.sectionLocation,$scope.sectionType);
     //},
     link : function(scope,elem,attr){
       // the link function is going to take all data requests and put them in an array of promisses
       //  for(var i=0;i< a.length;i++;){
-          //if(a[i].indexOf(sectionLocation)) 
+          //if(a[i].indexOf(sectionLocation))
          // scope.aiTitle=attr.aiInfoType
           scope.data=soloTable_Factory.getdata(attr.soloTableInfoSource,attr.soloTableInfoType);
-          
+
       //  }
     }
   };

@@ -2,7 +2,7 @@
     "ai_directive" : "true",
     "ai_directive_type" : "content",
     "ai_directive_name" : "title_subtitle",
-    "ai_directive_preview":"./directiveStore/title-subtitle/preview.png",
+    "ai_directive_preview":"./directiveStore/title_subtitle/preview.png",
     "ai_directive_desc":"Page Title",
     "ai_directive_external_docs_url":"",
     "ai_directive_attributes" : {

@@ -4,7 +4,7 @@
     "ai_diretive_category":"data_vis",
     "ai_directive_name" : "vert_flare",
     "ai_directive_title": "Vertical Tree",
-    "ai_directive_preview":"./directiveStore/vert-flare/preview.png",
+    "ai_directive_preview":"./directiveStore/vert_flare/preview.png",
     "ai_directive_desc":"D3 Vertical Collapsable Tree. Heavily based off Mike Bostock's Collapsable Tree Example: https://bl.ocks.org/mbostock/4339083 ",
     "ai_directive_data_desc":"this directive takes heirarchical JSON data with defined arrays for children properites. See roster.json for an example.",
     "ai_datatype":"hierarchy",
@@ -12,6 +12,6 @@
         "ai_title": "School Roster Data",
         "ai_height" : "400",
         "ai_width" : "400",
-        "ai_info_source":"576d912fd53c7a7b20f50fab"
+        "ai_info_source":"576d93efa7790d46211b1802"
       }
     },

@@ -6,7 +6,7 @@ app.directive('sectionText',function(){
       aiTitle  : '@',
       aiText : '@'
     },
-    templateUrl :  'directiveStore/section-text/section-text.html',
+    templateUrl :  'directiveStore/section_text/section_text.html',
     link : function(scope,elem,attr){
 
     }
