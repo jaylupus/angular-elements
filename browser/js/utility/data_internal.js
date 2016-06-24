@@ -1,7 +1,6 @@
-
+"use strict";
 app.factory('projectDataFactory', function($http) {
   return {
-
     getInternal: function(dataId,type) {
       console.log('gettin', dataId);
       return $http.get('/api/data/' + dataId)
@@ -12,6 +11,12 @@ app.factory('projectDataFactory', function($http) {
             return dataObject.data.data
           }
 
+        });
+    },// get internal
+    dataByProjId: function(projId) {
+      return $http.get('/api/data/project/' + projId)
+        .then(function(dataObject) {
+          return JSON.parse(dataObject.data.data);
         });
     }
   }

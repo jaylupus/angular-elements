@@ -1,0 +1,16 @@
+{
+    "ai_directive" : "true",
+    "ai_directive_type" : "content",
+    "ai_directive_name" : "ai_social",
+    "ai_directive_preview":"./directiveStore/ai_social/preview.png",
+    "ai_directive_desc":"Social media Links",
+    "ai_directive_external_docs_url":"",
+    "ai_directive_attributes" : {
+        "ai_header": "Want More?",
+        "ai_text":"so many ways to connect",
+        "ai_facebook":"https://www.facebook.com/",
+        "ai_twitter":"https://www.twitter.com",
+        "ai_github":"https://www.github.com",
+        "ai_insta":"https://www.instagram.com"
+    }
+},
