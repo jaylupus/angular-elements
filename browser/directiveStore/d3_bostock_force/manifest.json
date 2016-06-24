@@ -1,0 +1,18 @@
+{
+    "ai_directive" : "true",
+    "ai_directive_type" : "content",
+    "ai_directive_name" : "d3_bostock_force",
+    "ai_directive_preview":"./directiveStore/d3_bostock_force/preview.png",
+    "ai_directive_desc":"Example Force Layout from D3",
+    "ai_datatype":"network",
+    "ai_directive_attributes" : {
+        "ai_title": "Bostock Force-Directed Graph Example",
+        "ai_height" : "400",
+        "ai_width" : "400",
+        "node_width" : "5",
+        "labels":"false",
+        "colorSet":"20",
+        "ai_info_node_source":"576d93efa7790d46211b17fd",
+        "ai_info_edge_source":"576d93efa7790d46211b17fe"
+      }
+    },
