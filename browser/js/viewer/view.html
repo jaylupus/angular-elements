@@ -152,20 +152,63 @@
                   ai_title= "Network Force Graph with Node Images"
                   ai_height = "400"
                   ai_width = "400"
-                  bcolor= "#b3d1ff"
+                  bcolor= "white"
                   ai_info_node_source="576d93efa7790d46211b17fb"
                   ai_info_edge_source="576d93efa7790d46211b17fc"
                   ></d3_force_images>
               </div>
               <div class= "col col-md-6 ds-long-desc">
                 <h4> Network Force Graph with Node Images</h4>
-                <p> This force network graph is based off this <a href="https://bl.ocks.org/mbostock/950642">example</a> from Mike Bostock. Here, the nodes are represented as images. In order to use this directive, add a link on the "image" property of the node object. </p>
+                <p> This force network graph is based off this <a href="https://bl.ocks.org/mbostock/950642">example</a> from Mike Bostock. Here, the nodes are represented as images. In order to use this directive, add an image url on the "image" property of the node object. </p>
+                <p>The edge data in this data set also contains a value or weight to indicate the strength of the connection between the nodes.</p>
+
+              </div>
+          </div>
+          <hr>
+    </div> <!-- end sub cat -->
+  <div class="ds-sub-category">
+      <h3> Linear Charts & Plots </h3>
+
+          <div class="row d_store">
+              <div class= "col col-md-6 ds-browser-demo">
+                  <nvd3_bar_chart
+                  ai_title= "Corporate Profits"
+                  ai_height = "400"
+                  ai_width = "400"
+                  key="Profits"
+                  label="Ticker"
+                  yvalue="2014"
+                  ai_info_source="576d93efa7790d46211b1803"
+                  ></nvd3_bar_chart>
+              </div>
+              <div class= "col col-md-6 ds-long-desc">
+                <h4> Discrete Bar Chart</h4>
+                <p> Powered by the NVD3 library. The discrete bar charts is a good choice for comparing one dimensional data across several entities. In this case, we are comparing yearly profits (y axis) across the top earning companies in the US (spread across the x axis). You can toggle the data attribute informing the Y axis in the directive options.</p>
+
+              </div>
+          </div>
+          <hr>
+        <div class="row d_store">
+              <div class= "col col-md-6 ds-browser-demo">
+                  <nvd3_scatter_chart
+                    ai_title= "Iris Petal Width vs Length"
+                    ai_height = "400"
+                    ai_info_source="576d93efa7790d46211b1801"
+                    xvalue="petalLength"
+                    yvalue= "petalWidth"
+                    size="sepalLength"
+                    label="species"
+                  ></nvd3_scatter_chart>
+              </div>
+              <div class= "col col-md-6 ds-long-desc">
+                <h4> Interactive Scatter Plot</h4>
+                <p> Powered by the NVD3 library. The scatter plot is a good option for displaying data with multiple dimentions - in this case the petal width,petal height, and sepal length of the famous Iris data </p>
+                <p> By using the size and color of the points (sepal length and species type respectively) we are able to communicate a large amount of information in a small space. The interactive nature of this NVD3 directive lets users focus in on specific dimensions of the data. </p>
 
               </div>
           </div>
           <hr>
 
-    </div> <!-- end sub cat -->
 </div> <!-- end cat -->
 
 
