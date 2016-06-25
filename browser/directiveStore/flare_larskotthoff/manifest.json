@@ -3,7 +3,8 @@
     "ai_directive_type" : "content",
     "ai_directive_name" : "flare_larskotthoff",
     "ai_directive_preview":"./directiveStore/flare_larskotthoff/preview.png",
-    "ai_directive_desc":"interactive hierarchy display",
+    "ai_directive_desc":"Directive taken from Lars Kotthoff's example",
+    "ai_directive_display_title":"Collapsable Panel Hierarchy",
     "ai_datatype":"hierarchy",
     "ai_directive_attributes" : {
         "ai_title": "Flare hierarchy",

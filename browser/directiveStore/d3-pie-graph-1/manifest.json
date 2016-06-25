@@ -4,6 +4,7 @@
     "ai_directive_name" : "pie_graph_user_input",
     "ai_directive_preview":"./directiveStore/d3-pie-graph-1/preview.png",
     "ai_directive_desc":"Pie Chart with User Input",
+    "ai_directive_display_title":"Pie Chart with User Input",
     "ai_directive_attributes" : {
         "ai_title": "People's Pie Chart",
         "ai_height" : "400",
@@ -18,13 +19,7 @@
         "label4":"Amy",
         "value4":15,
         "label5":"Sue",
-        "value5":80,
-        "label6":"undefined",
-        "value6":"undefined",
-        "label7":"undefined",
-        "value7":"undefined",
-        "label8":"undefined",
-        "value8":"undefined"
+        "value5":80
       }
     },
 

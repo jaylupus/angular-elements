@@ -41,7 +41,9 @@ body {
     border-radius: 5px;
    }
 };
-
+.d_store {
+  color:black;
+}
 .directive_card_container {
   height: 350px;
   width:300px;
@@ -56,6 +58,6 @@ body {
 @import 'directives/main';
 @import 'home/main';
 @import 'about/main';
-@import 'tutorial/main';
+
 @import 'login/main';
 @import 'projects/main';
