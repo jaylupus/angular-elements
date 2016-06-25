@@ -1,5 +1,5 @@
 
-app.controller('ProjectEditCtrl', function($scope,$compile,$timeout,project,manifestFactory,$stateParams,AuthService){
+app.controller('ProjectEditCtrl', function($scope,$compile,$timeout,project,manifestFactory,$stateParams,AuthService,ProjectFactory){
 // TEST THE FOLLOWING FUNCTIONS
 // add a page
 // add a row
@@ -27,16 +27,18 @@ $scope.activeEdit={};
 $scope.CurrentViewWidth='0';
 $scope.containermode='container';
 $scope.project_info_sources=[{"id":"5765c87f0c9b38eff0f8dcb7","description":"this is an info"},{"id":"0930ej2n32dj023dn23d02n3d","description":"this is also an info"}];
-
-manifestFactory.getAll()
-.then(function(data){
-  $scope.allManifests=data.data;
-});
-
+$scope.availableColumnWidths=[{'width':'1'},{'width':'2'},{'width':'3'},{'width':'4'},{'width':'5'},{'width':'6'},{'width':'7'},{'width':'8'},{'width':'9'},{'width':'10'},{'width':'11'},{'width':'12'}];
+$scope.availableColumnShow=[{'show':'true'},{'show':'false'}];
 $scope.builtInManifests=[];
 $scope.lastPage='0';
 $scope.lastRow='0';
 $scope.lastColumn='0';
+$scope.levelsOfUndo=10;
+//get all manifests
+manifestFactory.getAll()
+.then(function(data){
+  $scope.allManifests=data.data;
+});
 // this object gets
 
 $scope.ai_page_manifest={
@@ -55,14 +57,12 @@ $scope.ai_row_manifest={
     ai_directive_type : 'layout',
     ai_directive_name : 'ai_row',
     ai_directive_attributes : {
-        ai_class : '/css/row_a/style.css',
+        ai_class : '/css/row_a/style.css', 
         'class' : '',
         'style' : '',
         'ai_bootstrap_show': {'xs':{'colsize':'xs','show':'true','devicename':'phone'},'sm':{'colsize':'sm','show':'true','devicename':'tablet'},'md':{'colsize':'md','show':'true','devicename':'laptop'},'lg':{'colsize':'lg','show':'true','devicename':'desktop'}}
     }
 };
-$scope.availableColumnWidths=[{'width':'1'},{'width':'2'},{'width':'3'},{'width':'4'},{'width':'5'},{'width':'6'},{'width':'7'},{'width':'8'},{'width':'9'},{'width':'10'},{'width':'11'},{'width':'12'}];
-$scope.availableColumnShow=[{'show':'true'},{'show':'false'}];
 
 $scope.ai_column_manifest={
     ai_directive : true,
@@ -124,8 +124,37 @@ $scope.moveConfigObjectToEdit=function(configObject){
 
 // this function moves the edit version of teh appconfig object beging edit from edit object to it place in te appConfig objec
 $scope.saveEdit=function(){
-    console.log('running save');
     angular.copy($scope.appConfigEditCopy,$scope.referenceToEditInAppConfig);
+    $scope.project.config.unshift($scope.appConfig);
+    if($scope.project.config.length > $scope.levelsOfUndo ){
+      $scope.project.config.splice($scope.levelsOfUndo,$scope.project.config.length);
+    }
+    ProjectFactory.update($scope.project)
+    .then(function(result){
+    });
+};
+
+
+
+$scope.deleteElement=function(){
+    angular.copy({},$scope.referenceToEditInAppConfig);
+    $scope.project.config.unshift($scope.appConfig);
+    if($scope.project.config.length > $scope.levelsOfUndo ){
+      $scope.project.config.splice($scope.levelsOfUndo,$scope.project.config.length);
+    }
+    ProjectFactory.update($scope.project)
+    .then(function(result){
+    });
+};
+$scope.undoEdit=function(){
+    angular.copy({},$scope.referenceToEditInAppConfig);
+    $scope.project.config.unshift($scope.appConfig);
+    if($scope.project.config.length > $scope.levelsOfUndo ){
+      $scope.project.config.splice($scope.levelsOfUndo,$scope.project.config.length);
+    }
+    ProjectFactory.update($scope.project)
+    .then(function(result){
+    });
 };
 
 // this function takes your manifest object and add the ai-page,ai-row and ai-col attributes makeing is suitable for insertion into the appConfig
@@ -197,7 +226,7 @@ $scope.renderRowHtmlFromAiConfig=function(obj) {
   console.log(obj)
       if (obj.hasOwnProperty('ai_directive')) {
         if((obj.ai_directive_type ==='layout') && (obj['ai_directive_name'] === 'ai_row')){
-                angular.element(workarea).append($compile('<div  id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row" '+ $scope.renderattributeString(obj['ai_directive_attributes'])+'\'edit_row_active\':getEditCandidate(\'p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row\')}"   ng-mouseenter="setEditCandidate(\'p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row\')" ng-mouseleave="setEditCandidate(\'\')"><ai-edit-hot-spot set-active-edit-element="setEditSelect()" " active-edit-element="editCandidate" edit-object-type="row" ai-edit-hot-spot-id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row"></ai-edit-hot-spot></div>')($scope));
+                angular.element(workarea).append($compile('<div   '+ $scope.renderattributeString(obj['ai_directive_attributes'])+'\'edit_row_active\':getEditCandidate(\'p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row\')}"   ng-mouseenter="setEditCandidate(\'p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row\')" ng-mouseleave="setEditCandidate(\'\')"><ai-edit-hot-spot set-active-edit-element="setEditSelect()" " active-edit-element="editCandidate" edit-object-type="row" ai-edit-hot-spot-id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row"></ai-edit-hot-spot><div class="container" id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row"></div></div>')($scope));
                   //angular.element(workarea).append($compile('<div style="padding:0px" ng-mouseenter="setEditCandidate(\'p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row\')" ng-mouseleave="setEditCandidate(\'\')"><ai-edit-hot-spot set-active-edit-element="setEditSelect()" active-edit-element="editCandidate" ai-edit-hot-spot-id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row"></ai-edit-hot-spot>    <div  id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row" '+ $scope.renderattributeString(obj['ai_directive_attributes'])+'\'edit_row_active\':getEditCandidate(\'p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row\')}"</div></div>')($scope));
         }
       }
@@ -228,7 +257,7 @@ $scope.renderClearfixHtmlFromAiConfig=function(obj) {
       if (obj.hasOwnProperty('ai_directive')) {
         if((obj['ai_directive_type'] ==='layout') && (obj['ai_directive_name'] === 'ai_row')){
                  $scope.appendTarget='#p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row';
-                  angular.element(document.querySelector( $scope.appendTarget )).append($compile('<div class="clearfix"></div><hr>')($scope));
+                  angular.element(document.querySelector( $scope.appendTarget )).append($compile('<div class="clearfix"></div>')($scope));
         }
       }
       for (var property in obj) {
