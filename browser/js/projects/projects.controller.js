@@ -135,6 +135,7 @@ $scope.saveEdit=function(){
 };
 
 
+
 $scope.deleteElement=function(){
     angular.copy({},$scope.referenceToEditInAppConfig);
     $scope.project.config.unshift($scope.appConfig);
