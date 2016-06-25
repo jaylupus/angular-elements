@@ -1,7 +1,7 @@
 <div class="container">
 <div class="ds-category">
   <h2> Page Attributes</h2>
-    <div class="ds-sub-categoty">
+    <div class="ds-sub-category">
           <h3> Text Elements </h3>
             <div class="row d_store">
               <div class= "col col-md-6 ds-browser-demo">
@@ -102,7 +102,71 @@
           <hr>
 
 </div> <!-- end cat -->
+<div class="ds-category">
+  <h2> Data Visualization</h2>
+    <div class="ds-sub-category">
+      <h3> Network Graphs </h3>
 
+          <div class="row d_store">
+              <div class= "col col-md-6 ds-browser-demo">
+                  <d3_force_basic
+                  ai_title= "Basic Force Graph"
+                  ai_height = "400"
+                  ai_width = "400"
+                  node_width = "5"
+                  ai_info_source="576d93efa7790d46211b17ff"
+                  ></d3_force_basic>
+              </div>
+              <div class= "col col-md-6 ds-long-desc">
+                <h4> Basic D3 Network Force Graph</h4>
+                <p> This simple network diagram is based off Ray Villalobos's d3 tutorial. The key difference between this graph and the others in our directive store is that it takes one data file, instead of a separate file for nodes and edges</p>
+
+              </div>
+          </div>
+          <hr>
+
+          <div class="row d_store">
+              <div class= "col col-md-6 ds-browser-demo">
+                  <d3_bostock_force
+                  ai_title= "Bostock's Network Force Example"
+                  ai_height = "400"
+                  ai_width = "400"
+                  node_width = "5"
+                  labels="false"
+                  colorSet="20"
+                  ai_info_node_source="576d93efa7790d46211b17fd"
+                  ai_info_edge_source="576d93efa7790d46211b17fe"
+                  ></d3_bostock_force>
+              </div>
+              <div class= "col col-md-6 ds-long-desc">
+                <h4> D3 Force Network Graph - Bostock Example</h4>
+                <p> This force network graph is based off this <a href="https://bl.ocks.org/mbostock/4062045">example</a> from Mike Bostock. To supply your own data, provide a list of nodes and a list of edges. Note that the edges reference the nodes by their index position in the file, not their ID.</p>
+
+              </div>
+          </div>
+          <hr>
+
+          <div class="row d_store">
+              <div class= "col col-md-6 ds-browser-demo">
+                  <d3_force_images
+                  ai_title= "Network Force Graph with Node Images"
+                  ai_height = "400"
+                  ai_width = "400"
+                  bcolor= "#b3d1ff"
+                  ai_info_node_source="576d93efa7790d46211b17fb"
+                  ai_info_edge_source="576d93efa7790d46211b17fc"
+                  ></d3_force_images>
+              </div>
+              <div class= "col col-md-6 ds-long-desc">
+                <h4> Network Force Graph with Node Images</h4>
+                <p> This force network graph is based off this <a href="https://bl.ocks.org/mbostock/950642">example</a> from Mike Bostock. Here, the nodes are represented as images. In order to use this directive, add a link on the "image" property of the node object. </p>
+
+              </div>
+          </div>
+          <hr>
+
+    </div> <!-- end sub cat -->
+</div> <!-- end cat -->
 
 
   <hr>

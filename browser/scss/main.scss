@@ -48,6 +48,11 @@ body {
   overflow: scroll;
 }
 
+.ds-browser-demo {
+  border:2px solid #dddddd;
+  border-radius: 5px;
+}
+
 @import 'directives/main';
 @import 'home/main';
 @import 'about/main';
