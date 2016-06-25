@@ -55,6 +55,11 @@ body {
   border-radius: 5px;
 }
 
+.data-view {
+  max-height: 200px;
+  overflow: scroll;
+}
+
 @import 'directives/main';
 @import 'home/main';
 @import 'about/main';
