@@ -33,6 +33,7 @@ $scope.builtInManifests=[];
 $scope.lastPage='0';
 $scope.lastRow='0';
 $scope.lastColumn='0';
+$scope.levelsOfUndo=10;
 //get all manifests
 manifestFactory.getAll()
 .then(function(data){
@@ -56,7 +57,7 @@ $scope.ai_row_manifest={
     ai_directive_type : 'layout',
     ai_directive_name : 'ai_row',
     ai_directive_attributes : {
-        ai_class : '/css/row_a/style.css',
+        ai_class : '/css/row_a/style.css', 
         'class' : '',
         'style' : '',
         'ai_bootstrap_show': {'xs':{'colsize':'xs','show':'true','devicename':'phone'},'sm':{'colsize':'sm','show':'true','devicename':'tablet'},'md':{'colsize':'md','show':'true','devicename':'laptop'},'lg':{'colsize':'lg','show':'true','devicename':'desktop'}}
@@ -124,15 +125,35 @@ $scope.moveConfigObjectToEdit=function(configObject){
 // this function moves the edit version of teh appconfig object beging edit from edit object to it place in te appConfig objec
 $scope.saveEdit=function(){
     angular.copy($scope.appConfigEditCopy,$scope.referenceToEditInAppConfig);
-    $scope.project.config.shift($scope.appConfig);
-    console.log('running save');
-
+    $scope.project.config.unshift($scope.appConfig);
+    if($scope.project.config.length > $scope.levelsOfUndo ){
+      $scope.project.config.splice($scope.levelsOfUndo,$scope.project.config.length);
+    }
     ProjectFactory.update($scope.project)
     .then(function(result){
-      console.log(result);
     });
+};
 
-    angular.copy($scope.appConfigEditCopy,$scope.referenceToEditInAppConfig);
+
+$scope.deleteElement=function(){
+    angular.copy({},$scope.referenceToEditInAppConfig);
+    $scope.project.config.unshift($scope.appConfig);
+    if($scope.project.config.length > $scope.levelsOfUndo ){
+      $scope.project.config.splice($scope.levelsOfUndo,$scope.project.config.length);
+    }
+    ProjectFactory.update($scope.project)
+    .then(function(result){
+    });
+};
+$scope.undoEdit=function(){
+    angular.copy({},$scope.referenceToEditInAppConfig);
+    $scope.project.config.unshift($scope.appConfig);
+    if($scope.project.config.length > $scope.levelsOfUndo ){
+      $scope.project.config.splice($scope.levelsOfUndo,$scope.project.config.length);
+    }
+    ProjectFactory.update($scope.project)
+    .then(function(result){
+    });
 };
 
 // this function takes your manifest object and add the ai-page,ai-row and ai-col attributes makeing is suitable for insertion into the appConfig
@@ -204,7 +225,7 @@ $scope.renderRowHtmlFromAiConfig=function(obj) {
   console.log(obj)
       if (obj.hasOwnProperty('ai_directive')) {
         if((obj.ai_directive_type ==='layout') && (obj['ai_directive_name'] === 'ai_row')){
-                angular.element(workarea).append($compile('<div  id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row" '+ $scope.renderattributeString(obj['ai_directive_attributes'])+'\'edit_row_active\':getEditCandidate(\'p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row\')}"   ng-mouseenter="setEditCandidate(\'p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row\')" ng-mouseleave="setEditCandidate(\'\')"><ai-edit-hot-spot set-active-edit-element="setEditSelect()" " active-edit-element="editCandidate" edit-object-type="row" ai-edit-hot-spot-id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row"></ai-edit-hot-spot></div>')($scope));
+                angular.element(workarea).append($compile('<div   '+ $scope.renderattributeString(obj['ai_directive_attributes'])+'\'edit_row_active\':getEditCandidate(\'p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row\')}"   ng-mouseenter="setEditCandidate(\'p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row\')" ng-mouseleave="setEditCandidate(\'\')"><ai-edit-hot-spot set-active-edit-element="setEditSelect()" " active-edit-element="editCandidate" edit-object-type="row" ai-edit-hot-spot-id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row"></ai-edit-hot-spot><div class="container" id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row"></div></div>')($scope));
                   //angular.element(workarea).append($compile('<div style="padding:0px" ng-mouseenter="setEditCandidate(\'p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row\')" ng-mouseleave="setEditCandidate(\'\')"><ai-edit-hot-spot set-active-edit-element="setEditSelect()" active-edit-element="editCandidate" ai-edit-hot-spot-id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row"></ai-edit-hot-spot>    <div  id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row" '+ $scope.renderattributeString(obj['ai_directive_attributes'])+'\'edit_row_active\':getEditCandidate(\'p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row\')}"</div></div>')($scope));
         }
       }
@@ -235,7 +256,7 @@ $scope.renderClearfixHtmlFromAiConfig=function(obj) {
       if (obj.hasOwnProperty('ai_directive')) {
         if((obj['ai_directive_type'] ==='layout') && (obj['ai_directive_name'] === 'ai_row')){
                  $scope.appendTarget='#p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row';
-                  angular.element(document.querySelector( $scope.appendTarget )).append($compile('<div class="clearfix"></div><hr>')($scope));
+                  angular.element(document.querySelector( $scope.appendTarget )).append($compile('<div class="clearfix"></div>')($scope));
         }
       }
       for (var property in obj) {
