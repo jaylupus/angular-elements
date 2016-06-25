@@ -3,7 +3,8 @@
     "ai_directive_type" : "content",
     "ai_directive_name" : "ai_click_img",
     "ai_directive_preview":"./directiveStore/ai_click_img/preview.png",
-    "ai_directive_desc":"Clickable Image",
+    "ai_directive_desc":"An image with a clickable link.",
+    "ai_directive_display_title":"Clickable Image",
     "ai_directive_attributes" : {
         "ai_height": "200",
         "ai_width":"400",

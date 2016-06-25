@@ -1,4 +1,17 @@
+"use strict"
+var fsp = require('fs-promise');
+var rootPathArray = __dirname.split("server/app/routes/data");
+var rootPath=rootPathArray[0]
 
+let idObject={person:"steve"};
+
+var createTemplate = function(idObject){
+
+  let templatePath=rootPath+ '/browser/js/viewer/view.html';
+
+  //` hello ${idObject.person}`;
+
+  let template= `
 <div class="container">
 <a ng-click="scrollTo('textelements')">Text Elements</a> |
 <a ng-click="scrollTo('webelems')">Web & Multimedia</a>|
@@ -121,7 +134,7 @@
                   ai_height = "400"
                   ai_width = "400"
                   node_width = "5"
-                  ai_info_source="576efa8b4e671f625cd7fb3d"
+                  ai_info_source="${idObject.d3_force_basic}"
                   ></d3_force_basic>
               </div>
               <div class= "col col-md-6 ds-long-desc">
@@ -155,8 +168,8 @@
                   node_width = "5"
                   labels="false"
                   colorSet="20"
-                  ai_info_node_source="576efa8b4e671f625cd7fb41"
-                  ai_info_edge_source="576efa8b4e671f625cd7fb40"
+                  ai_info_node_source="${idObject.d3_bostock_force_node}"
+                  ai_info_edge_source="${idObject.d3_bostock_force_edge}"
                   ></d3_bostock_force>
               </div>
               <div class= "col col-md-6 ds-long-desc">
@@ -237,8 +250,8 @@
                   ai_height = "400"
                   ai_width = "400"
                   bcolor= "white"
-                  ai_info_node_source="576efa8b4e671f625cd7fb42"
-                  ai_info_edge_source="576efa8b4e671f625cd7fb3e"
+                  ai_info_node_source="${idObject.d3_force_images_node}"
+                  ai_info_edge_source="${idObject.d3_force_images_edge}"
                   ></d3_force_images>
               </div>
               <div class= "col col-md-6 ds-long-desc">
@@ -338,7 +351,7 @@
                   key="Profits"
                   label="Ticker"
                   yvalue="2014"
-                  ai_info_source="576efa8b4e671f625cd7fb3f"
+                  ai_info_source="${idObject.nvd3_bar_chart}"
                   ></nvd3_bar_chart>
               </div>
               <div class= "col col-md-6 ds-long-desc">
@@ -384,7 +397,7 @@
                   <nvd3_scatter_chart
                     ai_title= "Iris Petal Width vs Length"
                     ai_height = "400"
-                    ai_info_source="576efa8b4e671f625cd7fb43"
+                    ai_info_source="${idObject.nvd3_scatter_chart}"
                     xvalue="petalLength"
                     yvalue= "petalWidth"
                     size="sepalLength"
@@ -608,7 +621,7 @@ value5="80"
                     ai_title= "Flare hierarchy"
                     ai_height = "400"
                     ai_width = "400"
-                    ai_info_source="576efa8b4e671f625cd7fb44"
+                    ai_info_source="${idObject.flare_larskotthoff}"
                   ></flare_larskotthoff>
               </div>
               <div class= "col col-md-6 ds-long-desc">
@@ -650,7 +663,7 @@ flare.animate.interpolate,
                     ai_title= "Flare Data"
                     ai_height = "400"
                     ai_width = "400"
-                    ai_info_source="576efa8b4e671f625cd7fb44"
+                    ai_info_source="${idObject.flare_larskotthoff}"
                   ></horizontal_flare>
               </div>
               <div class= "col col-md-6 ds-long-desc">
@@ -692,7 +705,7 @@ flare.animate.interpolate,
                     ai_title= "Roster Data"
                     ai_height = "400"
                     ai_width = "400"
-                    ai_info_source="576efa8b4e671f625cd7fb45"
+                    ai_info_source="${idObject.vert_flare}"
                   ></vert_flare>
               </div>
               <div class= "col col-md-6 ds-long-desc">
@@ -717,4 +730,12 @@ flare.animate.interpolate,
 
 </div>
 
-  
+  `;
+
+
+
+  return fsp.writeFile(templatePath, template);
+}
+
+module.exports=createTemplate;
+

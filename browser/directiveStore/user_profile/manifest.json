@@ -3,7 +3,8 @@
     "ai_directive_type" : "content",
     "ai_directive_name" : "user_profile",
     "ai_directive_preview":"./directiveStore/user_profile/preview.png",
-    "ai_directive_desc":"Personal Profile",
+    "ai_directive_desc":"Add your profile photo and a short description.",
+    "ai_directive_display_title":"Personal Profile",
     "ai_directive_attributes" : {
         "ai_height": "200",
         "ai_width":"200",

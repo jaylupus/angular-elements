@@ -93,7 +93,8 @@ app.directive('vertFlare', function($window,projectDataFactory){
             .attr("dy", ".35em")
             .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
             .text(function(d) { return d.name || d.studentname || "student code: " +d.studentcode })
-            .style("fill-opacity", 1e-6);
+            .style("fill-opacity", 1e-6)
+           .attr('style','stroke:none;font-family: sans-serif;letter-spacing: 2;');
 
         // Transition nodes to their new position.
         var nodeUpdate = node.transition()

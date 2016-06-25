@@ -28,6 +28,7 @@ var Project = mongoose.model('Project');
 var fsp = require('fs-promise');
 var rootPathArray = __dirname.split("server/app/routes/data");
 var rootPath=rootPathArray[0]
+var createTemplate= require('./browser_template.js');
 
 var sampleConfig=[
     {project_name : 'ourfirst app',
@@ -192,7 +193,7 @@ var seedDataSource_company = function() {
     })
     .then(function(contents) {
       var dataSource = {
-        fileName: 'iris',
+        fileName: 'company',
         dataType: 'linear',
         data: contents
       };
@@ -575,6 +576,35 @@ var createScatterManifest= function(dataRecord){
  return fsp.writeFile(manifestPath, manifestString)
 }
 
+var seedAll = function(){
+  return Promise.all([
+    seedSmallFamTree(),
+    seedNodes_lm(),
+    seedEdges_lm(),
+    seedNodes_media(),
+    seedEdges_media(),
+    seedDataSource_company(),
+    seedIris(),
+    seedFlare(),
+    seedRosterData()
+    ]);
+};
+
+var createBrowseTemplate=function(d3_force_basic,d3_bostock_force_node,d3_bostock_force_edge,d3_force_images_node,d3_force_images_edge,nvd3_bar_chart,nvd3_scatter_chart,flare_larskotthoff,vert_flare){
+  var idObj={
+    d3_force_basic:d3_force_basic._id,
+    d3_bostock_force_node:d3_bostock_force_node._id,
+    d3_bostock_force_edge:d3_bostock_force_edge._id,
+    d3_force_images_node:d3_force_images_node._id,
+    d3_force_images_edge:d3_force_images_edge._id,
+    nvd3_bar_chart:nvd3_bar_chart._id,
+    nvd3_scatter_chart:nvd3_scatter_chart._id,
+    flare_larskotthoff:flare_larskotthoff._id,
+    vert_flare:vert_flare._id
+  };
+
+  return createTemplate(idObj);
+}
 
 
 var seedDataSource = function() {
@@ -666,6 +696,8 @@ connectToDb
   .then(function() {
     return seedUsers();
   })
+  .then(seedAll)
+  .spread(createBrowseTemplate)
   .then(function() {
     return Promise.all([seedNodes_media(),seedEdges_media()])
   })

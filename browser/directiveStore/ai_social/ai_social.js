@@ -11,6 +11,7 @@ app.directive('aiSocial',function(){
     },
     templateUrl :  'directiveStore/ai_social/ai_social.html',
     link : function(scope,elem,attr){
+        console.log(attr.aiHeader);
             scope.links={};
 
             scope.links = {

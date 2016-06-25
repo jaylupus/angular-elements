@@ -85,7 +85,8 @@ app.directive('flareLarskotthoff', function($window,projectDataFactory){
         nodeEnter.append("svg:text")
             .attr("dy", 3.5)
             .attr("dx", 5.5)
-            .text(function(d) { return d.name; });
+            .text(function(d) { return d.name; })
+            .attr('style','stroke:none;font-family: sans-serif;letter-spacing: 2;');
 
         // Transition nodes to their new position.
         nodeEnter.transition()
