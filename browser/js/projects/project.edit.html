@@ -1,7 +1,5 @@
-      <div class="container">
-      <!--{{lastPage}}<br>
-    
-      
+      <div class="container-fluid" style="padding:0px">
+      <!--{{lastPage}}<br>  
       {{projId}}
       {{userId}}
    
@@ -10,11 +8,13 @@
       all manifests
       <!-- {{allManifests}} -->
       <!-- 
-      <p>{{appConfig}}</p>
       {{allManifests}}
       <p>{{referenceToEditInAppConfig}}</p>
       <p>{{appConfigEditCopy}}</p>
+      <p>{{appConfig}}</p>
+     
       <p>{{appConfigEditCopy.ai_directive_attributes.ai_bootstrap_width}}</p>-->
+     
             <div id="workarea" ></div>
                   <div id="directive_shop_panel" class="directive_shop_panel" ng-class="{directive_shop_panel_show: DSopen}" ng-click="DSopen = true;cplopen = false" > 
                         <div id="control_panel_minbut" class="control_panel_minbut" ng-click="DSopen = false">
@@ -91,18 +91,18 @@
 
                                             <!--File Uploader-->
                                               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-                                                  <input type="button" class="btn btn-default" value="undo" style="font-size:8px;margin-top: 10px;width:100%">
+                                                  <input type="button" class="btn btn-default" value="undo" ng-click="undoEdit()"style="font-size:8px;margin-top: 10px;width:100%">
                                               </div >
                                                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
-                                                  <input type="button" class="btn btn-default" value="redo" style="font-size:8px;margin-top: 10px;10px;width:100%" >
+                                                  <input type="button" class="btn btn-default" value="redo" ng-click="redoEdit()" style="font-size:8px;margin-top: 10px;10px;width:100%" >
                                               </div >
 
                                               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                                  <input type="button" class="btn btn-default" value="CANCEL" style="font-size:8px;height: 30px;margin-top: 10px;padding: 0px 0px;width:100%">
+                                                  <input type="button" class="btn btn-default" value="CANCEL" ng-click="cancelEdit()" style="font-size:8px;height: 30px;margin-top: 10px;padding: 0px 0px;width:100%">
                                               </div >
 
                                               <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                                  <input type="button" class="btn btn-danger" value="REMOVE" style="font-size:8px;height: 30px; margin-top: 10px;padding: 0px 0px;width:100%">
+                                                  <input type="button" class="btn btn-danger" value="REMOVE" ng-click="deleteElement()"style="font-size:8px;height: 30px; margin-top: 10px;padding: 0px 0px;width:100%">
                                               </div>
                                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12" >
                                                   <input type="button" class="btn btn-success" value="SAVE" ng-click="saveEdit()" style="font-size:8px;height: 30px; margin-top: 10px;width:100%">

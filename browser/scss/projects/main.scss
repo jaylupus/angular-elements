@@ -79,11 +79,11 @@
 	color: rgba(255,255,255,1);
 }
 
-
 .cpl_input_rows > td{
 padding : 4px;
 color:#fff
-};
+}
+
 .form_container{
 	margin : 30px;
 
@@ -139,6 +139,7 @@ color:#fff
 	margin: 10px;
 	margin-top: 20px;
 }
+
 .directive_shop_card{
 	position: none;
     left: 10%;
@@ -156,17 +157,17 @@ color:#fff
 	margin : 10px;
 	border-radius: 4px 4px 4px 4px;
     border: 1px solid rgba(0, 0, 0, 0.2);
+    overflow-y: hidden;
+}
 
-}
-.directive_card_body{
-	width:40px
-}
 .edit_row{
 	padding:0 20 20 20px
 }
+
 .edit_col{
 	padding:20px
 }
+
 .edit_row_passive{
 	border : 2px solid rgba(0,0,0,0);
 	border-radius:5 0 5 5px;
