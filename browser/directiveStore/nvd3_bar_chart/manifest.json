@@ -3,8 +3,7 @@
     "ai_directive_type" : "content",
     "ai_directive_name" : "nvd3_bar_chart",
     "ai_directive_preview":"./directiveStore/nvd3_bar_chart/preview.png",
-    "ai_directive_desc":"A bar chart powered by the NVD3 library.",
-    "ai_directive_display_title":"Discrete Bar Chart",
+    "ai_directive_desc":"NVD3 Discrete Bar Chart",
     "ai_datatype":"linear",
     "ai_directive_attributes" : {
         "ai_title": "Corporate Profits",
@@ -13,6 +12,6 @@
         "key":"Profits",
         "label":"Company",
         "yvalue":"2014",
-        "ai_info_source":"576d93efa7790d46211b1803"
+        "ai_info_source":"576ef938e2ae69b55b384ee6"
       }
     },

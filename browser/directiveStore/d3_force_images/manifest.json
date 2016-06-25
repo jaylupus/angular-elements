@@ -4,14 +4,13 @@
     "ai_directive_name" : "d3_force_images",
     "ai_directive_preview":"./directiveStore/d3_force_images/preview.png",
     "ai_directive_desc":"Force Layout with Images for Nodes",
-    "ai_directive_display_title":"D3 Network Force Graph with Images",
     "ai_datatype":"network",
     "ai_directive_attributes" : {
         "ai_title": "Force Network with Image Nodes",
         "ai_height" : "400",
         "ai_width" : "400",
         "bcolor": "#b3d1ff",
-        "ai_info_node_source":"576d93efa7790d46211b17fb",
-        "ai_info_edge_source":"576d93efa7790d46211b17fc"
+        "ai_info_node_source":"576ef938e2ae69b55b384ede",
+        "ai_info_edge_source":"576ef938e2ae69b55b384edf"
       }
     },
