@@ -37,10 +37,11 @@ app.directive('nvd3BarChart',function($window,projectDataFactory){
               })
               return transformed;
           };
+        console.log('what is aiinfosource ' + attr.aiInfoSource);
 
         projectDataFactory.getInternal(attr.aiInfoSource,'json')
               .then(function(_data){
-
+                console.log('_data is ' + _data);
                 _data=convertToXY(_data,attr.key,attr.label,attr.yvalue);
                 console.log(_data);
                 scope.data=_data;
