@@ -7,13 +7,13 @@ app.directive('aiDownload', ['DownloadFactory', function(DownloadFactory){
 			DownloadFactory.getHtml(scope.projId)
 			.then(function(htmlfile){
 				scope.htmlurl = window.URL.createObjectURL(new File([htmlfile.data], 'index', {type: 'text/html'}));
+			})
+			.then(function(){
+				return DownloadFactory.getJs(scope.projId);
+			})
+			.then(function(jsfile){
+				scope.jsurl = window.URL.createObjectURL(new File([jsfile.data], 'app', {type: 'application/javascript'}));
 			});
-		// 	.then(function(){
-		// 		return DownloadFactory.getJs(scope.projId);
-		// 	})
-		// 	.then(function(jsfile){
-		// 		scope.jsurl = window.URL.createObjectURL(new File([jsfile.data], 'app', {type: 'application/javascript'}));
-		// 	});
 		}
 	};
 }]);

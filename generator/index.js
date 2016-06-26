@@ -52,7 +52,7 @@ var writeTemplate = function(appConfig) {
 };
 
 var writeApp = function(appConfig) {
-  var controllerPath = path.join(__dirname, '../browser/js/projects/projects.controller.js');
+  var controllerPath = path.join(__dirname, '/controller.js');
   var appPath = path.join(__dirname, '/app.js');
   var factoryPath = path.join(__dirname, '/factory.js');
   var directivePaths = getFilteredDirectivesFromConfig(appConfig).map(getDirectiveJsPath);
