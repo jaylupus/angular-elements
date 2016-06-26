@@ -14,7 +14,6 @@
       <p>{{appConfig}}</p>
      
       <p>{{appConfigEditCopy.ai_directive_attributes.ai_bootstrap_width}}</p>-->
-     
             <div id="workarea" ></div>
                   <div id="directive_shop_panel" class="directive_shop_panel" ng-class="{directive_shop_panel_show: DSopen}" ng-click="DSopen = true;cplopen = false" > 
                         <div id="control_panel_minbut" class="control_panel_minbut" ng-click="DSopen = false">
@@ -55,9 +54,18 @@
                                           
                                          <!--  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" ><label class="cpl_input_labels">info source</label><select ng-options="sources.id as sources.description for sources in project_info_sources" class="form-control" type="text" id={{key}} ng-model="appConfigEditCopy.ai_content.ai_directive_attributes.ai_info_source" name={{key}}></select>
                                           </div> -->
-                                          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" ><label class="cpl_input_labels">info source</label><select ng-options="source._id as source.fileName for source in uploadedFiles" class="form-control" type="text" id={{key}} ng-model="appConfigEditCopy.ai_content.ai_directive_attributes.ai_info_source" name={{key}}></select>
+                                          {{appConfigEditCopy.ai_content.ai_directive_attributes.ai_info_node_source}}
+                                          <div ng-hide="appConfigEditCopy.ai_content.ai_directive_attributes.ai_info_node_source" class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" ><label class="cpl_input_labels">info source</label><select ng-options="source._id as source.fileName for source in uploadedFiles" class="form-control" type="text" id={{key}} ng-model="appConfigEditCopy.ai_content.ai_directive_attributes.ai_info_source" name={{key}}></select>
                                           </div>
+                                          <!-- edges and nodes -->
+
+                                          <div ng-show="appConfigEditCopy.ai_content.ai_directive_attributes.ai_info_node_source" class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" ><label class="cpl_input_labels">info node source</label><select ng-options="source._id as source.fileName for source in uploadedFiles" class="form-control" type="text" id={{key}} ng-model="appConfigEditCopy.ai_content.ai_directive_attributes.ai_info_node_source" name={{key}}></select>
+                                          </div>
+                                          <div ng-show="appConfigEditCopy.ai_content.ai_directive_attributes.ai_info_node_source" class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" ><label class="cpl_input_labels">info edge source</label><select ng-options="source._id as source.fileName for source in uploadedFiles" class="form-control" type="text" id={{key}} ng-model="appConfigEditCopy.ai_content.ai_directive_attributes.ai_info_edge_source" name={{key}}></select>
+                                          </div>
+
                                           <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" ><label class="cpl_input_labels">                                           <!-- <file-uploader projId='{{projId}}' userId='{{userId}}'></file-uploader> -->
+                                          <!--File Uploader-->
                                           <div>
                                           <label class="cpl_input_labels">Upload a CSV
                                           <button class="btn btn-info" style="font-size:9px;height: 25px; width: 100%;margin-top: 10px" 

@@ -1,5 +1,5 @@
 
-app.controller('ProjectEditCtrl', function($scope,$compile,$timeout,project,manifestFactory,$stateParams,AuthService,ProjectFactory,Upload){
+app.controller('ProjectEditCtrl', function($scope,$compile,$timeout,project,dataFiles,manifestFactory,$stateParams,AuthService,ProjectFactory,Upload){
 // TEST THE FOLLOWING FUNCTIONS
 // add a page
 // add a row
@@ -16,7 +16,7 @@ var getUserId = function(){
 getUserId();
 
 //fileUploader Functionality
-$scope.uploadedFiles = [];
+$scope.uploadedFiles = dataFiles;
 $scope.uploadFiles = function(file, errFiles) {
   $scope.f = file;
   $scope.errFile = errFiles && errFiles[0];

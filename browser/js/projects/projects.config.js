@@ -7,6 +7,9 @@ app.config(function($stateProvider) {
     resolve: {
       project: function(ProjectFactory,$stateParams) {
         return ProjectFactory.getOne($stateParams.id);
+      },
+      dataFiles: function(projectDataFactory, $stateParams){
+        return projectDataFactory.dataByProjId($stateParams.id);
       }
     }
   });
