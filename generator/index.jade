@@ -10,10 +10,18 @@ html(lang='en')
       integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
       crossorigin="anonymous"
       )
-    script(
-      src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"
-      )
-  body
-  for directive in directives
-    script(type='text/ng-template', id=directive.url)
-      !{ directive.content }
+    link(
+      href="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.3/nv.d3.min.css",
+      rel="stylesheet"
+    )
+    script(src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js")
+    script(src="https://d3js.org/d3.v4.0.0-alpha.35.min.js")
+    script(src="https://d3js.org/d3.v3.min.js")
+    script(src="https://d3js.org/d3-hierarchy.v0.3.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/nvd3/1.8.3/nv.d3.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/angular-nvd3/1.0.7/angular-nvd3.min.js")
+  body(ng-app="YourAngularApp")
+    div(id="workarea")
+    for directive in directives
+      script(type='text/ng-template', id=directive.id)
+        !{ directive.content }

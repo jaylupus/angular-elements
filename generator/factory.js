@@ -1,7 +1,3 @@
-app.factory('manifestFactory', function($http) {
-  return {
-    getAll: function() {
-      return {{manifests}};
-    }
-  };
+app.factory('project', function(){
+	return {{project}};
 });

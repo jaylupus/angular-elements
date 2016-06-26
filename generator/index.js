@@ -8,10 +8,6 @@ var _ = require('lodash');
 //Helper functions
 var readFile = Promise.promisify(require('fs').readFile);
 
-var getDirectiveUrl = function(directiveName) {
-  return path.join('directiveStore', directiveName, directiveName + '.html');
-};
-
 var getDirectivesFromConfig = function(config, directives) {
   var directives = directives || [];
 
@@ -26,30 +22,48 @@ var getDirectivesFromConfig = function(config, directives) {
   return directives;
 };
 
+var getDirectivePath = function(directiveName) {
+  return path.join('directiveStore', directiveName, directiveName);
+};
+
+var getDirectiveHtmlPath = function(directiveName) {
+  return getDirectivePath(directiveName) + '.html';
+};
+
+var getDirectiveJsPath = function(directiveName) {
+  return path.join(__dirname, '../browser', getDirectivePath(directiveName) + '.js');
+};
+
 var getFilteredDirectivesFromConfig = function(config) {
   return _.difference(getDirectivesFromConfig(config), ['ai_page', 'ai_col', 'ai_row']);
 };
 
-//Export functions
-module.exports.writeTemplate = function(appConfig) {
+var writeTemplate = function(appConfig) {
 
-  var directiveUrls = getFilteredDirectivesFromConfig(appConfig).map(getDirectiveUrl);
+  var directivePaths = getFilteredDirectivesFromConfig(appConfig).map(getDirectiveHtmlPath);
 
-  return Promise.all(directiveUrls.map(url => readFile(path.join(__dirname, '../browser', url), 'utf8')))
+  return Promise.all(directivePaths.map(directivePath => readFile(path.join(__dirname, '../browser', directivePath), 'utf8')))
     .then(function(directiveContents) {
-      var directives = directiveUrls.map(function(elem, index) {
-        return { url: elem, content: directiveContents[index] };
+      var directives = directivePaths.map(function(elem, index) {
+        return { id: elem, content: directiveContents[index] };
       });
       return jade.renderFile(path.join(__dirname, '/index.jade'), { directives: directives, project: appConfig.project_name });
     });
 };
 
-module.exports.writeApp = function(appConfig) {
-  var controllerUrl;
-  var directiveUrls = getDirectivesFromConfig(appConfig).map(getDirectiveUrl);
-  var factoryUrl;
-  return Promise.all(_.concat(controllerUrl, directiveUrls, factoryUrl).map(url => readFile(url, 'utf8')))
+var writeApp = function(appConfig) {
+  // var controllerPath = path.join(__dirname, '/controller.js');
+  var appPath = path.join(__dirname, '/app.js');
+  var factoryPath = path.join(__dirname, '/factory.js');
+  var directivePaths = getFilteredDirectivesFromConfig(appConfig).map(getDirectiveJsPath);
+
+  return Promise.all(_.concat(appPath, directivePaths, factoryPath).map(filePath => readFile(filePath, 'utf8')))
     .then(function(contents) {
-      return contents.join('\n').replace('{{manifests}}', JSON.stringify(appConfig));
+      return contents.join('\n').replace('{{project}}', JSON.stringify(appConfig));
     });
+};
+
+module.exports = {
+  writeApp: writeApp,
+  writeTemplate: writeTemplate
 };
