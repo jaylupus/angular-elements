@@ -1,5 +1,5 @@
 
-app.controller('ProjectEditCtrl', function($scope,$compile,$timeout,project,manifestFactory,$stateParams,AuthService,ProjectFactory){
+app.controller('ProjectEditCtrl', function($scope,$compile,$timeout,project,manifestFactory,$stateParams,AuthService,ProjectFactory,Upload){
 // TEST THE FOLLOWING FUNCTIONS
 // add a page
 // add a row
@@ -15,6 +15,37 @@ var getUserId = function(){
 }
 getUserId();
 
+//fileUploader Functionality
+$scope.uploadedFiles = [];
+$scope.uploadFiles = function(file, errFiles) {
+  $scope.f = file;
+  $scope.errFile = errFiles && errFiles[0];
+  if (file) {
+    file.upload = Upload.upload({
+        url: '/api/data/' + $scope.projId + '/' + $scope.userId,
+        data: {file: file},
+        method: 'POST'
+    });
+
+    file.upload.then(function (response) {
+        $timeout(function () {
+            file.result = response.data;
+            $scope.uploadedFiles.push(file.result);
+            console.log($scope.uploadedFiles);
+        });
+    }, function (response) {
+        if (response.status > 0)
+            $scope.errorMsg = response.status + ': ' + response.data;
+    }, function (evt) {
+        file.progress = Math.min(100, parseInt(100.0 * 
+                                 evt.loaded / evt.total));
+    });
+  }   
+};
+
+//infosource 
+$scope.selectedInfosource = function(){}
+
 
 // this is the app config
 $scope.allManifests={};
@@ -26,7 +57,7 @@ $scope.referenceToEditInAppConfig={};
 $scope.activeEdit={};
 $scope.CurrentViewWidth='0';
 $scope.containermode='container';
-$scope.project_info_sources=[{"id":"5765c87f0c9b38eff0f8dcb7","description":"this is an info"},{"id":"0930ej2n32dj023dn23d02n3d","description":"this is also an info"}];
+//$scope.project_info_sources=[{"id":"5765c87f0c9b38eff0f8dcb7","description":"this is an info"},{"id":"0930ej2n32dj023dn23d02n3d","description":"this is also an info"}];
 $scope.availableColumnWidths=[{'width':'1'},{'width':'2'},{'width':'3'},{'width':'4'},{'width':'5'},{'width':'6'},{'width':'7'},{'width':'8'},{'width':'9'},{'width':'10'},{'width':'11'},{'width':'12'}];
 $scope.availableColumnShow=[{'show':'true'},{'show':'false'}];
 $scope.builtInManifests=[];
