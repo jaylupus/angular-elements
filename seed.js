@@ -313,7 +313,7 @@ var seedNodes_media = function() {
     })
     .then(function(contents) {
       var dataSource = {
-        fileName: 'roster',
+        fileName: 'sample-data-media-nodes',
         dataType: 'network',
         data: contents,
         seed: true
@@ -335,7 +335,7 @@ var seedEdges_media = function() {
     })
     .then(function(contents) {
       var dataSource = {
-        fileName: 'media-example',
+        fileName: 'sample-data-media-edges',
         dataType: 'network',
         data: contents,
         seed: true
@@ -382,7 +382,7 @@ var seedNodes_lm = function() {
     })
     .then(function(contents) {
       var dataSource = {
-        fileName: 'lemis',
+        fileName: 'sample-data-le-mis-nodes',
         dataType: 'network',
         data: contents,
         seed: true
@@ -404,7 +404,7 @@ var seedEdges_lm = function() {
     })
     .then(function(contents) {
       var dataSource = {
-        fileName: 'lemis',
+        fileName: 'sample-data-le-mis-edges',
         dataType: 'network',
         data: contents,
         seed: true
