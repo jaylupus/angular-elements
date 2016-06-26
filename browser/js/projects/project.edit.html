@@ -53,9 +53,31 @@
                                               <label class="cpl_input_labels">{{key}}<input class="form-control" type="text" id={{key}} ng-model=appConfigEditCopy.ai_content.ai_directive_attributes[key] name={{key}} value="value" ></label>
                                           </div>
                                           
-                                          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" ><label class="cpl_input_labels">info source</label><select ng-options="sources.id as sources.description for sources in project_info_sources" class="form-control" type="text" id={{key}} ng-model="appConfigEditCopy.ai_content.ai_directive_attributes.ai_info_source" name={{key}}></select>
+                                         <!--  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" ><label class="cpl_input_labels">info source</label><select ng-options="sources.id as sources.description for sources in project_info_sources" class="form-control" type="text" id={{key}} ng-model="appConfigEditCopy.ai_content.ai_directive_attributes.ai_info_source" name={{key}}></select>
+                                          </div> -->
+                                          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" ><label class="cpl_input_labels">info source</label><select ng-options="source._id as source.fileName for source in uploadedFiles" class="form-control" type="text" id={{key}} ng-model="appConfigEditCopy.ai_content.ai_directive_attributes.ai_info_source" name={{key}}></select>
                                           </div>
-                                          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" ><label class="cpl_input_labels">                                           <file-uploader projId='{{projId}}' userId='{{userId}}'></file-uploader>
+                                          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" ><label class="cpl_input_labels">                                           <!-- <file-uploader projId='{{projId}}' userId='{{userId}}'></file-uploader> -->
+                                          <div>
+                                          <label class="cpl_input_labels">Upload a CSV
+                                          <button class="btn btn-info" style="font-size:9px;height: 25px; width: 100%;margin-top: 10px" 
+                                          type="file" 
+                                          ngf-select="uploadFiles($file, $invalidFiles)" 
+                                          ngf-pattern="'.csv'" 
+                                          accept=".csv" 
+                                          ngf-max-height="1000" 
+                                          ngf-max-size="5MB">Select File</button>
+                                           File:
+                                            <div style="font:smaller">{{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
+                                                <span class="progress" ng-show="f.progress >= 0" style="width: 100px">
+                                                    <div style="width:{{f.progress}}%; display: inline; background: orange"  
+                                                         ng-bind="f.progress + '%'"></div>
+                                                </span>
+                                            </div>     
+                                            {{errorMsg}}
+                                          </label>
+
+                                          </div>
 
                                           </div>
                                     </div>
