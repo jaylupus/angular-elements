@@ -20,11 +20,37 @@ body {
 }
 
 
+.dcard-img-wrapper {
+  /*height:200px;
+  width:200px;*/
+   img {
+    border: 1px rgba(91, 192, 222, 0.62) solid;
+    border-radius: 5px;
+   }
+};
+.d_store {
+  color:black;
+}
+.directive_card_container {
+  height: 350px;
+  width:300px;
+  overflow: scroll;
+}
 
+
+.ds-browser-demo {
+  border:2px solid #dddddd;
+  border-radius: 5px;
+}
+
+.data-view {
+  max-height: 200px;
+  overflow: scroll;
+}
 
 @import 'directives/main';
 @import 'home/main';
 @import 'about/main';
-@import 'tutorial/main';
+
 @import 'login/main';
 @import 'projects/main';

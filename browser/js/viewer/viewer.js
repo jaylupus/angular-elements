@@ -19,7 +19,10 @@ app.config(function ($stateProvider) {
 });
 
 
-app.controller('viewerControl', function($scope){
-
+app.controller('viewerControl', function($scope,$location, $anchorScroll){
+    $scope.scrollTo = function(id) {
+      $location.hash(id);
+      $anchorScroll();
+   }
 
 })

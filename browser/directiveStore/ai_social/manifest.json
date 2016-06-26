@@ -3,7 +3,8 @@
     "ai_directive_type" : "content",
     "ai_directive_name" : "ai_social",
     "ai_directive_preview":"./directiveStore/ai_social/preview.png",
-    "ai_directive_desc":"Social media Links",
+    "ai_directive_desc":"Add your social media contact info",
+    "ai_directive_display_title":"Social Widget",
     "ai_directive_external_docs_url":"",
     "ai_directive_attributes" : {
         "ai_header": "Want More?",
