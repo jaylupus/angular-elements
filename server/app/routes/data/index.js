@@ -7,10 +7,35 @@ var fs = require('fs-extra')
 //var rootPath = __dirname.slice(0, 34);
 var rootPathStr = __dirname.split('server/app/routes/data');
 var rootPath = rootPathStr[0];
-var Converter = require('csvtojson').Converter;
-var converter = new Converter({});
 var fs1 = require('fs');
 var fsp = require('fs-promise');
+
+function csvJSON(csv){
+
+ var lines=csv.split("\n");
+ var result = [];
+ var headers=lines[0].split(",");
+
+ for(var i=1; i<lines.length; i++){
+      var obj = {};
+      var currentline=lines[i].split(",");
+      for(var j=0; j<headers.length; j++){
+        //if(typeof parseInt(currentline[j]) === 'number'){
+        if(!isNaN(parseInt(currentline[j]))){
+          console.log("Number Number");
+          obj[headers[j]] = parseInt(currentline[j]);
+        }
+        else {
+          console.log("string")
+          obj[headers[j]] = currentline[j];
+        }
+      }
+      result.push(obj);
+ }
+ 
+ //return result; //JavaScript object
+ return JSON.stringify(result); //JSON
+}
 
 
 router.post('/:projId/:userId', function(req, res, next){
@@ -28,11 +53,13 @@ router.post('/:projId/:userId', function(req, res, next){
     return fsp.readFile(filePathName, {encoding: 'utf8'})
   }).then(function(data){
     console.log('data is ' + data);
+    var _data = csvJSON(data);
+    console.log('_data is ' + _data);
     var _dataSource = {
       user: req.params.userId,
       project: req.params.projId,
       fileName: filename,
-      data: JSON.stringify(data)
+      data: _data
     };
 
     return DataSource.create(_dataSource)
