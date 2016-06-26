@@ -18,9 +18,18 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('HomeControl', function($scope,projects,$rootScope,AuthService,AUTH_EVENTS,$stateParams,ProjectFactory,$state){
+app.controller('HomeControl', function($scope,projects,$rootScope,AuthService,AUTH_EVENTS,$stateParams,ProjectFactory,$state,$location, $anchorScroll){
   $scope.projects=projects;
   $scope.hello=$stateParams.id;
+
+   $scope.scrollTo = function(id) {
+      $location.hash(id);
+      $anchorScroll();
+   }
+
+   $scope.signup = function(){
+    $state.go('signup');
+   }
 
   $scope.isLoggedIn = function () {
                 return AuthService.isAuthenticated();

@@ -14,9 +14,38 @@ body {
   }
 }
 
+#githubbtn {
+  background: black;
+}
+
 #main {
   padding-top: 60px;
   margin: 0 auto;
+}
+
+#splashscreen {
+  margin-top:-60px;
+  img {
+    postion:absolute;
+    left:0px;
+    top:0px;
+  }
+}
+
+#splash-btn {
+  border-radius: 10px;
+  i {
+    margin-left:5px;
+  }
+  border-color: white;
+  background-color: transparent;
+  border-radius: 100%;
+  border-color: white;
+  background-color: transparent;
+  height: 200px;
+  width: 200px;
+  border-width: 4px;
+  font-size: x-large;
 }
 
 

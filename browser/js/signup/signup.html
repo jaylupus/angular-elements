@@ -15,8 +15,13 @@
     </form>
     <button class='btn btn-danger' ui-sref="home">Cancel</button>
     <button class='btn btn-success' ng-disabled="NewUserForm.$invalid" ng-click='createUser()' ng-hide="checkUser()">Create Account</button>
-    <a href="/auth/github" class="btn btn-social btn-github" style="margin-left:10px;">
-      <span class="fa fa-github"></span>Sign in with Github
+
+    <button class="btn btn-default" id="githubbtn">
+    <class="btn btn-social btn-github" >
+    <a href="/auth/github">
+    <span class="fa fa-github"></span>
+    <span style="display: inline-block">Sign in with Github</span>
     </a>
+    </button>
   </div>
 </div>

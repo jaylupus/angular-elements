@@ -18,8 +18,19 @@
     </div>
 
   </div>
+
+<div ng-hide="isLoggedIn()" id="splashscreen">
+  <img src="/images/flying-fish-2.png" width=100%>
+  <div id="splash-btn-wrapper" style="position:relative;left:240px; top:-250px; width:50px;">
+    <button class="btn btn-primary" id="splash-btn" ng-click="signup()"> Get Started <!-- <i class="fa fa-2x fa-ship" aria-hidden="true"></i> --></button>
+  </div>
+
+</div>
+
+
+
   <div class="container">
-    <div ng-hide="isLoggedIn()" class="row" id="welcome">
+    <div id="welcome" ng-hide="isLoggedIn()" class="row" id="welcome">
         <h3>Welcome to The App Builder Thing!</h3>
         <p> You can use our site to generate a single page data site. It also makes pizza. To get started, click create a new project.
 
