@@ -14,9 +14,10 @@ app.factory('projectDataFactory', function($http) {
         });
     },// get internal
     dataByProjId: function(projId) {
-      return $http.get('/api/data/project/' + projId)
+      return $http.get('/api/data/datasources/' + projId)
         .then(function(dataObject) {
-          return JSON.parse(dataObject.data.data);
+          console.log('dataObject is ' + dataObject);
+          return dataObject.data;
         });
     }
   }

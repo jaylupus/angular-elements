@@ -9,6 +9,7 @@ var rootPathStr = __dirname.split('server/app/routes/data');
 var rootPath = rootPathStr[0];
 var fs1 = require('fs');
 var fsp = require('fs-promise');
+var Promise = require('bluebird');
 
 function csvJSON(csv){
 
@@ -37,6 +38,32 @@ function csvJSON(csv){
  return JSON.stringify(result); //JSON
 }
 
+router.get('/datasources/:projId', function(req, res, next){
+  console.log('req.params is ' + req.params);
+  Promise.all([DataSource.find({project: req.params.projId}),DataSource.find({seed:true})])
+    .spread(function(projData,seedData){
+      var allData=projData.concat(seedData);
+      console.log('allData is ' + allData);
+
+      res.send(allData)
+    });
+  // DataSource.find({project: req.params.projId})
+  // .then(function(response){
+  //   console.log('response is ' + response);
+  //   res.send(response)
+  // })
+});
+
+router.get('/:id', function(req, res, next) {
+  DataSource.findById(req.params.id)
+    .then(function(data) {
+      //console.log(data);
+      res.json(data);
+    })
+    .catch(function(err) {
+      res.status(404).send(err);
+    }, next);
+});
 
 router.post('/:projId/:userId', function(req, res, next){
   console.log('Entering POST route');
@@ -70,17 +97,6 @@ router.post('/:projId/:userId', function(req, res, next){
  });
 });
 
-
-router.get('/:id', function(req, res, next) {
-  DataSource.findById(req.params.id)
-    .then(function(data) {
-      //console.log(data);
-      res.json(data);
-    })
-    .catch(function(err) {
-      res.status(404).send(err);
-    }, next);
-});
 
 
 module.exports = router;

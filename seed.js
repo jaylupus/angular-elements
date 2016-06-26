@@ -195,7 +195,8 @@ var seedDataSource_company = function() {
       var dataSource = {
         fileName: 'company',
         dataType: 'linear',
-        data: contents
+        data: contents,
+        seed: true
       };
       return DataSource.create(dataSource);
     });
@@ -244,7 +245,8 @@ var seedRosterData = function() {
       var dataSource = {
         fileName: 'roster',
         dataType: 'hierarchy',
-        data: contents
+        data: contents,
+        seed: true
       };
       return DataSource.create(dataSource);
     });
@@ -313,7 +315,8 @@ var seedNodes_media = function() {
       var dataSource = {
         fileName: 'roster',
         dataType: 'network',
-        data: contents
+        data: contents,
+        seed: true
       };
       return DataSource.create(dataSource);
     });
@@ -334,7 +337,8 @@ var seedEdges_media = function() {
       var dataSource = {
         fileName: 'media-example',
         dataType: 'network',
-        data: contents
+        data: contents,
+        seed: true
       };
       return DataSource.create(dataSource);
     });
@@ -380,7 +384,8 @@ var seedNodes_lm = function() {
       var dataSource = {
         fileName: 'lemis',
         dataType: 'network',
-        data: contents
+        data: contents,
+        seed: true
       };
       return DataSource.create(dataSource);
     });
@@ -401,7 +406,8 @@ var seedEdges_lm = function() {
       var dataSource = {
         fileName: 'lemis',
         dataType: 'network',
-        data: contents
+        data: contents,
+        seed: true
       };
       return DataSource.create(dataSource);
     });
@@ -454,7 +460,8 @@ var seedSmallFamTree = function() {
       var dataSource = {
         fileName: 'small_fam_tree',
         dataType: 'network',
-        data: contents
+        data: contents,
+        seed: true
       };
       return DataSource.create(dataSource)
     });
@@ -500,7 +507,8 @@ var seedFlare = function() {
       var dataSource = {
         fileName: 'flareData',
         dataType: 'hierarchy',
-        data: contents
+        data: contents,
+        seed: true
       };
       return DataSource.create(dataSource)
     });
@@ -544,7 +552,8 @@ var seedIris = function() {
       var dataSource = {
         fileName: 'Iris',
         dataType: 'linear',
-        data: contents
+        data: contents,
+        seed: true
       };
       return DataSource.create(dataSource)
     });
@@ -621,7 +630,8 @@ var seedDataSource = function() {
       var dataSource = {
         fileName: 'iris',
         dataType: 'linear',
-        data: contents
+        data: contents,
+        seed: true
       };
       return DataSource.create(dataSource);
     });
