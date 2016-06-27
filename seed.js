@@ -181,7 +181,10 @@ var seedUsers = function() {
 
 };
 
-var seedDataSource_company = function() {
+var seedDataSource_company = function(seedBoolean) {
+  if(!seedBoolean){
+    seedBoolean=false;
+  }
   return new Promise(function(fulfill, reject) {
       fs.readFile('./sample_data_sets/companies.json', 'utf8', function(err, res) {
         if (err) {
@@ -193,10 +196,10 @@ var seedDataSource_company = function() {
     })
     .then(function(contents) {
       var dataSource = {
-        fileName: 'company',
+        fileName: 'sample-data-linear-company',
         dataType: 'linear',
         data: contents,
-        seed: true
+        seed: seedBoolean
       };
       return DataSource.create(dataSource);
     });
@@ -231,7 +234,10 @@ var createManifest_company= function(dataRecord){
  return fsp.writeFile(manifestPath, manifestString)
 }
 
-var seedRosterData = function() {
+var seedRosterData = function(seedBoolean) {
+  if(!seedBoolean){
+    seedBoolean=false;
+  }
   return new Promise(function(fulfill, reject) {
       fs.readFile('./sample_data_sets/roster.json', 'utf8', function(err, res) {
         if (err) {
@@ -243,10 +249,10 @@ var seedRosterData = function() {
     })
     .then(function(contents) {
       var dataSource = {
-        fileName: 'roster',
+        fileName: 'sample-data-hierarchy-roster',
         dataType: 'hierarchy',
         data: contents,
-        seed: true
+        seed: seedBoolean
       };
       return DataSource.create(dataSource);
     });
@@ -301,7 +307,10 @@ var createManifest_twoflare= function(dataRecord){
 }
 
 
-var seedNodes_media = function() {
+var seedNodes_media = function(seedBoolean) {
+  if(!seedBoolean){
+    seedBoolean=false;
+  }
   return new Promise(function(fulfill, reject) {
       fs.readFile('./sample_data_sets/media-example-nodes.json', 'utf8', function(err, res) {
         if (err) {
@@ -316,14 +325,17 @@ var seedNodes_media = function() {
         fileName: 'sample-data-media-nodes',
         dataType: 'network',
         data: contents,
-        seed: true
+        seed: seedBoolean
       };
       return DataSource.create(dataSource);
     });
 };
 
 
-var seedEdges_media = function() {
+var seedEdges_media = function(seedBoolean) {
+  if(!seedBoolean){
+    seedBoolean=false;
+  }
   return new Promise(function(fulfill, reject) {
       fs.readFile('./sample_data_sets/media-example-edges.json', 'utf8', function(err, res) {
         if (err) {
@@ -338,7 +350,7 @@ var seedEdges_media = function() {
         fileName: 'sample-data-media-edges',
         dataType: 'network',
         data: contents,
-        seed: true
+        seed: seedBoolean
       };
       return DataSource.create(dataSource);
     });
@@ -370,7 +382,10 @@ var createManifest_media= function(nodeData,edgeData){
  return fsp.writeFile(manifestPath, manifestString)
 }
 
-var seedNodes_lm = function() {
+var seedNodes_lm = function(seedBoolean) {
+  if(!seedBoolean){
+    seedBoolean=false;
+  }
   return new Promise(function(fulfill, reject) {
       fs.readFile('./sample_data_sets/lemis_nodes.json', 'utf8', function(err, res) {
         if (err) {
@@ -385,14 +400,17 @@ var seedNodes_lm = function() {
         fileName: 'sample-data-le-mis-nodes',
         dataType: 'network',
         data: contents,
-        seed: true
+        seed: seedBoolean
       };
       return DataSource.create(dataSource);
     });
 };
 
 
-var seedEdges_lm = function() {
+var seedEdges_lm = function(seedBoolean) {
+  if(!seedBoolean){
+    seedBoolean=false;
+  }
   return new Promise(function(fulfill, reject) {
       fs.readFile('./sample_data_sets/lemis_edges.json', 'utf8', function(err, res) {
         if (err) {
@@ -407,7 +425,7 @@ var seedEdges_lm = function() {
         fileName: 'sample-data-le-mis-edges',
         dataType: 'network',
         data: contents,
-        seed: true
+        seed: seedBoolean
       };
       return DataSource.create(dataSource);
     });
@@ -446,7 +464,10 @@ var createManifest_lm= function(nodeData,edgeData){
  return fsp.writeFile(manifestPath, manifestString)
 }
 
-var seedSmallFamTree = function() {
+var seedSmallFamTree = function(seedBoolean) {
+  if(!seedBoolean){
+    seedBoolean=false;
+  }
   return new Promise(function(fulfill, reject) {
       fs.readFile('./sample_data_sets/small_fam_tree.json', 'utf8', function(err, res) {
         if (err) {
@@ -458,10 +479,10 @@ var seedSmallFamTree = function() {
     })
     .then(function(contents) {
       var dataSource = {
-        fileName: 'small_fam_tree',
+        fileName: 'sample-data-small_fam_tree',
         dataType: 'network',
         data: contents,
-        seed: true
+        seed: seedBoolean
       };
       return DataSource.create(dataSource)
     });
@@ -493,7 +514,10 @@ var createForceManifest= function(dataRecord){
  return fsp.writeFile(manifestPath, manifestString)
 }
 
-var seedFlare = function() {
+var seedFlare = function(seedBoolean) {
+  if(!seedBoolean){
+    seedBoolean=false;
+  }
   return new Promise(function(fulfill, reject) {
       fs.readFile('./sample_data_sets/flare.json', 'utf8', function(err, res) {
         if (err) {
@@ -505,10 +529,10 @@ var seedFlare = function() {
     })
     .then(function(contents) {
       var dataSource = {
-        fileName: 'flareData',
+        fileName: 'sample-data-flare-hierarchy',
         dataType: 'hierarchy',
         data: contents,
-        seed: true
+        seed: seedBoolean
       };
       return DataSource.create(dataSource)
     });
@@ -538,7 +562,10 @@ var createFlareManifest= function(dataRecord){
 }
 
 
-var seedIris = function() {
+var seedIris = function(seedBoolean) {
+  if(!seedBoolean){
+    seedBoolean=false;
+  }
   return new Promise(function(fulfill, reject) {
       fs.readFile('./sample_data_sets/iris.json', 'utf8', function(err, res) {
         if (err) {
@@ -550,10 +577,10 @@ var seedIris = function() {
     })
     .then(function(contents) {
       var dataSource = {
-        fileName: 'Iris',
+        fileName: 'sample-data-Iris',
         dataType: 'linear',
         data: contents,
-        seed: true
+        seed: seedBoolean
       };
       return DataSource.create(dataSource)
     });
@@ -587,15 +614,15 @@ var createScatterManifest= function(dataRecord){
 
 var seedAll = function(){
   return Promise.all([
-    seedSmallFamTree(),
-    seedNodes_lm(),
-    seedEdges_lm(),
-    seedNodes_media(),
-    seedEdges_media(),
-    seedDataSource_company(),
-    seedIris(),
-    seedFlare(),
-    seedRosterData()
+    seedSmallFamTree(true),
+    seedNodes_lm(true),
+    seedEdges_lm(true),
+    seedNodes_media(true),
+    seedEdges_media(true),
+    seedDataSource_company(true),
+    seedIris(true),
+    seedFlare(true),
+    seedRosterData(true)
     ]);
 };
 
@@ -628,7 +655,7 @@ var seedDataSource = function() {
     })
     .then(function(contents) {
       var dataSource = {
-        fileName: 'iris',
+        fileName: 'sample-data-iris-2',
         dataType: 'linear',
         data: contents,
         seed: true
@@ -662,7 +689,7 @@ var seedProject = function(data1) {
 var seedProject2 = function() {
   return User.findOne({ email: 'testing@fsa.com' })
     .then(function(tester) {
-      return DataSource.findOne({ fileName: 'iris' })
+      return DataSource.findOne({ fileName: 'sample-data-iris-2' })
         //obama
         .then(function(iris) {
 
@@ -682,7 +709,7 @@ var seedProject2 = function() {
 var seedProject3 = function() {
   return User.findOne({ email: 'obama@gmail.com' })
     .then(function(obama) {
-      return DataSource.findOne({ fileName: 'iris' })
+      return DataSource.findOne({ fileName: 'sample-data-iris-2' })
         //obama
         .then(function(iris) {
 
@@ -709,7 +736,7 @@ connectToDb
   .then(seedAll)
   .spread(createBrowseTemplate)
   .then(function() {
-    return Promise.all([seedNodes_media(),seedEdges_media()])
+    return Promise.all([seedNodes_media(false),seedEdges_media(false)])
   })
   .spread(createManifest_media)
   .then(function() {
