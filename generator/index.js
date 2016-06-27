@@ -38,7 +38,8 @@ var getFilteredDirectivesFromConfig = function(config) {
   return _.difference(getDirectivesFromConfig(config), ['ai_page', 'ai_col', 'ai_row']);
 };
 
-var writeTemplate = function(appConfig) {
+var writeTemplate = function(project) {
+  var appConfig = project.config[0];
 
   var directivePaths = getFilteredDirectivesFromConfig(appConfig).map(getDirectiveHtmlPath);
 
@@ -51,15 +52,22 @@ var writeTemplate = function(appConfig) {
     });
 };
 
-var writeApp = function(appConfig) {
+var writeApp = function(project) {
+  
+  var appConfig = project.config[0];
+  var data = JSON.stringify(project.dataSource[0].data);
+
   var controllerPath = path.join(__dirname, '/controller.js');
   var appPath = path.join(__dirname, '/app.js');
   var factoryPath = path.join(__dirname, '/factory.js');
+  var dataFactoryPath = path.join(__dirname, '/data_factory.js');
+
+
   var directivePaths = getFilteredDirectivesFromConfig(appConfig).map(getDirectiveJsPath);
 
-  return Promise.all(_.concat(appPath, controllerPath, directivePaths, factoryPath).map(filePath => readFile(filePath, 'utf8')))
+  return Promise.all(_.concat(appPath, controllerPath, directivePaths, factoryPath, dataFactoryPath).map(filePath => readFile(filePath, 'utf8')))
     .then(function(contents) {
-      return contents.join('\n').replace('{{project}}', JSON.stringify(appConfig));
+      return contents.join('\n').replace('{{project}}', JSON.stringify(appConfig)).replace('{{data}}', data);
     });
 };
 

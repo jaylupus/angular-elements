@@ -6,7 +6,7 @@ var generator = require(path.join(__dirname, '../../../../generator'));
 router.get('/js/:id', function(req, res) {
   Project.findById(req.params.id).populate('dataSource')
     .then(function(project) {
-      return generator.writeApp(project.config[0]);
+      return generator.writeApp(project);
     })
     .then(function(app) {
       res.send(app);
@@ -16,7 +16,7 @@ router.get('/js/:id', function(req, res) {
 router.get('/html/:id', function(req, res) {
   Project.findById(req.params.id)
     .then(function(project) {
-      return generator.writeTemplate(project.config[0]);
+      return generator.writeTemplate(project);
     })
     .then(function(index) {
       res.send(index);

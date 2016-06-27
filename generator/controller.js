@@ -8,7 +8,7 @@ app.controller('ProjectRenderCtrl', function($scope, $compile, $timeout, project
   // this is the app config
   $scope.allManifests = {};
   $scope.appConfigMaster = {}; // this the version that is in sync with the database 0th position
-  $scope.appConfigLayoutEditCopy = {}
+  $scope.appConfigLayoutEditCopy = {};
   $scope.appConfigEditCopy = {}; // this is the copy of of object being edited that copied to appConfigViewDriver when;
   $scope.appConfigViewDriver = {}; // this is the copy of of object being edited that copied to appConfigViewDriver when
   $scope.referenceToEditInAppConfig = {};
@@ -96,11 +96,11 @@ app.controller('ProjectRenderCtrl', function($scope, $compile, $timeout, project
     for (var attribName in obj) {
       if (attribName.indexOf('ai_bootstrap_width') > -1) {
         for (var bootSize in obj[attribName]) {
-          ngClassString += "'col-" + bootSize + "-" + obj[attribName][bootSize]['size'] + "\': true,";
+          ngClassString += "'col-" + bootSize + "-" + obj[attribName][bootSize].size + "\': true,";
         }
       } else if (attribName.indexOf('ai_bootstrap_show') > -1) {
         for (var bootShow in obj[attribName]) {
-          if (obj[attribName][bootShow]['show'] == 'false') {
+          if (obj[attribName][bootShow].show == 'false') {
             ngClassString += "'hidden-" + bootShow + "' : true,";
           }
         }
@@ -113,13 +113,11 @@ app.controller('ProjectRenderCtrl', function($scope, $compile, $timeout, project
     return attributeString;
   };
 
-
-
   // this function append a compiled page into the DOM
   $scope.renderPageHtmlFromAiConfig = function(obj) {
     if (obj.hasOwnProperty('ai_directive')) {
-      if ((obj.ai_directive_type === 'layout') && (obj['ai_directive_name'] === 'ai_page')) {
-        angular.element(workarea).append($compile('<' + obj['ai_directive_name'] + ' id="p_' + obj['ai_directive_page'] + '_r_' + obj['ai_directive_row'] + '_ai_row" ' + $scope.renderattributeString(obj['ai_directive_attributes']) + '></' + obj['ai_directive_name'] + '>')($scope));
+      if ((obj.ai_directive_type === 'layout') && (obj.ai_directive_name === 'ai_page')) {
+        angular.element(workarea).append($compile('<' + obj.ai_directive_name + ' id="p_' + obj.ai_directive_page + '_r_' + obj.ai_directive_row + '_ai_row" ' + $scope.renderattributeString(obj.ai_directive_attributes) + '></' + obj.ai_directive_name + '>')($scope));
       }
     }
     for (var property in obj) {
@@ -132,9 +130,9 @@ app.controller('ProjectRenderCtrl', function($scope, $compile, $timeout, project
   // this function append a compiled row into the DOM
   $scope.renderRowHtmlFromAiConfig = function(obj) {
     if (obj.hasOwnProperty('ai_directive')) {
-      if ((obj.ai_directive_type === 'layout') && (obj['ai_directive_name'] === 'ai_row')) {
-        angular.element(workarea).append($compile('<div   ' + $scope.renderattributeString(obj['ai_directive_attributes']) + '\'edit_row_active\':getEditCandidate(\'p_' + obj['ai_directive_page'] + '_r_' + obj['ai_directive_row'] + '_ai_row\')}"  ><div class="container" id="p_' + obj['ai_directive_page'] + '_r_' + obj['ai_directive_row'] + '_ai_row"></div></div>')($scope));
-        //angular.element(workarea).append($compile('<div style="padding:0px" ng-mouseenter="setEditCandidate(\'p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row\')" ng-mouseleave="setEditCandidate(\'\')"><ai-edit-hot-spot set-active-edit-element="setEditSelect()" active-edit-element="editCandidate" ai-edit-hot-spot-id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row"></ai-edit-hot-spot>    <div  id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row" '+ $scope.renderattributeString(obj['ai_directive_attributes'])+'\'edit_row_active\':getEditCandidate(\'p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row\')}"</div></div>')($scope));
+      if ((obj.ai_directive_type === 'layout') && (obj.ai_directive_name === 'ai_row')) {
+        angular.element(workarea).append($compile('<div   ' + $scope.renderattributeString(obj.ai_directive_attributes) + '\'edit_row_active\':getEditCandidate(\'p_' + obj.ai_directive_page + '_r_' + obj.ai_directive_row + '_ai_row\')}"  ><div class="container" id="p_' + obj.ai_directive_page + '_r_' + obj.ai_directive_row + '_ai_row"></div></div>')($scope));
+        //angular.element(workarea).append($compile('<div style="padding:0px" ng-mouseenter="setEditCandidate(\'p_'+obj.ai_directive_page+'_r_'+obj.ai_directive_row+'_ai_row\')" ng-mouseleave="setEditCandidate(\'\')"><ai-edit-hot-spot set-active-edit-element="setEditSelect()" active-edit-element="editCandidate" ai-edit-hot-spot-id="p_'+obj.ai_directive_page+'_r_'+obj.ai_directive_row+'_ai_row"></ai-edit-hot-spot>    <div  id="p_'+obj.ai_directive_page+'_r_'+obj.ai_directive_row+'_ai_row" '+ $scope.renderattributeString(obj.ai_directive_attributes)+'\'edit_row_active\':getEditCandidate(\'p_'+obj.ai_directive_page+'_r_'+obj.ai_directive_row+'_ai_row\')}"</div></div>')($scope));
       }
     }
     for (var property in obj) {
@@ -148,9 +146,9 @@ app.controller('ProjectRenderCtrl', function($scope, $compile, $timeout, project
   // this function append a compiled Column into the DOM
   $scope.renderColHtmlFromAiConfig = function(obj) {
     if (obj.hasOwnProperty('ai_directive')) {
-      if ((obj['ai_directive_type'] === 'layout') && (obj['ai_directive_name'] === 'ai_col')) {
-        $scope.appendTarget = '#p_' + obj['ai_directive_page'] + '_r_' + obj['ai_directive_row'] + '_ai_row';
-        angular.element(document.querySelector($scope.appendTarget)).append($compile('<div id="p_' + obj['ai_directive_page'] + '_r_' + obj['ai_directive_row'] + '_c_' + obj['ai_directive_col'] + '_ai_col" ' + $scope.renderattributeString(obj['ai_directive_attributes']) + '\'edit_row_active\':getEditCandidate(\'p_' + obj['ai_directive_page'] + '_r_' + obj['ai_directive_row'] + '_c_' + obj['ai_directive_col'] + '_ai_col\')}" ng-mouseenter="setEditCandidate(\'p_' + obj['ai_directive_page'] + '_r_' + obj['ai_directive_row'] + '_c_' + obj['ai_directive_col'] + '_ai_col\')" ng-mouseleave="setEditCandidate(\'p_' + obj['ai_directive_page'] + '_r_' + obj['ai_directive_row'] + '_ai_row\')"><ai-edit-hot-spot set-active-edit-element="setEditSelect()" active-edit-element="editCandidate" edit-object-type="column" ai-edit-hot-spot-id="p_' + obj['ai_directive_page'] + '_r_' + obj['ai_directive_row'] + '_c_' + obj['ai_directive_col'] + '_ai_col"></ai-edit-hot-spot></div>')($scope));
+      if ((obj.ai_directive_type === 'layout') && (obj.ai_directive_name === 'ai_col')) {
+        $scope.appendTarget = '#p_' + obj.ai_directive_page + '_r_' + obj.ai_directive_row + '_ai_row';
+        angular.element(document.querySelector($scope.appendTarget)).append($compile('<div id="p_' + obj.ai_directive_page + '_r_' + obj.ai_directive_row + '_c_' + obj.ai_directive_col + '_ai_col" ' + $scope.renderattributeString(obj.ai_directive_attributes) + '\'edit_row_active\':getEditCandidate(\'p_' + obj.ai_directive_page + '_r_' + obj.ai_directive_row + '_c_' + obj.ai_directive_col + '_ai_col\')}" ng-mouseenter="setEditCandidate(\'p_' + obj.ai_directive_page + '_r_' + obj.ai_directive_row + '_c_' + obj.ai_directive_col + '_ai_col\')" ng-mouseleave="setEditCandidate(\'p_' + obj.ai_directive_page + '_r_' + obj.ai_directive_row + '_ai_row\')"><ai-edit-hot-spot set-active-edit-element="setEditSelect()" active-edit-element="editCandidate" edit-object-type="column" ai-edit-hot-spot-id="p_' + obj.ai_directive_page + '_r_' + obj.ai_directive_row + '_c_' + obj.ai_directive_col + '_ai_col"></ai-edit-hot-spot></div>')($scope));
       }
     }
     for (var property in obj) {
@@ -162,8 +160,8 @@ app.controller('ProjectRenderCtrl', function($scope, $compile, $timeout, project
 
   $scope.renderClearfixHtmlFromAiConfig = function(obj) {
     if (obj.hasOwnProperty('ai_directive')) {
-      if ((obj['ai_directive_type'] === 'layout') && (obj['ai_directive_name'] === 'ai_row')) {
-        $scope.appendTarget = '#p_' + obj['ai_directive_page'] + '_r_' + obj['ai_directive_row'] + '_ai_row';
+      if ((obj.ai_directive_type === 'layout') && (obj.ai_directive_name === 'ai_row')) {
+        $scope.appendTarget = '#p_' + obj.ai_directive_page + '_r_' + obj.ai_directive_row + '_ai_row';
         angular.element(document.querySelector($scope.appendTarget)).append($compile('<div class="clearfix"></div>')($scope));
       }
     }
@@ -178,9 +176,9 @@ app.controller('ProjectRenderCtrl', function($scope, $compile, $timeout, project
   // position of the last column i saw while iterating.
   $scope.renderDirectiveHtmlFromAiConfig = function(obj) {
     if (obj.hasOwnProperty('ai_directive')) {
-      if (obj['ai_directive_type'] === 'content') {
-        $scope.appendTarget = '#p_' + obj['ai_directive_page'] + '_r_' + obj['ai_directive_row'] + '_c_' + obj['ai_directive_col'] + '_ai_col';
-        angular.element(document.querySelector($scope.appendTarget)).append($compile('<div style="margin:0px;padding:0px" class="directiveLandingZone"><' + obj['ai_directive_name'] + ' id="p_' + obj['ai_directive_page'] + '_r_' + obj['ai_directive_row'] + '_c_' + obj['ai_directive_col'] + '" ' + $scope.renderattributeString(obj['ai_directive_attributes']) + '\'directiveSpace\': true}"></' + obj['ai_directive_name'] + '></div>')($scope));
+      if (obj.ai_directive_type === 'content') {
+        $scope.appendTarget = '#p_' + obj.ai_directive_page + '_r_' + obj.ai_directive_row + '_c_' + obj.ai_directive_col + '_ai_col';
+        angular.element(document.querySelector($scope.appendTarget)).append($compile('<div style="margin:0px;padding:0px" class="directiveLandingZone"><' + obj.ai_directive_name + ' id="p_' + obj.ai_directive_page + '_r_' + obj.ai_directive_row + '_c_' + obj.ai_directive_col + '" ' + $scope.renderattributeString(obj.ai_directive_attributes) + '\'directiveSpace\': true}"></' + obj.ai_directive_name + '></div>')($scope));
       }
     }
     for (var property in obj) {
@@ -189,7 +187,6 @@ app.controller('ProjectRenderCtrl', function($scope, $compile, $timeout, project
       }
     }
   };
-
 
   $scope.project = project; //init the $scope.project for resolve of project in state machine
   $timeout(function() {
@@ -214,8 +211,6 @@ app.controller('ProjectRenderCtrl', function($scope, $compile, $timeout, project
     $timeout(function() {
       $scope.renderDirectiveHtmlFromAiConfig($scope.appConfig, '');
       $scope.renderClearfixHtmlFromAiConfig($scope.appConfig, '');
-
-      console.dir($scope.appConfig)
     }, 500);
   }, true);
 
