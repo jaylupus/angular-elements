@@ -30,6 +30,13 @@ body {
     left: 0px;
     top: 0px; }
 
+.header-label {
+  border-radius: 5px;
+  background-color: orange;
+  margin: 2px;
+  padding: 2px;
+  cursor: default !important; }
+
 #homepage-text-wrapper {
   color: white;
   text-align: left;
