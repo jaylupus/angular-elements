@@ -36,7 +36,45 @@ body {
 
 #splash-btn-wrapper {
   color: white;
-  font-family: 'Poiret One', cursive; }
+  font-family: 'Poiret One', cursive;
+  position: fixed;
+  left: 680px;
+  top: 360px; }
+
+@media only screen and (max-width: 768px) {
+  #homepage-text-wrapper {
+    left: 100px;
+    top: 210px; }
+  #splash-btn-wrapper {
+    left: 280px;
+    top: 460px; }
+    #splash-btn-wrapper button {
+      height: 150px;
+      width: 150px;
+      font-size: 1em; }
+  #splash-btn {
+    height: 150px;
+    width: 150px; } }
+
+@media only screen and (max-width: 400px) {
+  #homepage-text-wrapper {
+    left: 100px;
+    top: 210px; }
+    #homepage-text-wrapper h1 {
+      font-size: 2em;
+      /*font-family: 'Inconsolata' ;*/
+      font-family: 'Poiret One', cursive; }
+    #homepage-text-wrapper h3 {
+      /*font-family: monospace;*/
+      /*font-family: 'Inconsolata' ;*/
+      font-family: 'Poiret One', cursive; }
+  #splash-btn-wrapper {
+    left: 120px;
+    top: 360px; }
+    #splash-btn-wrapper button {
+      height: 100px;
+      width: 100px;
+      font-size: 1em; } }
 
 #splash-btn {
   border-radius: 10px;
