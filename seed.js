@@ -170,8 +170,8 @@ var wipeCollections = function() {
 var seedUsers = function() {
 
   var users = [{
-    email: 'testing@fsa.com',
-    password: 'password'
+    email: 'biden@gmail.com',
+    password: 'number2'
   }, {
     email: 'obama@gmail.com',
     password: 'potus'
@@ -687,15 +687,15 @@ var seedProject = function(data1) {
 };
 
 var seedProject2 = function() {
-  return User.findOne({ email: 'testing@fsa.com' })
-    .then(function(tester) {
+  return User.findOne({ email: 'biden@gmail.com' })
+    .then(function(biden) {
       return DataSource.findOne({ fileName: 'sample-data-iris-2' })
         //obama
         .then(function(iris) {
 
           return {
-            name: 'tester Iris',
-            user: tester._id,
+            name: 'Best Buds; Obama and Me',
+            user: biden._id,
             config:sampleConfig,
             dataSource: iris._id
           };
