@@ -93,20 +93,24 @@
                                   
                                         <!-- move box -->
                                     <div class="col-xs-3  ">
-                                          <div class="row">
+            <div class="row">
+                                          <!-- move box -->
                                               <div id="cpl_move">
                                                    <table>
-                                                   <tr><td></td><td class="arrow"><span class="glyphicon glyphicon-triangle-top"></span></td><td></td></tr>
-                                                   <tr><td class="arrow"><span class="glyphicon glyphicon-triangle-left"></td><td></td><td class="arrow"> <span class="glyphicon glyphicon-triangle-right"></span></td></tr>
-                                                   <tr><td></td><td class="arrow"><span class="glyphicon glyphicon-triangle-bottom"></span></td><td></td></tr>
+                                                   <tr><td></td><td class="arrow"><span class="glyphicon glyphicon-triangle-top" ng-click="moveElementVert('up')"></span></td><td></td></tr>
+                                                   <tr><td class="arrow"><span class="glyphicon glyphicon-triangle-left" ng-click="moveElementHorz('left')"></td><td></td><td class="arrow"> <span class="glyphicon glyphicon-triangle-right" ng-click="moveElementHorz('right')"></span></td></tr>
+                                                   <tr><td></td><td class="arrow"><span class="glyphicon glyphicon-triangle-bottom"  ng-click="moveElementVert('down')"></span></td><td></td></tr>
                                                    </table>
                                               </div>
+
+                                              <!-- boot size selectors -->
                                               <div ng-repeat="(key, value) in appConfigEditCopy.ai_directive_attributes.ai_bootstrap_width">
                                                    <label class="visible-{{key}}">Columns used viewed on {{appConfigEditCopy.ai_directive_attributes.ai_bootstrap_width[key].devicename}} 
                                                      <select ng-options=" availSizes.width as availSizes.width for availSizes in availableColumnWidths" class="form-control" type="text" id={{}} ng-model="appConfigEditCopy.ai_directive_attributes.ai_bootstrap_width[key].size" name={{key}}>
                                                      </select>
                                                    </label>
                                               </div>
+                                              <!-- boot view selectors -->
                                               <div ng-repeat="(key, value) in appConfigEditCopy.ai_directive_attributes.ai_bootstrap_show">
                                                    <label class="visible-{{key}}">Visible when viewed on {{appConfigEditCopy.ai_directive_attributes.ai_bootstrap_show[key].devicename}}
                                                      <select ng-options=" availshow.show as availshow.show for availshow in availableColumnShow" class="form-control" type="text" id={{}} ng-model="appConfigEditCopy.ai_directive_attributes.ai_bootstrap_show[key].show" name={{key}}>
