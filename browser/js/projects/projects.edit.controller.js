@@ -1,5 +1,5 @@
 
-app.controller('ProjectEditCtrlx', function($scope,$compile,$timeout,project,dataFiles,manifestFactory,$stateParams,AuthService,ProjectFactory,Upload){
+app.controller('ProjectEditCtrl', function($scope,$compile,$timeout,project,dataFiles,manifestFactory,$stateParams,AuthService,ProjectFactory,$location,$anchorScroll){
 // TEST THE FOLLOWING FUNCTIONS
 // add a page
 // add a row
@@ -43,11 +43,8 @@ $scope.uploadFiles = function(file, errFiles) {
   }
 };
 
-//infosource
-$scope.selectedInfosource = function(){}
-
-
 // this is the app config
+$scope.appConfigtemp={};
 $scope.allManifests={};
 $scope.appConfigMaster={}; // this the version that is in sync with the database 0th position
 $scope.appConfigLayoutEditCopy={}
@@ -64,7 +61,7 @@ $scope.builtInManifests=[];
 $scope.lastPage='0';
 $scope.lastRow='0';
 $scope.lastColumn='0';
-$scope.levelsOfUndo=10;
+$scope.levelsOfUndo=5;
 //get all manifests
 manifestFactory.getAll()
 .then(function(data){
@@ -114,6 +111,29 @@ $scope.builtInManifests[0]=$scope.ai_page_manifest;
 $scope.builtInManifests[1]=$scope.ai_row_manifest;
 
 // this function get the last page numb in config
+$scope.getTargetObjectById=function(page,row,column,landDirective){
+  if(landDirective){
+      return $scope.appConfig.pages['page_'+page]['rows']['row_'+row]['cols']['col_'+column]['ai_content'];
+  }else if(column){
+      return $scope.appConfig.pages['page_'+page]['rows']['row_'+row]['cols']['col_'+column];
+  }else if(row){
+      return  $scope.appConfig.pages['page_'+page]['rows']['row_'+row];
+  }else if(page){
+    return  $scope.appConfig.pages['page_'+page];
+  }
+};
+
+$scope.deleteTargetObjectById=function(page,row,column,landDirective){
+  if(landDirective){
+      delete $scope.appConfig.pages['page_'+page]['rows']['row_'+row]['cols']['col_'+column]['ai_content'];
+  }else if(column){
+      delete $scope.appConfig.pages['page_'+page]['rows']['row_'+row]['cols']['col_'+column];
+  }else if(row){
+      delete  $scope.appConfig.pages['page_'+page]['rows']['row_'+row];
+  }else if(page){
+    delete  $scope.appConfig.pages['page_'+page];
+  }
+};
 
 $scope.getLastPage=function(){
   try{
@@ -121,29 +141,35 @@ $scope.getLastPage=function(){
     for(var key in $scope.appConfig.pages){
         $scope.lastPage++;
     }
+    return $scope.lastPage
   }catch(e){}
+
 };
 
-// this function get the last row numb in config
-$scope.getLastRow=function(){
-  try{
-      $scope.getLastPage();
-      $scope.lastRow=0;
-      for(var key in $scope.appConfig.pages['page_'+$scope.lastPage].rows){
-          $scope.lastRow++;
-      }
-  }catch(e){}
+// this function get the last row numb in config or for a given page
+$scope.getLastRow=function(page){
+    var myPage=0;
+    if( page > 0 ){ myPage = page; }else{ myPage = $scope.getLastPage(); }
+    try{
+        $scope.lastRow=0;
+        for(var key in $scope.appConfig.pages['page_'+myPage].rows){
+            $scope.lastRow++;
+        }
+          return $scope.lastRow;
+    }catch(e){}
 };
 
-// this function get the last col numb in config
-$scope.getLastColumn=function(){
-      $scope.getLastRow();
+// this function get the last col numb in config or for a given row
+$scope.getLastColumn=function(page,row){
+      var myPage=0;
+      var myRow=0;
+      if( page > 0 ){ myPage=page; }else{ myPage=$scope.getLastPage(); }
+      if( row > 0 ){ myRow = row; }else{ myRow = $scope.getLastRow(myPage); }
       $scope.lastColumn=0;
-      console.log($scope.appConfig.pages['page_'+$scope.lastPage].rows['row_'+$scope.lastRow]);
-      for(var key in $scope.appConfig.pages['page_'+$scope.lastPage].rows['row_'+$scope.lastRow]['cols']){
+      for(var key in $scope.appConfig.pages['page_'+myPage].rows['row_'+myRow]['cols']){
           $scope.lastColumn++;
-          console.log(key);
       }
+      return $scope.lastColumn;
 };
 
 // this function takes a manifest and sets it up for being inserted into the appConfig.
@@ -154,22 +180,46 @@ $scope.moveConfigObjectToEdit=function(configObject){
 };
 
 // this function moves the edit version of teh appconfig object beging edit from edit object to it place in te appConfig objec
-$scope.saveEdit=function(){
+$scope.saveEdit=function(caller){
     angular.copy($scope.appConfigEditCopy,$scope.referenceToEditInAppConfig);
     $scope.project.config.unshift($scope.appConfig);
     if($scope.project.config.length > $scope.levelsOfUndo ){
-      $scope.project.config.splice($scope.levelsOfUndo,$scope.project.config.length);
+        $scope.project.config.splice($scope.levelsOfUndo,$scope.project.config.length);
+    }
+    ProjectFactory.update($scope.project)
+    .then(function(result){
+    //    console.dir(result);
+      /*angular.copy(result.config[0],$scope.appConfigTemp);
+        $scope.normalizeIds($scope.appConfigTemp); // normalize the object before it is render
+        $timeout(function(){
+            angular.copy($scope.appConfigTemp,$scope.appConfig);
+        },500); */
+    });
+
+    if(caller !== 'addtoPage'){$scope.clearEdit()};
+
+};
+$scope.saveEntireProject=function(caller){
+    $scope.project.config.unshift($scope.appConfig);
+    if($scope.project.config.length > $scope.levelsOfUndo ){
+        $scope.project.config.splice($scope.levelsOfUndo,$scope.project.config.length);
     }
     ProjectFactory.update($scope.project)
     .then(function(result){
     });
+    if(caller !== 'addtoPage'){$scope.clearEdit()};
+};// clear the app out of edit mode
+
+$scope.clearEdit=function(){
+    $timeout(function(){$scope.appConfigEditCopy={}},500);
+    $scope.cplopen=false;
+    $scope.SDopen=false;
 };
 
-
-
 $scope.deleteElement=function(){
-    angular.copy({},$scope.referenceToEditInAppConfig);
-    $scope.project.config.unshift($scope.appConfig);
+console.dir($scope.appConfigEditCopy);
+ $scope.deleteTargetObjectById($scope.appConfigEditCopy.ai_directive_page,$scope.appConfigEditCopy.ai_directive_row,$scope.appConfigEditCopy.ai_directive_col);
+ $scope.project.config.unshift($scope.appConfig);
     if($scope.project.config.length > $scope.levelsOfUndo ){
       $scope.project.config.splice($scope.levelsOfUndo,$scope.project.config.length);
     }
@@ -187,6 +237,7 @@ $scope.undoEdit=function(){
     .then(function(result){
     });
 };
+
 
 // this function takes your manifest object and add the ai-page,ai-row and ai-col attributes makeing is suitable for insertion into the appConfig
 $scope.manifestToAppConfig=function(page,row,column,manifestObj){
@@ -217,13 +268,10 @@ $scope.renderattributeString=function(obj){
     for(var attribName in obj){
         if(attribName.indexOf('ai_bootstrap_width') > -1 ){
             for(var bootSize in obj[attribName]){
-              console.log(bootSize);
              ngClassString+="'col-"+bootSize+"-"+obj[attribName][bootSize]['size']+"\': true,";
-             console.log(ngClassString);
             }
         }else if(attribName.indexOf('ai_bootstrap_show') > -1){
            for(var bootShow in obj[attribName]){
-            console.log(bootShow);
                 if(obj[attribName][bootShow]['show'] == 'false'){
                     ngClassString+="'hidden-"+bootShow+"' : true,";
                 }
@@ -234,8 +282,66 @@ $scope.renderattributeString=function(obj){
     }
     ngClassString+="'edit_row_passive' : true,";
     attributeString+=ngClassString;
-    console.log(attributeString);
     return attributeString;
+};
+
+$scope.normalizeIds=function(obj,stack){
+
+      if (obj.hasOwnProperty('ai_directive')) {
+              if (stack === undefined){
+                  var stack={
+                      lastNormalPage:0,
+                      lastNormalRow:0,
+                      lastNormalCol:0
+                  }
+              }
+             //if its a page
+             if((obj.ai_directive_type ==='layout') && (obj['ai_directive_name'] === 'ai_page')){
+                  stack.lastNormalPage++;
+                  stack.lastNormalRow=0;
+                  console.log('ai_page'+stack.lastNormalPage);
+                  obj.ai_directive_page=stack.lastNormalPage;
+                  obj.ai_directive_row="";
+                  obj.ai_directive_col="";
+             }
+             //if its a row
+             if((obj.ai_directive_type ==='layout') && (obj['ai_directive_name'] === 'ai_row')){
+                stack.lastNormalRow++;
+                stack.lastNormalCol=0;
+                 console.log('ai_row'+stack.lastNormalRow);
+                  obj.ai_directive_page=stack.lastNormalPage;
+                  obj.ai_directive_row=stack.lastNormalRow;
+                  obj.ai_directive_col="";
+                  var counter=0;
+                  var tempArry=[];
+                  var tempObj={};
+                  for(var key in obj['cols']){ tempArry.push(obj['cols'][key]); }
+                      obj['cols']={};
+                      for(var i=0; i < tempArry.length; i++){
+                          tempObj['col_'+(i+1)]=tempArry[i];
+                      }
+                      obj['cols']=tempObj;
+              }
+             //if its a col
+             if((obj.ai_directive_type ==='layout') && (obj['ai_directive_name'] === 'ai_col')){
+                stack.lastNormalCol++;
+               // console.log('ai_col'+stack.lastNormalCol);
+                  obj.ai_directive_page=stack.lastNormalPage;
+                  obj.ai_directive_row=stack.lastNormalRow;
+                  obj.ai_directive_col=stack.lastNormalCol;
+             }
+             //if its a content
+             if((obj.ai_directive_type ==='content')){
+                  obj.ai_directive_page=stack.lastNormalPage;
+                  obj.ai_directive_row=stack.lastNormalRow;
+                  obj.ai_directive_col=stack.lastNormalCol;
+             }
+      }
+      for (var property in obj) {
+                if(typeof obj[property] == "object"){
+                    $scope.normalizeIds(obj[property],stack);
+                }
+      }
 };
 
 // this function append a compiled page into the DOM
@@ -254,7 +360,6 @@ $scope.renderPageHtmlFromAiConfig=function(obj) {
 
 // this function append a compiled row into the DOM
 $scope.renderRowHtmlFromAiConfig=function(obj) {
-  console.log(obj)
       if (obj.hasOwnProperty('ai_directive')) {
         if((obj.ai_directive_type ==='layout') && (obj['ai_directive_name'] === 'ai_row')){
                 angular.element(workarea).append($compile('<div   '+ $scope.renderattributeString(obj['ai_directive_attributes'])+'\'edit_row_active\':getEditCandidate(\'p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row\')}"   ng-mouseenter="setEditCandidate(\'p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row\')" ng-mouseleave="setEditCandidate(\'\')"><ai-edit-hot-spot set-active-edit-element="setEditSelect()" " active-edit-element="editCandidate" edit-object-type="row" ai-edit-hot-spot-id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row"></ai-edit-hot-spot><div class="container" id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_ai_row"></div></div>')($scope));
@@ -302,9 +407,9 @@ $scope.renderClearfixHtmlFromAiConfig=function(obj) {
 // position of the last column i saw while iterating.
 $scope.renderDirectiveHtmlFromAiConfig=function(obj) {
       if (obj.hasOwnProperty('ai_directive')) {
-        if(obj['ai_directive_type'] ==='content'){
+        if(obj['ai_directive_type'] === 'content'){
             $scope.appendTarget='#p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_c_'+obj['ai_directive_col']+'_ai_col';
-            angular.element(document.querySelector( $scope.appendTarget )).append($compile('<div style="margin:0px;padding:10px"><'+obj['ai_directive_name']+' id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_c_'+obj['ai_directive_col']+'" '+$scope.renderattributeString(obj['ai_directive_attributes'])+'\'directiveSpace\': true}"></'+obj['ai_directive_name']+'></div>')($scope));
+            angular.element(document.querySelector( $scope.appendTarget )).append($compile('<div style="margin:0px;padding:0px" class="directiveLandingZone"><'+obj['ai_directive_name']+' id="p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_c_'+obj['ai_directive_col']+'" '+$scope.renderattributeString(obj['ai_directive_attributes'])+'\'directiveSpace\': true}"></'+obj['ai_directive_name']+'></div>')($scope));
         }
       }
       for (var property in obj) {
@@ -346,7 +451,7 @@ $scope.getNextColumnInRow=function(page,row){
   return  newCol;
 };
 
-// this function will return a reference to the needed config tagget
+// this function will create the needed target object and return a reference to the  config target
 $scope.makeConfigTarget=function(page,row,column,landDirective){
   if(landDirective){
     if($scope.appConfig.pages['page_'+page]['rows']['row_'+row]['cols'].hasOwnProperty('col_'+column)){
@@ -364,6 +469,50 @@ $scope.makeConfigTarget=function(page,row,column,landDirective){
   }
 };
 
+$scope.setPostionProperties=function(object,page,row,column){
+      object.ai_directive_page=page;
+      object.ai_directive_row=row;
+      object.ai_directive_col=column;
+}
+
+$scope.moveElementHorz=function(direction){
+  console.log(direction);
+   if(($scope.appConfigEditCopy.ai_directive_col-1 < 1) && (direction === 'left')){return}else{var targetColPosition=$scope.appConfigEditCopy.ai_directive_col-1};
+   if(direction === 'right'){var targetColPosition=$scope.appConfigEditCopy.ai_directive_col+1};
+    var configTarget=$scope.getTargetObjectById($scope.appConfigEditCopy.ai_directive_page,$scope.appConfigEditCopy.ai_directive_row,targetColPosition);
+    if((configTarget === undefined)){return};
+    console.log(configTarget);
+
+    // move the element to the left/right into the active elements position
+    angular.copy(configTarget,$scope.referenceToEditInAppConfig);
+    //correct the position labels
+
+    $scope.setPostionProperties($scope.referenceToEditInAppConfig,$scope.appConfigEditCopy.ai_directive_page,$scope.appConfigEditCopy.ai_directive_row,$scope.appConfigEditCopy.ai_directive_col);
+    $scope.setPostionProperties($scope.referenceToEditInAppConfig.ai_content,$scope.appConfigEditCopy.ai_directive_page,$scope.appConfigEditCopy.ai_directive_row,$scope.appConfigEditCopy.ai_directive_col);
+    //correct the position labels in the edit copy
+    $scope.setPostionProperties($scope.appConfigEditCopy,$scope.appConfigEditCopy.ai_directive_page,$scope.appConfigEditCopy.ai_directive_row,targetColPosition);
+    $scope.setPostionProperties($scope.appConfigEditCopy.ai_content,$scope.appConfigEditCopy.ai_directive_page,$scope.appConfigEditCopy.ai_directive_row,$scope.appConfigEditCopy.ai_directive_col);
+    // move edit copy content into left element
+    angular.copy($scope.appConfigEditCopy,configTarget);
+    $scope.saveEntireProject();
+}
+
+$scope.moveElementVert=function(direction){
+    var targetRowPosition=0;
+    if(($scope.appConfigEditCopy.ai_directive_row-1 < 1) && (direction === 'up')){return}else{var targetRowPosition=$scope.appConfigEditCopy.ai_directive_row-1};
+    if(direction === 'down'){targetRowPosition=$scope.appConfigEditCopy.ai_directive_row+1};
+    var configTarget=$scope.makeConfigTarget($scope.appConfigEditCopy.ai_directive_page,targetRowPosition,$scope.getLastColumn($scope.appConfigEditCopy.ai_directive_page,targetRowPosition)+1);
+    if((configTarget === undefined)){return};
+    // move the element to the into the active elements position
+    angular.copy($scope.appConfigEditCopy,configTarget);
+    $scope.setPostionProperties(configTarget,$scope.appConfigEditCopy.ai_directive_page,targetRowPosition,$scope.getLastColumn($scope.appConfigEditCopy.ai_directive_page,targetRowPosition))
+    $scope.setPostionProperties(configTarget.ai_content,$scope.appConfigEditCopy.ai_directive_page,targetRowPosition,$scope.getLastColumn($scope.appConfigEditCopy.ai_directive_page,targetRowPosition))
+    angular.copy({},$scope.referenceToEditInAppConfig);
+    $scope.saveEntireProject();
+
+}
+
+
 // add a page
 $scope.addNewPage=function(page,manifest){
   // get the next available page number
@@ -373,12 +522,10 @@ $scope.addNewPage=function(page,manifest){
   // send it to the server
   // replace the appconfig the servers reply (now the server and the page are in sync)
   // it will then take that page object and add it
-  console.dir($scope.manifestToAppConfig(1,'','',manifest));
   $scope.creatConfigObject($scope.configTarget,$scope.manifestToAppConfig(page,'','',manifest));
 };
 // add a row
 $scope.addNewRow=function(page,row,manifest){
-  console.log(page,row)
   // call manifestToAppConfig on that page number to the config
   $scope.configTarget=$scope.makeConfigTarget(page,row);
   // copy it to the edit object
@@ -386,7 +533,6 @@ $scope.addNewRow=function(page,row,manifest){
   // replace the appconfig the servers reply (now the server and the page are in sync)
   // it will then take that page object and add it
   //console.log($scope.configTarget);
-  console.log($scope.manifestToAppConfig(page,row,'',manifest));
   $scope.creatConfigObject($scope.configTarget,$scope.manifestToAppConfig(page,row,'',manifest));
 };
 $scope.addNewColumn=function(page,row,column,manifest){
@@ -397,7 +543,6 @@ $scope.addNewColumn=function(page,row,column,manifest){
   // send it to the server
   // replace the appconfig the servers reply (now the server and the page are in sync)
   // it will then take that page object and add it
-  console.log($scope.configTarget);
   $scope.creatConfigObject($scope.configTarget,$scope.manifestToAppConfig(page,row,column,manifest));
 };
 // add new directive NOTE: there is no add column because there is a one to one relationshiop between direstives and columns
@@ -409,7 +554,6 @@ $scope.addNewDirective=function(page,row,column,manifest){
   // send it to the server
   // replace the appconfig the servers reply (now the server and the page are in sync)
   // it will then take that page object and add it
-  console.log($scope.configTarget);
   $scope.creatConfigObject($scope.configTarget,$scope.manifestToAppConfig(page,row,column,manifest));
   $scope.moveConfigObjectToEdit($scope.configTarget);
 };
@@ -432,10 +576,11 @@ $scope.addToPage=function(manifest){
         $scope.setEditCandidate('p_'+$scope.lastPage+'_r_'+$scope.lastRow+'_c_'+$scope.lastColumn+'_ai_col');
         $scope.setEditSelect();
         $scope.DSopen=false;
+        $scope.saveEdit('addtoPage');
       },1000);
   }
   $scope.DSopen=false;
-  $scope.cplopen=true;
+  $timeout(function(){$scope.cplopen=true},1500);
 };
 
 $scope.project=project; //init the $scope.project for resolve of project in state machine
@@ -448,10 +593,16 @@ $timeout(function(){
         };
     }else{
         $scope.appConfig={};
-        angular.copy($scope.project.config[0],$scope.appConfig);
+        $scope.appConfigTemp={};
+        angular.copy($scope.project.config[0],$scope.appConfigTemp);
+        $scope.normalizeIds($scope.appConfigTemp); // normalize the object before it is render
+        $timeout(function(){
+            angular.copy($scope.appConfigTemp,$scope.appConfig);
+            console.dir($scope.appConfig);
+        },500);
     }
+   // angular.copy($scope.appConfigtemp,$scope.appConfig);
 },100);
-
 // this watch block renders a the dom when the appconfig changes
 $scope.$watch('appConfig',function(){
   angular.element(workarea).empty();
@@ -464,7 +615,7 @@ $scope.$watch('appConfig',function(){
       $scope.getLastColumn();
       $scope.renderClearfixHtmlFromAiConfig($scope.appConfig, '');
 
-
+    console.dir($scope.appConfig)
   },500);
 },true);
 
@@ -478,6 +629,14 @@ $scope.getEditCandidate=function(id){
 
 $scope.setEditCandidate=function(id){
     $scope.editCandidate = id
+    $scope.gotoBottom = function() {
+      // set the location.hash to the id of
+      // the element you wish to scroll to.
+      $location.hash('p_1_r_2_c_3_ai_col');
+
+      // call $anchorScroll()
+      $anchorScroll();
+};
 }
 
 $scope.findDirectiveToMakeActiveEdit=function(obj,idToMatch) {
@@ -500,9 +659,11 @@ $scope.findDirectiveToMakeActiveEdit=function(obj,idToMatch) {
       }
 };
 
+
 $scope.setEditSelect=function(id){
     // THE DIRECTIVE THAT IS IN THE EDIT CANDIDATE COLUMN
     $scope.cplopen=true;
+    $scope.DSopen=false;
     $scope.findDirectiveToMakeActiveEdit($scope.appConfig,$scope.editCandidate);
 }
 
