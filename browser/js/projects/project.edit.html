@@ -56,12 +56,16 @@
                                           </div> -->
 
                                           <div ng-hide="appConfigEditCopy.ai_content.ai_directive_attributes.ai_info_node_source" class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" ><label class="cpl_input_labels">info source</label><select ng-options="source._id as source.fileName for source in uploadedFiles" class="form-control" type="text" id={{key}} ng-model="appConfigEditCopy.ai_content.ai_directive_attributes.ai_info_source" name={{key}}></select>
+                                          {{appConfigEditCopy.ai_content.ai_directive_attributes.ai_info_source}}
                                           </div>
                                           <!-- edges and nodes -->
 
                                           <div ng-show="appConfigEditCopy.ai_content.ai_directive_attributes.ai_info_node_source" class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" ><label class="cpl_input_labels">info node source</label><select ng-options="source._id as source.fileName for source in uploadedFiles" class="form-control" type="text" id={{key}} ng-model="appConfigEditCopy.ai_content.ai_directive_attributes.ai_info_node_source" name={{key}}></select>
                                           </div>
                                           <div ng-show="appConfigEditCopy.ai_content.ai_directive_attributes.ai_info_node_source" class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" ><label class="cpl_input_labels">info edge source</label><select ng-options="source._id as source.fileName for source in uploadedFiles" class="form-control" type="text" id={{key}} ng-model="appConfigEditCopy.ai_content.ai_directive_attributes.ai_info_edge_source" name={{key}}></select>
+                                          </div>
+                                            <!-- return file headers -->
+                                          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" ><label class="cpl_input_labels">File Headers:</label> <button class="btn btn-xs header-label" ng-repeat="header in getHeaders(appConfigEditCopy.ai_content.ai_directive_attributes.ai_info_source,fileHeaders)">{{header}}</button>
                                           </div>
 
                                           <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" ><label class="cpl_input_labels">                                           <!-- <file-uploader projId='{{projId}}' userId='{{userId}}'></file-uploader> -->

@@ -8,7 +8,8 @@ app.directive('aiClickImg', function() {
       aiImgUrl: '@',
       bordertype:'@',
       bordercolor:'@',
-      borderweight:'@'
+      borderweight:'@',
+      caption:'@'
     },
     templateUrl: 'directiveStore/ai_click_img/ai_click_img.html',
     link: function(scope, elem, attr) {
@@ -20,6 +21,7 @@ app.directive('aiClickImg', function() {
       let bordertype=attr.bordertype;
       let bordercolor=attr.bordercolor;
       let borderweight=attr.borderweight;
+      let caption=attr.caption;
 
       scope.image = {
         "params": null
@@ -29,8 +31,10 @@ app.directive('aiClickImg', function() {
         "height": height,
         "width": width,
         "src": imgUrl,
-        "href": href
-      }
+        "href": href,
+        "caption":caption
+      };
+
 
       if(bordertype && borderweight && bordercolor){
         scope.image.params["border"]="border: "+bordertype+" "+bordercolor+" "+borderweight;
