@@ -38,21 +38,24 @@ function csvJSON(csv){
  return JSON.stringify(result); //JSON
 }
 
-router.get('/datasources/:projId', function(req, res, next){
+router.get('/datasourcesproj/:projId', function(req, res, next){
   console.log('req.params is ' + req.params);
   Promise.all([DataSource.find({project: req.params.projId}),DataSource.find({seed:true})])
     .spread(function(projData,seedData){
       var allData=projData.concat(seedData);
       console.log('allData is ' + allData);
 
-      res.send(allData)
+      res.send(allData);
     });
-  // DataSource.find({project: req.params.projId})
-  // .then(function(response){
-  //   console.log('response is ' + response);
-  //   res.send(response)
-  // })
 });
+
+router.get('/datasourcesuser/:userId', function(req, res, next){
+  Promise.all([DataSource.find({user: req.params.userId}),DataSource.find({seed:true})])
+    .spread(function(projData,userdata){
+      var allData=projData.concat(userdata);
+      res.send(allData);
+    });
+})
 
 router.get('/:id', function(req, res, next) {
   DataSource.findById(req.params.id)

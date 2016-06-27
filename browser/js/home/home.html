@@ -21,6 +21,15 @@
 
   </div>
 
+
+  <div ng-show="isLoggedIn()">
+    <h3 id="dfHeader">Your data files</h3>
+    <div id="modalDiv">
+      <button type="button" class="btn" ng-class="data.seed ? 'btn-success btn-md' : 'btn-info btn-md' " id="modalBtn" ng-repeat="data in userData" ng-click='open(data)'>{{data.fileName}}</button>
+    </div>
+  </div>
+
+
 <div ng-hide="isLoggedIn()" id="splashscreen">
   <img src="/images/sea-nature-flying-water.png" width=100% height=100%>
   <div id="homepage-text-wrapper">
