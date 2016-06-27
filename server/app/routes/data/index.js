@@ -68,8 +68,7 @@ router.get('/:id', function(req, res, next) {
 router.post('/:projId/:userId', function(req, res, next){
   console.log('Entering POST route');
   console.log('req.files is');
-  console.log('req', req);
-  console.log(req.files);
+  console.log('req', req.files);
   console.log(req.files.file.name);
   var filePathName = rootPath + 'files/' + req.files.file.name;
   var filename = req.files.file.name;

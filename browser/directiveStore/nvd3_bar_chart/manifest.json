@@ -1,0 +1,17 @@
+{
+    "ai_directive" : "true",
+    "ai_directive_type" : "content",
+    "ai_directive_name" : "nvd3_bar_chart",
+    "ai_directive_preview":"./directiveStore/nvd3_bar_chart/preview.png",
+    "ai_directive_desc":"NVD3 Discrete Bar Chart",
+    "ai_datatype":"linear",
+    "ai_directive_attributes" : {
+        "ai_title": "Corporate Profits",
+        "ai_height" : "400",
+        "ai_width" : "400",
+        "key":"Profits",
+        "label":"Company",
+        "yvalue":"2014",
+        "ai_info_source":"577162443bf521b02eb0b121"
+      }
+    },

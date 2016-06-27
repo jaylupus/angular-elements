@@ -1,5 +1,5 @@
-
-app.controller('ProjectEditCtrl', function($scope,$compile,$timeout,project,dataFiles,manifestFactory,$stateParams,AuthService,ProjectFactory,$location,$anchorScroll,Upload){
+"use strict";
+app.controller('ProjectEditCtrl', function($scope,$compile,$timeout,project,dataFiles,manifestFactory,$stateParams,AuthService,ProjectFactory,$location,$anchorScroll,Upload,projectDataFactory){
 // TEST THE FOLLOWING FUNCTIONS
 // add a page
 // add a row
@@ -31,7 +31,7 @@ $scope.uploadFiles = function(file, errFiles) {
         $timeout(function () {
             file.result = response.data;
             $scope.uploadedFiles.push(file.result);
-            console.log($scope.uploadedFiles);
+            $scope.getFields();
         });
     }, function (response) {
         if (response.status > 0)
@@ -43,6 +43,31 @@ $scope.uploadFiles = function(file, errFiles) {
   }
 };
 
+
+//this is to isolate headers on all files in the array
+$scope.getFields= function(){
+  let _fileHeaders = {};
+    $scope.uploadedFiles.forEach(function(file){
+      if(JSON.parse(file.data)[0]){
+        let firstRow=JSON.parse(file.data)[0];
+        let headers=Object.keys(firstRow);
+        _fileHeaders[file._id]=headers;
+      } else {
+        _fileHeaders[file._id]=['not applicable']
+      }
+    })
+    $scope.fileHeaders=_fileHeaders;
+}
+//this gets headers for specific file id
+$scope.getHeaders = function(fileId,fileHeaders){
+  var headers;
+  if(fileId){
+    headers=fileHeaders[fileId];
+  }
+  return headers;
+}
+
+$scope.getFields();
 // this is the app config
 $scope.appConfigtemp={};
 $scope.allManifests={};
