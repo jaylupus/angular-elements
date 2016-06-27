@@ -1,3 +1,10 @@
-<h4>Filename: {{data.fileName}}</h4>
-<h4>Data Type: {{data.dataType}}</h4>
-<h4>Data: {{data.data}}</h4>
+<div class="data-modal">
+  <h4>Filename: {{data.fileName}}</h4>
+  <h4>Data Type: {{data.dataType}}</h4>
+  <h4> Data: </h4>
+                  <div class="well data-view">
+                    <pre>
+{{data.data}}
+                    </pre>
+                  </div>
+</div>

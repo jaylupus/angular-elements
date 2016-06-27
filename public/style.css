@@ -4,9 +4,32 @@
 body {
   background: #fdfdfd; }
 
+#project-list li {
+  list-style-type: none; }
+
+#project-list i {
+  margin: 10px; }
+
+.tile {
+  min-height: 40px;
+  background-color: rgba(91, 192, 222, 0.46);
+  border-radius: 10px;
+  min-width: 50px; }
+  .tile a {
+    font-size: 1em; }
+
+.modal-content {
+  border-radius: 10px;
+  padding: 10px; }
+
+.githubbtn {
+  background: black; }
+
 #modalDiv {
   width: 30em;
   margin-left: 9em; }
+  #modalDiv .btn-sm {
+    padding: 4px 12px; }
 
 #dfHeader {
   width: 30em;
