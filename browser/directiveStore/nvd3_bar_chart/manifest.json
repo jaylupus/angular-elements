@@ -12,6 +12,10 @@
         "key":"Profits",
         "label":"Company",
         "yvalue":"2014",
+<<<<<<< HEAD
+        "ai_info_source":"57717ecda314ff35c328deaf"
+=======
         "ai_info_source":"57718620899b43283b86b07b"
+>>>>>>> e84bf57351eae0ba971afa324f1e4920bcbe9fdc
       }
     },

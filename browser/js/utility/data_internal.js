@@ -14,11 +14,18 @@ app.factory('projectDataFactory', function($http) {
         });
     },// get internal
     dataByProjId: function(projId) {
-      return $http.get('/api/data/datasources/' + projId)
+      return $http.get('/api/data/datasourcesproj/' + projId)
         .then(function(dataObject) {
-          console.log('dataObject is ' + dataObject);
+          console.log('dataObject is ');
+          console.log(dataObject.data)
           return dataObject.data;
         });
+    },
+  dataByUserId: function(userId){
+    return $http.get('/api/data/datasourcesuser/' + userId)
+      .then(function(dataObject){
+        return dataObject.data;
+      });
     }
   }
 });
