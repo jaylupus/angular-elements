@@ -1,14 +1,14 @@
 navbar {
 
   display: block;
-  background: white;
+  background: transparent;
   border-bottom: 1px solid black;
   box-shadow: 1px 1px 14px -3px black;
 
   .container {
     width: 91%;
     max-width: 1340px;
-    padding-top: 20px;
+    padding-top: 15px;
   }
 
   fullstack-logo {
@@ -21,10 +21,17 @@ navbar {
     color: black;
     font-size: 16px;
   }
+  button {
+    font-size: 2em;
+    font-family: 'Poiret One', cursive;
+  }
 
   .nav > li > a {
     cursor: pointer;
     transition: color 0.2s;
+    font-size: 2em;
+    font-family: 'Poiret One', cursive;
+
     &.active {
       color: darken(#f31214, 10%);
     }
