@@ -4,6 +4,10 @@
 body {
   background: #fdfdfd; }
 
+.modal-content {
+  border-radius: 10px;
+  padding: 10px; }
+
 .githubbtn {
   background: black; }
 
