@@ -53,11 +53,69 @@ body {
 
 }
 
-
-
 #splash-btn-wrapper {
   color:white;
   font-family: 'Poiret One', cursive;
+  position:fixed;
+  left:680px;
+  top:360px;
+
+}
+
+
+
+@media only screen and (max-width: 768px) {
+
+  #homepage-text-wrapper{
+      left:100px;
+      top:210px;
+  }
+
+
+   #splash-btn-wrapper {
+        left:280px;
+        top:460px;
+
+        button {
+          height: 150px;
+          width: 150px;
+          font-size: 1em;
+        }
+    }
+  #splash-btn {
+      height: 150px;
+      width: 150px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+
+  #homepage-text-wrapper{
+
+    h1 {
+          font-size: 2em;
+          /*font-family: 'Inconsolata' ;*/
+          font-family: 'Poiret One', cursive;
+        }
+      h3 {
+        /*font-family: monospace;*/
+        /*font-family: 'Inconsolata' ;*/
+        font-family: 'Poiret One', cursive;
+      }
+      left:100px;
+      top:210px;
+  }
+
+
+   #splash-btn-wrapper {
+        left:120px;
+        top:360px;
+        button {
+          height: 100px;
+          width: 100px;
+          font-size: 1em;
+        }
+    }
 
 }
 
