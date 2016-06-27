@@ -1,5 +1,5 @@
 
-app.controller('ProjectEditCtrl', function($scope,$compile,$timeout,project,manifestFactory,$stateParams,AuthService,ProjectFactory,$location,$anchorScroll){
+app.controller('ProjectEditCtrl', function($scope,$compile,$timeout,project,dataFiles,manifestFactory,$stateParams,AuthService,ProjectFactory,$location,$anchorScroll){
 // TEST THE FOLLOWING FUNCTIONS
 // add a page
 // add a row
@@ -15,6 +15,33 @@ var getUserId = function(){
 }
 getUserId();
 
+//fileUploader Functionality
+$scope.uploadedFiles = dataFiles;
+$scope.uploadFiles = function(file, errFiles) {
+  $scope.f = file;
+  $scope.errFile = errFiles && errFiles[0];
+  if (file) {
+    file.upload = Upload.upload({
+        url: '/api/data/' + $scope.projId + '/' + $scope.userId,
+        data: {file: file},
+        method: 'POST'
+    });
+
+    file.upload.then(function (response) {
+        $timeout(function () {
+            file.result = response.data;
+            $scope.uploadedFiles.push(file.result);
+            console.log($scope.uploadedFiles);
+        });
+    }, function (response) {
+        if (response.status > 0)
+            $scope.errorMsg = response.status + ': ' + response.data;
+    }, function (evt) {
+        file.progress = Math.min(100, parseInt(100.0 *
+                                 evt.loaded / evt.total));
+    });
+  }
+};
 
 // this is the app config
 $scope.appConfigtemp={};
@@ -27,7 +54,7 @@ $scope.referenceToEditInAppConfig={};
 $scope.activeEdit={};
 $scope.CurrentViewWidth='0';
 $scope.containermode='container';
-$scope.project_info_sources=[{"id":"5765c87f0c9b38eff0f8dcb7","description":"this is an info"},{"id":"0930ej2n32dj023dn23d02n3d","description":"this is also an info"}];
+//$scope.project_info_sources=[{"id":"5765c87f0c9b38eff0f8dcb7","description":"this is an info"},{"id":"0930ej2n32dj023dn23d02n3d","description":"this is also an info"}];
 $scope.availableColumnWidths=[{'width':'1'},{'width':'2'},{'width':'3'},{'width':'4'},{'width':'5'},{'width':'6'},{'width':'7'},{'width':'8'},{'width':'9'},{'width':'10'},{'width':'11'},{'width':'12'}];
 $scope.availableColumnShow=[{'show':'true'},{'show':'false'}];
 $scope.builtInManifests=[];
@@ -58,7 +85,7 @@ $scope.ai_row_manifest={
     ai_directive_type : 'layout',
     ai_directive_name : 'ai_row',
     ai_directive_attributes : {
-        ai_class : '/css/row_a/style.css', 
+        ai_class : '/css/row_a/style.css',
         'class' : '',
         'style' : '',
         'ai_bootstrap_show': {'xs':{'colsize':'xs','show':'true','devicename':'phone'},'sm':{'colsize':'sm','show':'true','devicename':'tablet'},'md':{'colsize':'md','show':'true','devicename':'laptop'},'lg':{'colsize':'lg','show':'true','devicename':'desktop'}}
@@ -166,9 +193,9 @@ $scope.saveEdit=function(caller){
         $scope.normalizeIds($scope.appConfigTemp); // normalize the object before it is render
         $timeout(function(){
             angular.copy($scope.appConfigTemp,$scope.appConfig);
-        },500); */   
+        },500); */
     });
-    
+
     if(caller !== 'addtoPage'){$scope.clearEdit()};
 
 };
@@ -260,7 +287,7 @@ $scope.renderattributeString=function(obj){
 
 $scope.normalizeIds=function(obj,stack){
 
-      if (obj.hasOwnProperty('ai_directive')) {   
+      if (obj.hasOwnProperty('ai_directive')) {
               if (stack === undefined){
                   var stack={
                       lastNormalPage:0,
@@ -273,7 +300,7 @@ $scope.normalizeIds=function(obj,stack){
                   stack.lastNormalPage++;
                   stack.lastNormalRow=0;
                   console.log('ai_page'+stack.lastNormalPage);
-                  obj.ai_directive_page=stack.lastNormalPage; 
+                  obj.ai_directive_page=stack.lastNormalPage;
                   obj.ai_directive_row="";
                   obj.ai_directive_col="";
              }
@@ -282,7 +309,7 @@ $scope.normalizeIds=function(obj,stack){
                 stack.lastNormalRow++;
                 stack.lastNormalCol=0;
                  console.log('ai_row'+stack.lastNormalRow);
-                  obj.ai_directive_page=stack.lastNormalPage; 
+                  obj.ai_directive_page=stack.lastNormalPage;
                   obj.ai_directive_row=stack.lastNormalRow;
                   obj.ai_directive_col="";
                   var counter=0;
@@ -292,20 +319,20 @@ $scope.normalizeIds=function(obj,stack){
                       obj['cols']={};
                       for(var i=0; i < tempArry.length; i++){
                           tempObj['col_'+(i+1)]=tempArry[i];
-                      } 
+                      }
                       obj['cols']=tempObj;
               }
              //if its a col
              if((obj.ai_directive_type ==='layout') && (obj['ai_directive_name'] === 'ai_col')){
                 stack.lastNormalCol++;
                // console.log('ai_col'+stack.lastNormalCol);
-                  obj.ai_directive_page=stack.lastNormalPage; 
+                  obj.ai_directive_page=stack.lastNormalPage;
                   obj.ai_directive_row=stack.lastNormalRow;
                   obj.ai_directive_col=stack.lastNormalCol;
              }
              //if its a content
              if((obj.ai_directive_type ==='content')){
-                  obj.ai_directive_page=stack.lastNormalPage; 
+                  obj.ai_directive_page=stack.lastNormalPage;
                   obj.ai_directive_row=stack.lastNormalRow;
                   obj.ai_directive_col=stack.lastNormalCol;
              }
@@ -371,7 +398,7 @@ $scope.renderClearfixHtmlFromAiConfig=function(obj) {
       }
       for (var property in obj) {
                 if(typeof obj[property] == "object"){
-                    $scope.renderClearfixHtmlFromAiConfig(obj[property]); 
+                    $scope.renderClearfixHtmlFromAiConfig(obj[property]);
                 }
       }
 };
@@ -462,7 +489,7 @@ $scope.moveElementHorz=function(direction){
 
     $scope.setPostionProperties($scope.referenceToEditInAppConfig,$scope.appConfigEditCopy.ai_directive_page,$scope.appConfigEditCopy.ai_directive_row,$scope.appConfigEditCopy.ai_directive_col);
     $scope.setPostionProperties($scope.referenceToEditInAppConfig.ai_content,$scope.appConfigEditCopy.ai_directive_page,$scope.appConfigEditCopy.ai_directive_row,$scope.appConfigEditCopy.ai_directive_col);
-    //correct the position labels in the edit copy 
+    //correct the position labels in the edit copy
     $scope.setPostionProperties($scope.appConfigEditCopy,$scope.appConfigEditCopy.ai_directive_page,$scope.appConfigEditCopy.ai_directive_row,targetColPosition);
     $scope.setPostionProperties($scope.appConfigEditCopy.ai_content,$scope.appConfigEditCopy.ai_directive_page,$scope.appConfigEditCopy.ai_directive_row,$scope.appConfigEditCopy.ai_directive_col);
     // move edit copy content into left element
@@ -572,7 +599,7 @@ $timeout(function(){
         $timeout(function(){
             angular.copy($scope.appConfigTemp,$scope.appConfig);
             console.dir($scope.appConfig);
-        },500);    
+        },500);
     }
    // angular.copy($scope.appConfigtemp,$scope.appConfig);
 },100);
@@ -601,7 +628,7 @@ $scope.getEditCandidate=function(id){
 }
 
 $scope.setEditCandidate=function(id){
-    $scope.editCandidate = id  
+    $scope.editCandidate = id
     $scope.gotoBottom = function() {
       // set the location.hash to the id of
       // the element you wish to scroll to.
@@ -609,7 +636,7 @@ $scope.setEditCandidate=function(id){
 
       // call $anchorScroll()
       $anchorScroll();
-};    
+};
 }
 
 $scope.findDirectiveToMakeActiveEdit=function(obj,idToMatch) {
@@ -620,8 +647,8 @@ $scope.findDirectiveToMakeActiveEdit=function(obj,idToMatch) {
                   var colidstring='p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_c_'+obj['ai_directive_col']+'_ai_col';
                 if((idToMatch == rowidstring) || (idToMatch == colidstring)){
                       $scope.referenceToEditInAppConfig=obj;
-                      angular.copy(obj,$scope.appConfigEditCopy); 
-                      return 
+                      angular.copy(obj,$scope.appConfigEditCopy);
+                      return
                 }
         }
       }
