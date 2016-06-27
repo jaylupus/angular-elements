@@ -1,6 +1,8 @@
 <section id="home">
 
-  <div class="container">
+  <div id="homepage" class="container ">
+
+
 
     <div class="row">
 
@@ -18,8 +20,25 @@
     </div>
 
   </div>
-  <div class="container">
-    <div ng-hide="isLoggedIn()" class="row" id="welcome">
+
+<div ng-hide="isLoggedIn()" id="splashscreen">
+  <img src="/images/sea-nature-flying-water.png" width=100% height=100%>
+  <div id="homepage-text-wrapper">
+    <h1> Angler </h1>
+    <h3> Create a single page angular app</h3>
+
+  </div>
+  <div id="splash-btn-wrapper" style="position:fixed;left:680px; top:340px; ">
+
+    <button class="btn btn-primary" id="splash-btn" ng-click="signup()"> Get Started <!-- <i class="fa fa-2x fa-ship" aria-hidden="true"></i> --><img src="images/Fish-fish-sm.png" /></button>
+  </div>
+
+</div>
+
+
+
+  <!-- <div class="container">
+    <div id="welcome" ng-hide="isLoggedIn()" class="row" id="welcome">
         <h3>Welcome to The App Builder Thing!</h3>
         <p> You can use our site to generate a single page data site. It also makes pizza. To get started, click create a new project.
 
@@ -41,9 +60,7 @@
 
         </div>
     </div>
-  </div>
-<!--   <file-uploader></file-uploader> -->
-  {{user}}
+  </div> -->
 
 </section>
 

@@ -29,8 +29,8 @@ var createTemplate = function(idObject){
               </div>
               <div class= "col col-md-6 ds-long-desc">
                 <h4> Page Title </h4>
-                <p> long form description</p>
-                <p> data viewer</p>
+                <p> Go ahead, give that page a title!</p>
+
               </div>
             </div>
             <hr>
@@ -41,8 +41,8 @@ var createTemplate = function(idObject){
               </div>
               <div class= "col col-md-6 ds-long-desc">
                  <h4> Block Quote </h4>
-                <p> long form description</p>
-                <p> data viewer</p>
+                <p> Hopefully a famous person said something great about you</p>
+
               </div>
             </div>
             <hr>
@@ -53,8 +53,8 @@ var createTemplate = function(idObject){
               </div>
               <div class= "col col-md-6 ds-long-desc">
                  <h4> Section Text </h4>
-                <p> long form description</p>
-                <p> data viewer</p>
+                <p> Sometimes you've got to spell it out for them...</p>
+
               </div>
             </div>
             <hr>
@@ -77,7 +77,7 @@ var createTemplate = function(idObject){
               <div class= "col col-md-6 ds-long-desc">
                 <h4> Clickable Image</h4>
                 <p> An image with a clickable link.</p>
-                <p> data viewer</p>
+
               </div>
           </div>
           <hr>
@@ -97,7 +97,7 @@ var createTemplate = function(idObject){
               <div class= "col col-md-6 ds-long-desc">
                 <h4> Personal Profile</h4>
                 <p> Add your profile photo and a short description.</p>
-                <p> data viewer</p>
+
               </div>
           </div>
           <hr>

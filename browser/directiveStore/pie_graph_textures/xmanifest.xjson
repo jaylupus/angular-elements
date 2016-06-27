@@ -1,0 +1,25 @@
+{
+    "ai_directive" : "true",
+    "ai_directive_type" : "content",
+    "ai_directive_name" : "pie_graph_textures",
+    "ai_directive_preview":"./directiveStore/pie_graph_textures/preview.png",
+    "ai_directive_desc":"Pie Chart with User Input",
+    "ai_directive_display_title":"Pie Chart with User Input",
+    "ai_directive_attributes" : {
+        "ai_title": "Textured Pie Chart",
+        "ai_height" : "200",
+        "ai_width" : "200",
+        "ai_radius": "100",
+        "label1":"Steve",
+        "value1":40,
+        "label2":"Bob",
+        "value2":60,
+        "label3":"Jen",
+        "value3":35,
+        "label4":"Amy",
+        "value4":15,
+        "label5":"Sue",
+        "value5":80
+      }
+    },
+
