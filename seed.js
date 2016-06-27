@@ -144,7 +144,8 @@ var sampleConfig=[
                                               ai_link:"http://www.fullstackacademy.com",
                                               bordertype:"solid",
                                               bordercolor:"black",
-                                              borderweight:"2px"
+                                              borderweight:"2px",
+                                              caption:"best buds"
                                           }
                                 }
                         }

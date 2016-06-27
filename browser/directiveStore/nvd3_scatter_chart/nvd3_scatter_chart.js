@@ -32,6 +32,7 @@ app.directive('nvd3ScatterChart',function(projectDataFactory){
 
                   if( groupIndex ===-1 ){
                     unique_groups.push(row[group_field]);
+
                     transformed.push(
                     {
                       "key":row[group_field],
