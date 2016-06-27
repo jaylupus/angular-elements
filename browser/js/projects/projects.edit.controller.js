@@ -1,5 +1,5 @@
 
-app.controller('ProjectEditCtrl', function($scope,$compile,$timeout,project,dataFiles,manifestFactory,$stateParams,AuthService,ProjectFactory,$location,$anchorScroll){
+app.controller('ProjectEditCtrl', function($scope,$compile,$timeout,project,dataFiles,manifestFactory,$stateParams,AuthService,ProjectFactory,$location,$anchorScroll,Upload){
 // TEST THE FOLLOWING FUNCTIONS
 // add a page
 // add a row

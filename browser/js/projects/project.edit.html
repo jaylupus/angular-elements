@@ -1,21 +1,21 @@
       <div class="container-fluid" style="padding:0px">
-      <!--{{lastPage}}<br>  
+      <!--{{lastPage}}<br>
       {{projId}}
       {{userId}}
-   
+
       {{lastRow}}<br>
       {{lastColumn}}<br>
       all manifests
       <!-- {{allManifests}} -->
-      <!-- 
+      <!--
       {{allManifests}}
       <p>{{referenceToEditInAppConfig}}</p>
       <p>{{appConfigEditCopy}}</p>
       <p>{{appConfig}}</p>
-     
+
       <p>{{appConfigEditCopy.ai_directive_attributes.ai_bootstrap_width}}</p>-->
             <div id="workarea" ></div>
-                  <div id="directive_shop_panel" class="directive_shop_panel" ng-class="{directive_shop_panel_show: DSopen}" ng-click="DSopen = true;cplopen = false" > 
+                  <div id="directive_shop_panel" class="directive_shop_panel" ng-class="{directive_shop_panel_show: DSopen}" ng-click="DSopen = true;cplopen = false" >
                         <div id="control_panel_minbut" class="control_panel_minbut" ng-click="DSopen = false">
                             <span class="glyphicon glyphicon-minus"></span>
                         </div>
@@ -36,7 +36,7 @@
 
                   <div id="control_paneleditbut" ng-show="!cplopen" class="control_panel_minbut" ng-click="cplopen = true;DSopen = false"><span class="glyphicon glyphicon-plus"></span>
                   </div>
-                  
+
                   <div class="container-fluid"> <!-- contol area -->
                         <!-- contol area -->
 
@@ -46,15 +46,15 @@
                             </div>
                             <div class="row" >
                                      <!-- directive properties area -->
-                                    <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7"> 
+                                    <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7">
                                           <!-- singles directive  -->
-                                          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"  ng-repeat="(key, value) in appConfigEditCopy.ai_content.ai_directive_attributes" class="cpl_input_rows" ng-hide="key == 'ai_info_source'"> 
+                                          <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4"  ng-repeat="(key, value) in appConfigEditCopy.ai_content.ai_directive_attributes" class="cpl_input_rows" ng-hide="key == 'ai_info_source'">
                                               <label class="cpl_input_labels">{{key}}<input class="form-control" type="text" id={{key}} ng-model=appConfigEditCopy.ai_content.ai_directive_attributes[key] name={{key}} value="value" ></label>
                                           </div>
-                                          
+
                                          <!--  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" ><label class="cpl_input_labels">info source</label><select ng-options="sources.id as sources.description for sources in project_info_sources" class="form-control" type="text" id={{key}} ng-model="appConfigEditCopy.ai_content.ai_directive_attributes.ai_info_source" name={{key}}></select>
                                           </div> -->
-                                          {{appConfigEditCopy.ai_content.ai_directive_attributes.ai_info_node_source}}
+                                          {{f}}
                                           <div ng-hide="appConfigEditCopy.ai_content.ai_directive_attributes.ai_info_node_source" class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4" ><label class="cpl_input_labels">info source</label><select ng-options="source._id as source.fileName for source in uploadedFiles" class="form-control" type="text" id={{key}} ng-model="appConfigEditCopy.ai_content.ai_directive_attributes.ai_info_source" name={{key}}></select>
                                           </div>
                                           <!-- edges and nodes -->
@@ -68,20 +68,20 @@
                                           <!--File Uploader-->
                                           <div>
                                           <label class="cpl_input_labels">Upload a CSV
-                                          <button class="btn btn-info" style="font-size:9px;height: 25px; width: 100%;margin-top: 10px" 
-                                          type="file" 
-                                          ngf-select="uploadFiles($file, $invalidFiles)" 
-                                          ngf-pattern="'.csv'" 
-                                          accept=".csv" 
-                                          ngf-max-height="1000" 
+                                          <button class="btn btn-info" style="font-size:9px;height: 25px; width: 100%;margin-top: 10px"
+                                          type="file"
+                                          ngf-select="uploadFiles($file, $invalidFiles)"
+                                          ngf-pattern="'.csv'"
+                                          accept=".csv"
+                                          ngf-max-height="1000"
                                           ngf-max-size="5MB">Select File</button>
                                            File:
                                             <div style="font:smaller">{{f.name}} {{errFile.name}} {{errFile.$error}} {{errFile.$errorParam}}
                                                 <span class="progress" ng-show="f.progress >= 0" style="width: 100px">
-                                                    <div style="width:{{f.progress}}%; display: inline; background: orange"  
+                                                    <div style="width:{{f.progress}}%; display: inline; background: orange"
                                                          ng-bind="f.progress + '%'"></div>
                                                 </span>
-                                            </div>     
+                                            </div>
                                             {{errorMsg}}
                                           </label>
 
@@ -90,7 +90,7 @@
                                           </div>
                                     </div>
 
-                                  
+
                                         <!-- move box -->
                                     <div class="col-xs-3  ">
             <div class="row">
@@ -105,7 +105,7 @@
 
                                               <!-- boot size selectors -->
                                               <div ng-repeat="(key, value) in appConfigEditCopy.ai_directive_attributes.ai_bootstrap_width">
-                                                   <label class="visible-{{key}}">Columns used viewed on {{appConfigEditCopy.ai_directive_attributes.ai_bootstrap_width[key].devicename}} 
+                                                   <label class="visible-{{key}}">Columns used viewed on {{appConfigEditCopy.ai_directive_attributes.ai_bootstrap_width[key].devicename}}
                                                      <select ng-options=" availSizes.width as availSizes.width for availSizes in availableColumnWidths" class="form-control" type="text" id={{}} ng-model="appConfigEditCopy.ai_directive_attributes.ai_bootstrap_width[key].size" name={{key}}>
                                                      </select>
                                                    </label>

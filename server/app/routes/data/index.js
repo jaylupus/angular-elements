@@ -33,7 +33,7 @@ function csvJSON(csv){
       }
       result.push(obj);
  }
- 
+
  //return result; //JavaScript object
  return JSON.stringify(result); //JSON
 }
@@ -68,12 +68,13 @@ router.get('/:id', function(req, res, next) {
 router.post('/:projId/:userId', function(req, res, next){
   console.log('Entering POST route');
   console.log('req.files is');
+  console.log('req', req);
   console.log(req.files);
   console.log(req.files.file.name);
   var filePathName = rootPath + 'files/' + req.files.file.name;
   var filename = req.files.file.name;
   console.log('filePathName is ' + filePathName);
-  
+
   fsp.writeFile(filePathName, req.files.file.data)
   .then(function(){
     console.log('hello');

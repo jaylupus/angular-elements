@@ -10,12 +10,7 @@
         "ai_height" : "400",
         "ai_width" : "400",
         "bcolor": "#b3d1ff",
-<<<<<<< HEAD
-        "ai_info_node_source":"577145309188eb8a256ec35b",
-        "ai_info_edge_source":"577145309188eb8a256ec35c"
-=======
-        "ai_info_node_source":"5771221653518671070db7df",
-        "ai_info_edge_source":"5771221653518671070db7e0"
->>>>>>> f1d68af091d9062ce1bba0e0fab949be941efae4
+        "ai_info_node_source":"5771488c3c47a266275f25e1",
+        "ai_info_edge_source":"5771488c3c47a266275f25e2"
       }
     },
