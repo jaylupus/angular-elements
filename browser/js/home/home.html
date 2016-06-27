@@ -6,28 +6,32 @@
 
     <div class="row">
 
-      <div ng-show="isLoggedIn()">
+
+      <div id="project-list" class="col col-sm-6" ng-show="isLoggedIn()">
         <h3>{{user.email || user.github.username}}'s Projects<h3>
-        {{hello}}
-          <div ng-repeat="project in projects" class="col-sm-3">
-            <div class="tile">
-              <div class="tile-title">
-                <a ui-sref="project({id:project._id})">{{project.name || "temp name"}}</a>
-              </div>
-            </div>
+
+
+              <ul>
+              <li ng-repeat="project in projects">
+                <i class="fa fa-file-code-o" aria-hidden="true"></i><a ui-sref="project({id:project._id})">{{project.name}}</a>
+              </li>
+              </ul>
           </div>
-      </div>
-    </div>
+
+      <div class="col col-sm-6" ng-show="isLoggedIn()">
+          <h3 id="dfHeader">Your data files</h3>
+          <div id="modalDiv">
+            <button type="button" class="btn btn-sm" ng-class="data.seed ? 'btn-success btn-md' : 'btn-info btn-md' " id="modalBtn" ng-repeat="data in userData" ng-click='open(data)'>{{data.fileName}}</button>
+          </div>
+        </div>
+
+
+    </div> <!-- end row -->
 
   </div>
 
 
-  <div ng-show="isLoggedIn()">
-    <h3 id="dfHeader">Your data files</h3>
-    <div id="modalDiv">
-      <button type="button" class="btn" ng-class="data.seed ? 'btn-success btn-md' : 'btn-info btn-md' " id="modalBtn" ng-repeat="data in userData" ng-click='open(data)'>{{data.fileName}}</button>
-    </div>
-  </div>
+
 
 
 <div ng-hide="isLoggedIn()" id="splashscreen">
@@ -54,10 +58,9 @@
         if you already have a project, please log in
 
     </div> -->
-    <div class="row">
+    <div class="col col-md-4">
         <h3>Create a New Project</h3>
-        <img class="float-fish" src="images/Fish-fish-sm.png" />
-        <div class="col-sm-4">
+<!--         <img class="float-fish" src="images/Fish-fish-sm.png" width=50% height=50% /> -->
 
               <form role="form" name="projectCreate" ng-submit="addProject()">
                 <div class="form-group">
@@ -68,7 +71,6 @@
                 <button type="submit" class="btn btn-default">Submit</button>
               </form>
 
-        </div>
     </div>
   </div>
 

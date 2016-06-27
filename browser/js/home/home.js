@@ -14,8 +14,11 @@ app.config(function ($stateProvider) {
           userData: function(projectDataFactory, AuthService){
             return AuthService.getLoggedInUser()
             .then(function(user){
-              var userId = user._id
-              return projectDataFactory.dataByUserId(userId);
+              if(user){
+                var userId = user._id
+                return projectDataFactory.dataByUserId(userId);
+              }
+
             })
           }
           // user: function(AuthService){
