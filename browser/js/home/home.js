@@ -11,6 +11,13 @@ app.config(function ($stateProvider) {
             }
             return null;
           },
+          userData: function(projectDataFactory, AuthService){
+            return AuthService.getLoggedInUser()
+            .then(function(user){
+              var userId = user._id
+              return projectDataFactory.dataByUserId(userId);
+            })
+          }
           // user: function(AuthService){
           //   return AuthService.getLoggedInUser();
           // }
@@ -18,9 +25,32 @@ app.config(function ($stateProvider) {
     });
 });
 
-app.controller('HomeControl', function($scope,projects,$rootScope,AuthService,AUTH_EVENTS,$stateParams,ProjectFactory,$state){
+app.controller('HomeControl', function($scope,projects,$rootScope,AuthService,AUTH_EVENTS,$stateParams,ProjectFactory,$state,$location, $anchorScroll,userData,$uibModal){
   $scope.projects=projects;
   $scope.hello=$stateParams.id;
+
+  //User data and Modal Functionality
+  $scope.userData = userData;
+  $scope.open = function(_data){
+    var modalInstance = $uibModal.open({
+      controller: 'ModalController',
+      templateUrl: 'js/home/modalContent.html',
+      resolve: {
+        data: function(){
+          return _data;
+        }
+      }
+    });
+  };
+
+   $scope.scrollTo = function(id) {
+      $location.hash(id);
+      $anchorScroll();
+   }
+
+   $scope.signup = function(){
+    $state.go('signup');
+   }
 
   $scope.isLoggedIn = function () {
                 return AuthService.isAuthenticated();

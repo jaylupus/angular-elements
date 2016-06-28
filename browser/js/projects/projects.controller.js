@@ -1,5 +1,5 @@
 
-app.controller('ProjectEditCtrl', function($scope,$compile,$timeout,project,dataFiles,manifestFactory,$stateParams,AuthService,ProjectFactory,Upload){
+app.controller('ProjectEditCtrlx', function($scope,$compile,$timeout,project,dataFiles,manifestFactory,$stateParams,AuthService,ProjectFactory,Upload){
 // TEST THE FOLLOWING FUNCTIONS
 // add a page
 // add a row
@@ -37,13 +37,13 @@ $scope.uploadFiles = function(file, errFiles) {
         if (response.status > 0)
             $scope.errorMsg = response.status + ': ' + response.data;
     }, function (evt) {
-        file.progress = Math.min(100, parseInt(100.0 * 
+        file.progress = Math.min(100, parseInt(100.0 *
                                  evt.loaded / evt.total));
     });
-  }   
+  }
 };
 
-//infosource 
+//infosource
 $scope.selectedInfosource = function(){}
 
 
@@ -88,7 +88,7 @@ $scope.ai_row_manifest={
     ai_directive_type : 'layout',
     ai_directive_name : 'ai_row',
     ai_directive_attributes : {
-        ai_class : '/css/row_a/style.css', 
+        ai_class : '/css/row_a/style.css',
         'class' : '',
         'style' : '',
         'ai_bootstrap_show': {'xs':{'colsize':'xs','show':'true','devicename':'phone'},'sm':{'colsize':'sm','show':'true','devicename':'tablet'},'md':{'colsize':'md','show':'true','devicename':'laptop'},'lg':{'colsize':'lg','show':'true','devicename':'desktop'}}
@@ -293,7 +293,7 @@ $scope.renderClearfixHtmlFromAiConfig=function(obj) {
       }
       for (var property in obj) {
                 if(typeof obj[property] == "object"){
-                    $scope.renderClearfixHtmlFromAiConfig(obj[property]); 
+                    $scope.renderClearfixHtmlFromAiConfig(obj[property]);
                 }
       }
 };
@@ -464,7 +464,7 @@ $scope.$watch('appConfig',function(){
       $scope.getLastColumn();
       $scope.renderClearfixHtmlFromAiConfig($scope.appConfig, '');
 
-    
+
   },500);
 },true);
 
@@ -477,7 +477,7 @@ $scope.getEditCandidate=function(id){
 }
 
 $scope.setEditCandidate=function(id){
-    $scope.editCandidate = id      
+    $scope.editCandidate = id
 }
 
 $scope.findDirectiveToMakeActiveEdit=function(obj,idToMatch) {
@@ -488,8 +488,8 @@ $scope.findDirectiveToMakeActiveEdit=function(obj,idToMatch) {
                   var colidstring='p_'+obj['ai_directive_page']+'_r_'+obj['ai_directive_row']+'_c_'+obj['ai_directive_col']+'_ai_col';
                 if((idToMatch == rowidstring) || (idToMatch == colidstring)){
                       $scope.referenceToEditInAppConfig=obj;
-                      angular.copy(obj,$scope.appConfigEditCopy); 
-                      return 
+                      angular.copy(obj,$scope.appConfigEditCopy);
+                      return
                 }
         }
       }

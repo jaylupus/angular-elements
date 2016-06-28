@@ -1,6 +1,8 @@
 <section id="home">
 
-  <div class="container">
+  <div id="homepage" class="container ">
+
+
 
     <div class="row">
 
@@ -18,16 +20,43 @@
     </div>
 
   </div>
-  <div class="container">
-    <div ng-hide="isLoggedIn()" class="row" id="welcome">
+
+
+  <div ng-show="isLoggedIn()">
+    <h3 id="dfHeader">Your data files</h3>
+    <div id="modalDiv">
+      <button type="button" class="btn" ng-class="data.seed ? 'btn-success btn-md' : 'btn-info btn-md' " id="modalBtn" ng-repeat="data in userData" ng-click='open(data)'>{{data.fileName}}</button>
+    </div>
+  </div>
+
+
+<div ng-hide="isLoggedIn()" id="splashscreen">
+  <img src="/images/sea-nature-flying-water.png" width=100% height=100%>
+  <div id="homepage-text-wrapper">
+    <h1> Angler </h1>
+    <h3> Create a single page angular app</h3>
+
+  </div>
+  <div id="splash-btn-wrapper">
+
+    <button class="btn btn-primary" id="splash-btn" ng-click="signup()"> Get Started </button>
+  </div>
+
+</div>
+
+
+
+  <div  ng-show="isLoggedIn()" class="container">
+    <!-- <div id="welcome" ng-hide="isLoggedIn()" class="row" id="welcome">
         <h3>Welcome to The App Builder Thing!</h3>
         <p> You can use our site to generate a single page data site. It also makes pizza. To get started, click create a new project.
 
         if you already have a project, please log in
 
-    </div>
+    </div> -->
     <div class="row">
         <h3>Create a New Project</h3>
+        <img class="float-fish" src="images/Fish-fish-sm.png" />
         <div class="col-sm-4">
 
               <form role="form" name="projectCreate" ng-submit="addProject()">
@@ -42,8 +71,6 @@
         </div>
     </div>
   </div>
-<!--   <file-uploader></file-uploader> -->
-  {{user}}
 
 </section>
 

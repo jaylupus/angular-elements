@@ -1,0 +1,14 @@
+{
+    "ai_directive" : "true",
+    "ai_directive_type" : "content",
+    "ai_directive_name" : "solo_table",
+    "ai_directive_preview":"",
+    "ai_directive_desc":"plain old table",
+    "ai_directive_external_docs_url":"",
+    "ai_directive_attributes" : { 
+        "solo_table_title": "title",
+        "solo_table_class" : "myclass",
+        "solo_table_info_source" : "myclass",
+        "solo_table_info_type" : "file"
+    }
+},

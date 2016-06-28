@@ -14,9 +14,148 @@ body {
   }
 }
 
+#modalDiv {
+  width: 30em;
+  margin-left: 9em;
+}
+
+#dfHeader {
+  width: 30em;
+  margin-left: 5em;
+}
+
+#modalBtn {
+  border-radius: 10px;
+  margin: 3px;
+}
+
+#githubbtn {
+  background: black;
+}
+
 #main {
-  padding-top: 60px;
+  /*padding-top: 60px;*/
   margin: 0 auto;
+}
+
+#splashscreen {
+  /*margin-top:-60px;*/
+  img {
+    postion:fixed;
+    left:0px;
+    top:0px;
+  }
+}
+
+.header-label {
+  border-radius: 5px;
+  background-color: orange;
+  margin: 2px;
+  padding: 2px;
+  cursor:default !important;
+}
+
+#homepage-text-wrapper {
+  color:white;
+
+  h1 {
+    font-size: 7em;
+    /*font-family: 'Inconsolata' ;*/
+    font-family: 'Poiret One', cursive;
+  }
+  h3 {
+    /*font-family: monospace;*/
+    /*font-family: 'Inconsolata' ;*/
+    font-family: 'Poiret One', cursive;
+  }
+  text-align: left;
+  margin-top:0px;
+  position: fixed;
+  left:180px;
+  top:150px;
+
+}
+
+#splash-btn-wrapper {
+  color:white;
+  font-family: 'Poiret One', cursive;
+  position:fixed;
+  left:680px;
+  top:360px;
+
+}
+
+
+
+@media only screen and (max-width: 768px) {
+
+  #homepage-text-wrapper{
+      left:100px;
+      top:210px;
+  }
+
+
+   #splash-btn-wrapper {
+        left:280px;
+        top:460px;
+
+        button {
+          height: 150px;
+          width: 150px;
+          font-size: 1em;
+        }
+    }
+  #splash-btn {
+      height: 150px;
+      width: 150px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+
+  #homepage-text-wrapper{
+
+    h1 {
+          font-size: 2em;
+          /*font-family: 'Inconsolata' ;*/
+          font-family: 'Poiret One', cursive;
+        }
+      h3 {
+        /*font-family: monospace;*/
+        /*font-family: 'Inconsolata' ;*/
+        font-family: 'Poiret One', cursive;
+      }
+      left:100px;
+      top:210px;
+  }
+
+
+   #splash-btn-wrapper {
+        left:120px;
+        top:360px;
+        button {
+          height: 100px;
+          width: 100px;
+          font-size: 1em;
+        }
+    }
+
+}
+
+#splash-btn {
+  border-radius: 10px;
+  i {
+    margin-left:5px;
+  }
+  border-color: white;
+  background-color: transparent;
+  border-radius: 100%;
+  border-color: white;
+  background-color: transparent;
+  height: 200px;
+  width: 200px;
+  border-width: 4px;
+  font-size: x-large;
 }
 
 

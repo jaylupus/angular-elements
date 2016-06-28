@@ -33,26 +33,29 @@ function csvJSON(csv){
       }
       result.push(obj);
  }
- 
+
  //return result; //JavaScript object
  return JSON.stringify(result); //JSON
 }
 
-router.get('/datasources/:projId', function(req, res, next){
+router.get('/datasourcesproj/:projId', function(req, res, next){
   console.log('req.params is ' + req.params);
   Promise.all([DataSource.find({project: req.params.projId}),DataSource.find({seed:true})])
     .spread(function(projData,seedData){
       var allData=projData.concat(seedData);
       console.log('allData is ' + allData);
 
-      res.send(allData)
+      res.send(allData);
     });
-  // DataSource.find({project: req.params.projId})
-  // .then(function(response){
-  //   console.log('response is ' + response);
-  //   res.send(response)
-  // })
 });
+
+router.get('/datasourcesuser/:userId', function(req, res, next){
+  Promise.all([DataSource.find({user: req.params.userId}),DataSource.find({seed:true})])
+    .spread(function(projData,userdata){
+      var allData=projData.concat(userdata);
+      res.send(allData);
+    });
+})
 
 router.get('/:id', function(req, res, next) {
   DataSource.findById(req.params.id)
@@ -68,12 +71,12 @@ router.get('/:id', function(req, res, next) {
 router.post('/:projId/:userId', function(req, res, next){
   console.log('Entering POST route');
   console.log('req.files is');
-  console.log(req.files);
+  console.log('req', req.files);
   console.log(req.files.file.name);
   var filePathName = rootPath + 'files/' + req.files.file.name;
   var filename = req.files.file.name;
   console.log('filePathName is ' + filePathName);
-  
+
   fsp.writeFile(filePathName, req.files.file.data)
   .then(function(){
     console.log('hello');

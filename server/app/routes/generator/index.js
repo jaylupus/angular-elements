@@ -4,7 +4,7 @@ var Project = require('mongoose').model('Project');
 var generator = require(path.join(__dirname, '../../../../generator'));
 
 router.get('/js/:id', function(req, res) {
-  Project.findById(req.params.id).populate('dataSource')
+  Project.findById(req.params.id)
     .then(function(project) {
       return generator.writeApp(project);
     })

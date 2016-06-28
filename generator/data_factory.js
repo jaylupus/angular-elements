@@ -1,8 +1,10 @@
-app.factory('projectDataFactory', function($http) {
+app.factory('projectDataFactory', function() {
+  var dataObj = {{dataObj}};
+
   return {
-    getInternal: function() {
-      return new Promise(function(resolve, reject){
-      	resolve(JSON.parse({{data}}));
+    getInternal: function(dataId) {
+      return new Promise(function(resolve, reject) {
+        resolve(JSON.parse(dataObj.dataId));
       });
     }
   };

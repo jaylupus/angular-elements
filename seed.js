@@ -72,17 +72,13 @@ var sampleConfig=[
                           ai_content: {
                                 ai_directive : true,
                                 ai_directive_type : "content",
-                                ai_directive_name : "d3_force_basic",
+                                ai_directive_name : "title_subtitle",
                                 ai_directive_page : '1',
                                 ai_directive_row : '1',
                                 ai_directive_col : '1',
                                 ai_directive_attributes : {
-                                    ai_title: "Basic Force Data",
-                                    ai_height : "400",
-                                    ai_width : "400",
-                                    node_width : "5",
-                                    ai_info_type:"file",
-                                    ai_info_source:"hello"
+                                    ai_title: "Obama is the Best",
+                                    ai_subtitle : "by Joe Biden"
                                   }
                         }
                     },col_2:{
@@ -104,8 +100,8 @@ var sampleConfig=[
                                 ai_directive_row : '1',
                                 ai_directive_col : '2',
                                 ai_directive_attributes : {
-                                    ai_title: 'Some info',
-                                    ai_text:"Chambray iPhone bushwick, irony gastropub keffiyeh semiotics. Bushwick 90's cray, brooklyn helvetica cold-pressed retro cardigan cronut iPhone fanny pack. Fashion axe narwhal asymmetrical, selvage tacos celiac poutine meggings blue bottle authentic selfies shoreditch. Irony green juice fingerstache flexitarian, pork belly brooklyn locavore pabst mustache seitan."
+                                    ai_title: "Accomplishments in Office",
+                                    ai_text:"I think you'll be surprized when you look at all the cool things we did in office. While Barry O was gettin stuff done, I took the time to make this webpage with Angler. I am the internet."
                                 }
                         }
                     }
@@ -137,15 +133,19 @@ var sampleConfig=[
                                 ai_content: {
                                           ai_directive : true,
                                           ai_directive_type : 'content',
-                                          ai_directive_name : 'solo_table',
+                                          ai_directive_name : 'ai_click_img',
                                           ai_directive_page : '1',
                                           ai_directive_row : '2',
                                           ai_directive_col : '1',
                                           ai_directive_attributes : {
-                                              solo_table_title: 'Solo table',
-                                              solo_table_class : 'myclass',
-                                              solo_table_info_source : 'myclass',
-                                              solo_table_info_type : 'file'
+                                              ai_height: "262",
+                                              ai_width:"465",
+                                              ai_img_url:"http://www.theblaze.com/wp-content/uploads/2013/04/obama-biden.jpg",
+                                              ai_link:"http://www.fullstackacademy.com",
+                                              bordertype:"solid",
+                                              bordercolor:"black",
+                                              borderweight:"2px",
+                                              caption:"best buds"
                                           }
                                 }
                         }
