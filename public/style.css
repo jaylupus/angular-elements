@@ -39,6 +39,9 @@ body {
   border-radius: 10px;
   margin: 3px; }
 
+#modalClosebtn {
+  border-radius: 10px; }
+
 #githubbtn {
   background: black; }
 
