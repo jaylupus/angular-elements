@@ -65,19 +65,9 @@ body {
 
 #homepage-text-wrapper {
   color: white;
-  text-align: left;
-  margin-top: 0px;
-  position: fixed;
-  left: 180px;
-  top: 150px; }
+  text-align: left; }
   #homepage-text-wrapper h1 {
-    font-size: 7em;
-    /*font-family: 'Inconsolata' ;*/
-    font-family: 'Poiret One', cursive; }
-  #homepage-text-wrapper h3 {
-    /*font-family: monospace;*/
-    /*font-family: 'Inconsolata' ;*/
-    font-family: 'Poiret One', cursive; }
+    font-size: 7em; }
 
 #splash-btn-wrapper {
   color: white;
@@ -181,8 +171,7 @@ navbar {
   navbar .nav > li > a {
     cursor: pointer;
     transition: color 0.2s;
-    font-size: 2em;
-    font-family: 'Poiret One', cursive; }
+    font-size: 2em; }
     navbar .nav > li > a.active {
       color: #c80a0c; }
     navbar .nav > li > a:hover {
