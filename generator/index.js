@@ -48,11 +48,12 @@ var getDataIdsFromConfig = function(config, dataIds) {
 var getDataObjFromConfig = function(config) {
   var dataIds = getDataIdsFromConfig(config);
   var dataObj = {};
+
   return new Promise(function(resolve, reject) {
       resolve(dataIds);
     })
     .each(function(dataId) {
-      DataSource.findById(dataId)
+      return DataSource.findById(dataId)
         .then(function(data) {
           dataObj[dataId] = JSON.parse(data.data);
         });
