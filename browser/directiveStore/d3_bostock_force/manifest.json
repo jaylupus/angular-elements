@@ -12,7 +12,12 @@
         "node_width" : "5",
         "labels":"false",
         "colorSet":"20",
+<<<<<<< HEAD
         "ai_info_node_source":"5771a3d95e79f5525fccc4bb",
         "ai_info_edge_source":"5771a3d95e79f5525fccc4bc"
+=======
+        "ai_info_node_source":"577197a9eb37b05840d35497",
+        "ai_info_edge_source":"577197a9eb37b05840d35498"
+>>>>>>> decca6cfa67318dfdbe4025e12fc1bea407155f6
       }
     },
