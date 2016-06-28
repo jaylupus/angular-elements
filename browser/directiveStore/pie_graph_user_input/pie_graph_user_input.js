@@ -4,7 +4,7 @@ app.directive('pieGraphUserInput', function($window) {
 
   return {
     restrict: 'E',
-    templateUrl: 'directiveStore/d3-pie-graph-1/pie-graph.html',
+    templateUrl: 'directiveStore/pie_graph_user_input/pie_graph_user_input.html',
     scope: {
       aiTitle  : '@',
       aiWidth:'@',

@@ -4,5 +4,14 @@ npm-debug.log
 .DS_Store
 coverage
 files
-public
+public/main.js
+public/style.css
+browser/directiveStore/d3_bostock_force/manifest.json
+browser/directiveStore/d3_force_basic/manifest.json
+browser/directiveStore/d3_force_images/manifest.json
+browser/directiveStore/flare_larskotthoff/manifest.json
+browser/directiveStore/horizontal_flare/manifest.json
+browser/directiveStore/nvd3_bar_chart/manifest.json
+browser/directiveStore/nvd3_scatter_chart/manifest.json
+browser/directiveStore/vert_flare/manifest.json
 
