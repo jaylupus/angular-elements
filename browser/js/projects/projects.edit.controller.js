@@ -67,6 +67,7 @@ $scope.getHeaders = function(fileId,fileHeaders){
   return headers;
 }
 
+
 $scope.getFields();
 // this is the app config
 $scope.appConfigtemp={};
@@ -584,6 +585,7 @@ $scope.addNewDirective=function(page,row,column,manifest){
 };
 
 $scope.addToPage=function(manifest){
+
   console.log('running add',manifest);
   //if the directive is a layout type
   if(manifest.ai_directive_type === 'layout'){
@@ -691,8 +693,12 @@ $scope.setEditSelect=function(id){
     $scope.findDirectiveToMakeActiveEdit($scope.appConfig,$scope.editCandidate);
     $scope.gotoElement($scope.editCandidate);
 }
-
-
-
+$timeout(function(){
+if($scope.appConfig.pages.page_1 === undefined){$scope.addToPage($scope.builtInManifests[0])};
+if($scope.appConfig.pages.page_1.rows.row_1 === undefined){$scope.addToPage($scope.builtInManifests[1])};
+},1000);
+$timeout(function(){
+if($scope.appConfig.pages.page_1.rows === undefined){$scope.addToPage($scope.builtInManifests[1])};
+},5000);
 });
 
