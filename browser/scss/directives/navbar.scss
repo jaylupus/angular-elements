@@ -30,8 +30,7 @@ navbar {
     cursor: pointer;
     transition: color 0.2s;
     font-size: 2em;
-    font-family: 'Poiret One', cursive;
-
+  
     &.active {
       color: darken(#f31214, 10%);
     }
