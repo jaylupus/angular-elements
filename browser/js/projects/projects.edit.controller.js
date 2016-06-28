@@ -224,6 +224,7 @@ $scope.saveEdit=function(caller){
 
     if(caller !== 'addtoPage'){$scope.clearEdit()};
 
+
 };
 $scope.saveEntireProject=function(caller){
     $scope.project.config.unshift($scope.appConfig);
@@ -604,10 +605,14 @@ $scope.addToPage=function(manifest){
         $scope.setEditSelect();
         $scope.DSopen=false;
         $scope.saveEdit('addtoPage');
+
       },1000);
   }
   $scope.DSopen=false;
   $timeout(function(){$scope.cplopen=true},1500);
+
+  
+
 };
 
 $scope.project=project; //init the $scope.project for resolve of project in state machine
@@ -641,8 +646,7 @@ $scope.$watch('appConfig',function(){
       $scope.renderDirectiveHtmlFromAiConfig($scope.appConfig, '');
       $scope.getLastColumn();
       $scope.renderClearfixHtmlFromAiConfig($scope.appConfig, '');
-
-    console.dir($scope.appConfig)
+      $scope.gotoElement($scope.editCandidate);
   },500);
 },true);
 
