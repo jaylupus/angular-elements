@@ -2,7 +2,7 @@
     "ai_directive" : "true",
     "ai_directive_type" : "content",
     "ai_directive_name" : "pie_graph_user_input",
-    "ai_directive_preview":"./directiveStore/d3-pie-graph-1/preview.png",
+    "ai_directive_preview":"./directiveStore/pie_graph_user_input/preview.png",
     "ai_directive_desc":"Pie Chart with User Input",
     "ai_directive_display_title":"Pie Chart with User Input",
     "ai_directive_attributes" : {
