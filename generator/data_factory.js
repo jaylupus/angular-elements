@@ -4,7 +4,7 @@ app.factory('projectDataFactory', function() {
   return {
     getInternal: function(dataId) {
       return new Promise(function(resolve, reject) {
-        resolve(JSON.parse(dataObj[dataId]));
+        resolve(dataObj[dataId]);
       });
     }
   };
