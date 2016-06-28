@@ -4,23 +4,39 @@ app.directive('aiDownload', ['DownloadFactory', function(DownloadFactory) {
     templateUrl: '/js/download/download.html',
     scope: '=',
     link: function(scope, element) {
-      DownloadFactory.getHtml(scope.projId)
-        .then(function(htmlfile) {
-          var myHtmlFile = new File([htmlfile.data], { type: 'text/html' });
-          scope.downloadHtml = function() {
+      scope.downloadHtml = function() {
+        DownloadFactory.getHtml(scope.projId)
+          .then(function(htmlfile) {
+            var myHtmlFile = new File([htmlfile.data], { type: 'text/html' });
             saveAs(myHtmlFile, 'index.html');
-          };
-        })
-        .then(function() {
-          return DownloadFactory.getJs(scope.projId);
-        })
-        .then(function(jsfile) {
-          var myJsFile = new File([jsfile.data], { type: 'application/javascript' });
-          scope.downloadJs = function() {
+          });
+      };
+
+      scope.downloadJs = function() {
+        DownloadFactory.getJs(scope.projId)
+          .then(function(jsfile) {
+            var myJsFile = new File([jsfile.data], { type: 'application/javascript' });
             saveAs(myJsFile, 'script.js');
-          };
-        });
+          });
+      };
     }
+
+    // DownloadFactory.getHtml(scope.projId)
+    //   .then(function(htmlfile) {
+    //     var myHtmlFile = new File([htmlfile.data], { type: 'text/html' });
+    //     scope.downloadHtml = function() {
+    //       saveAs(myHtmlFile, 'index.html');
+    //     };
+    //   })
+    //   .then(function() {
+    //     return DownloadFactory.getJs(scope.projId);
+    //   })
+    //   .then(function(jsfile) {
+    //     var myJsFile = new File([jsfile.data], { type: 'application/javascript' });
+    //     scope.downloadJs = function() {
+    //       saveAs(myJsFile, 'script.js');
+    //     };
+    //   });
   };
 }]);
 
