@@ -145,11 +145,6 @@ body {
 .d_store {
   color: black; }
 
-.directive_card_container {
-  height: 350px;
-  width: 300px;
-  overflow: scroll; }
-
 .ds-browser-demo {
   border: 2px solid #dddddd;
   border-radius: 5px; }
@@ -259,7 +254,7 @@ navbar {
 
 .control_panel {
   font-size: 11px;
-  height: 25px;
+  height: 0px;
   margin: auto auto;
   position: fixed;
   position: none;
@@ -297,11 +292,15 @@ navbar {
   font-weight: normal; }
 
 .control_panel_show {
-  height: 500px; }
+  height: 300px; }
 
 .control_panel_minbut {
+  float: left;
+  top: 200px; }
+
+.control_panel_opener {
   float: right;
-  margin-right: 8px; }
+  top: 100px; }
 
 #cpl_move {
   border-radius: 4px;
@@ -348,16 +347,17 @@ navbar {
   padding: 10px; }
 
 .directive_shop_panel {
-  width: 20px;
-  height: 40%;
+  width: 50px;
+  /* height: 83px; */
   margin: auto auto;
   position: fixed;
   top: 150px;
   left: -2px;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.9);
   border-radius: 0px 4px 4px 0px;
-  transition: all .4s; }
+  transition: all .4s;
+  /* padding-bottom: 20px; */ }
 
 .directive_shop_panel_show {
   position: none;
@@ -393,10 +393,10 @@ navbar {
 .directive_card_container {
   height: 250px;
   padding: 10px;
-  margin: 10px;
+  margin-top: 20px;
   border-radius: 4px 4px 4px 4px;
   border: 1px solid rgba(0, 0, 0, 0.2);
-  overflow-y: hidden; }
+  overflow: hidden; }
 
 .edit_row {
   padding: 0 20 20 20px; }
@@ -425,3 +425,6 @@ navbar {
 
 .edit_spot_active {
   display: none; }
+
+.bottomMargin {
+  margin-bottom: 350px; }
