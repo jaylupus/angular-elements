@@ -1,5 +1,5 @@
 "use strict";
-app.controller('ProjectEditCtrl', function($scope,$compile,$timeout,project,dataFiles,manifestFactory,$stateParams,AuthService,ProjectFactory,$location,$anchorScroll,Upload,projectDataFactory){
+app.controller('ProjectEditCtrl', function($scope,$compile,$timeout,project,dataFiles,manifestFactory,$stateParams,AuthService,ProjectFactory,$location,$anchorScroll,Upload,projectDataFactory,anchorSmoothScroll){
 // TEST THE FOLLOWING FUNCTIONS
 // add a page
 // add a row
@@ -66,6 +66,7 @@ $scope.getHeaders = function(fileId,fileHeaders){
   }
   return headers;
 }
+
 
 $scope.getFields();
 // this is the app config
@@ -584,6 +585,7 @@ $scope.addNewDirective=function(page,row,column,manifest){
 };
 
 $scope.addToPage=function(manifest){
+
   console.log('running add',manifest);
   //if the directive is a layout type
   if(manifest.ai_directive_type === 'layout'){
@@ -653,15 +655,7 @@ $scope.getEditCandidate=function(id){
 }
 
 $scope.setEditCandidate=function(id){
-    $scope.editCandidate = id
-    $scope.gotoBottom = function() {
-      // set the location.hash to the id of
-      // the element you wish to scroll to.
-      $location.hash('p_1_r_2_c_3_ai_col');
-
-      // call $anchorScroll()
-      $anchorScroll();
-};
+    $scope.editCandidate = id;
 }
 
 $scope.findDirectiveToMakeActiveEdit=function(obj,idToMatch) {
@@ -684,13 +678,27 @@ $scope.findDirectiveToMakeActiveEdit=function(obj,idToMatch) {
       }
 };
 
+$scope.gotoElement = function (eID){
+  // set the location.hash to the id of
+  // the element you wish to scroll to.
+  $location.hash(eID);
+  // call $anchorScroll()
+  anchorSmoothScroll.scrollTo(eID);
+};
 
 $scope.setEditSelect=function(id){
     // THE DIRECTIVE THAT IS IN THE EDIT CANDIDATE COLUMN
     $scope.cplopen=true;
     $scope.DSopen=false;
     $scope.findDirectiveToMakeActiveEdit($scope.appConfig,$scope.editCandidate);
+    $scope.gotoElement($scope.editCandidate);
 }
-
+$timeout(function(){
+if($scope.appConfig.pages.page_1 === undefined){$scope.addToPage($scope.builtInManifests[0])};
+if($scope.appConfig.pages.page_1.rows.row_1 === undefined){$scope.addToPage($scope.builtInManifests[1])};
+},1000);
+$timeout(function(){
+if($scope.appConfig.pages.page_1.rows === undefined){$scope.addToPage($scope.builtInManifests[1])};
+},5000);
 });
 

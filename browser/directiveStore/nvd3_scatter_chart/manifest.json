@@ -8,11 +8,7 @@
     "ai_directive_attributes" : {
         "ai_title": "NVD3 Scatter; Iris Petal Width vs Length",
         "ai_height" : "400",
-<<<<<<< HEAD
-        "ai_info_source":"5771a3d95e79f5525fccc4bf",
-=======
-        "ai_info_source":"577197a9eb37b05840d3549b",
->>>>>>> decca6cfa67318dfdbe4025e12fc1bea407155f6
+        "ai_info_source":"577201db15e218636892f3a4",
         "xvalue":"petalLength",
         "yvalue": "petalWidth",
         "size":"sepalLength",
